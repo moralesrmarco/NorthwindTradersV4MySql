@@ -28,7 +28,6 @@ namespace NorthwindTradersV4MySql
                 string cnStr = ConfigurationManager.ConnectionStrings["NorthwindMySql"].ConnectionString;
                 using (var cn = new MySqlConnection(cnStr))
                 using (var da = new MySqlDataAdapter("SELECT e1.*, e2.FirstName As ReportsToFirstName, e2.LastName As ReportsToLastName FROM Employees e1 Left Join Employees e2 On e1.ReportsTo = e2.EmployeeID", cn))
-
                 {
                     da.Fill(ds, "Employees");
                 }

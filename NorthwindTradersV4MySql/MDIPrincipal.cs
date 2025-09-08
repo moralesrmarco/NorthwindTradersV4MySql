@@ -161,7 +161,12 @@ namespace NorthwindTradersV4MySql
 
         private void reporteDeEmpleadosConFotoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptEmpleadosConFoto frmRptEmpleadosConFoto = new FrmRptEmpleadosConFoto
+            {
+                MdiParent = this
+            };
+            frmRptEmpleadosConFoto.Show();
         }
 
         private void reporteDeEmpleadosConFoto2ToolStripMenuItem_Click(object sender, EventArgs e)
