@@ -146,7 +146,12 @@ namespace NorthwindTradersV4MySql
 
         private void mantenimientoDeEmpleadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmEmpleadosCrud frmEmpleadosCrud = new FrmEmpleadosCrud
+            {
+                MdiParent = this
+            };
+            frmEmpleadosCrud.Show();
         }
 
         private void reporteDeEmpleadosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -171,7 +176,12 @@ namespace NorthwindTradersV4MySql
 
         private void reporteDeEmpleadosConFoto2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptEmpleado2 frmRptEmpleado2 = new FrmRptEmpleado2
+            {
+                MdiParent = this
+            };
+            frmRptEmpleado2.Show();
         }
     }
 }

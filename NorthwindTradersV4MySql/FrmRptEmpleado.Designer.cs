@@ -41,30 +41,36 @@
             this.groupBox1.Location = new System.Drawing.Point(30, 30);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(30);
-            this.groupBox1.Size = new System.Drawing.Size(740, 390);
+            this.groupBox1.Size = new System.Drawing.Size(1122, 643);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "» Reporte de empleado «";
+            this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NorthwindTradersV4MySql.RptEmpleado.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(30, 49);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(680, 311);
+            this.reportViewer1.Size = new System.Drawing.Size(1062, 564);
             this.reportViewer1.TabIndex = 0;
             // 
             // FrmRptEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(1182, 703);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmRptEmpleado";
             this.Padding = new System.Windows.Forms.Padding(30);
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "» Reporte de empleado «";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmRptEmpleado_FormClosed);
             this.Load += new System.EventHandler(this.FrmRptEmpleado_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

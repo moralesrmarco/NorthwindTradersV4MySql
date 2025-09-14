@@ -40,17 +40,21 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(30, 30);
             this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(30);
             this.groupBox1.Size = new System.Drawing.Size(740, 390);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "» Reporte de empleados «";
+            this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
             // 
             // reportViewer1
             // 
-            this.reportViewer1.Location = new System.Drawing.Point(150, 58);
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NorthwindTradersV4MySql.RptEmpleado.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(30, 49);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(396, 246);
+            this.reportViewer1.Size = new System.Drawing.Size(680, 311);
             this.reportViewer1.TabIndex = 0;
             // 
             // FrmRptEmpleado2
@@ -63,6 +67,7 @@
             this.Name = "FrmRptEmpleado2";
             this.Padding = new System.Windows.Forms.Padding(30);
             this.Text = "» Reporte de empleados «";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmRptEmpleado2_FormClosed);
             this.Load += new System.EventHandler(this.FrmRptEmpleado2_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
