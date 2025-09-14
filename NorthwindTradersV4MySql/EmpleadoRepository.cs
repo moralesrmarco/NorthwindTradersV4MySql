@@ -48,6 +48,67 @@ namespace NorthwindTradersV4MySql
             }
         }
 
+        public int Actualizar(Empleado e)
+        {
+            string query = @"
+                            UPDATE Employees
+                            SET 
+                                FirstName       = @FirstName,
+                                LastName        = @LastName,
+                                Title           = @Title,
+                                TitleOfCourtesy = @TitleOfCourtesy,
+                                BirthDate       = @BirthDate,
+                                HireDate        = @HireDate,
+                                Address         = @Address,
+                                City            = @City,
+                                Region          = @Region,
+                                PostalCode      = @PostalCode,
+                                Country         = @Country,
+                                HomePhone       = @HomePhone,
+                                Extension       = @Extension,
+                                Notes           = @Notes,
+                                ReportsTo       = @ReportsTo,";
+            if (e.Photo != null)
+                query += "Photo           = @Photo,";
+            query += @"
+                    RowVersion      = RowVersion + 1
+                    WHERE 
+                        EmployeeID = @EmployeeID
+                        AND RowVersion = @RowVersion;
+                    ";
+            using (var cn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@EmployeeID", e.EmployeeID);
+                cmd.Parameters.AddWithValue("@FirstName", e.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", e.LastName);
+                cmd.Parameters.AddWithValue("@Title", e.Title);
+                cmd.Parameters.AddWithValue("@TitleOfCourtesy", e.TitleOfCourtesy);
+                cmd.Parameters.AddWithValue("@BirthDate", e.BirthDate);
+                cmd.Parameters.AddWithValue("@HireDate", e.HireDate);
+                cmd.Parameters.AddWithValue("@Address", e.Address);
+                cmd.Parameters.AddWithValue("@City", e.City);
+                cmd.Parameters.AddWithValue("@Region", e.Region);
+                cmd.Parameters.AddWithValue("@PostalCode", e.PostalCode);
+                cmd.Parameters.AddWithValue("@Country", e.Country);
+                cmd.Parameters.AddWithValue("@HomePhone", e.HomePhone);
+                cmd.Parameters.AddWithValue("@Extension", e.Extension);
+                cmd.Parameters.AddWithValue("@Notes", e.Notes);
+                if (e.ReportsTo.HasValue)
+                    cmd.Parameters.AddWithValue("@ReportsTo", e.ReportsTo.Value);
+                else
+                    cmd.Parameters.AddWithValue("@ReportsTo", DBNull.Value);
+                // si e.Photo es null no se actualiza la foto dado que es una foto con encabezado OLE y esas fotos no se permiten actualizar
+                if (e.Photo != null) 
+                    cmd.Parameters.AddWithValue("@Photo", e.Photo);
+                cmd.Parameters.AddWithValue("@RowVersion", e.RowVersion);
+                if (cn.State != ConnectionState.Open) cn.Open();
+                int numRegs = cmd.ExecuteNonQuery();
+                if (cn.State != ConnectionState.Closed) cn.Close();
+                return numRegs;
+            }
+        }
+
         public EmpleadoConReportsTo ObtenerEmpleadoConReportsTo(int id)
         {
             EmpleadoConReportsTo empleadoConReportsTo = new EmpleadoConReportsTo();

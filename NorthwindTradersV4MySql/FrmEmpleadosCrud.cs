@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -584,13 +585,13 @@ namespace NorthwindTradersV4MySql
         {
             BorrarMensajesError();
             if (tabcOperacion.SelectedTab == tbpListar)
-            { 
+            {
                 FrmRptEmpleado frmRptEmpleado = new FrmRptEmpleado();
                 frmRptEmpleado.Owner = this;
                 frmRptEmpleado.Id = int.Parse(txtId.Text);
                 frmRptEmpleado.ShowDialog();
             }
-            else if (tabcOperacion .SelectedTab == tbpRegistrar)
+            else if (tabcOperacion.SelectedTab == tbpRegistrar)
             {
                 if (ValidarControles())
                 {
@@ -644,6 +645,63 @@ namespace NorthwindTradersV4MySql
                     ActualizaDgv();
                 }
             }
+            else if (tabcOperacion.SelectedTab == tbpModificar)
+            {
+                if (txtId.Text == "")
+                {
+                    MessageBox.Show("Seleccione el empleado a modificar", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                if (ValidarControles())
+                {
+                    MDIPrincipal.ActualizarBarraDeEstado(Utils.modificandoRegistro);
+                    DeshabilitarControles();
+                    btnOperacion.Enabled = false;
+                    try
+                    {
+                        var empleado = new Empleado
+                        {
+                            EmployeeID = Convert.ToInt32(txtId.Text),
+                            FirstName = txtNombres.Text.Trim(),
+                            LastName = txtApellidos.Text.Trim(),
+                            Title = txtTitulo.Text.Trim(),
+                            TitleOfCourtesy = txtTitCortesia.Text.Trim(),
+                            BirthDate = dtpFNacimiento.Value == dtpFNacimiento.MinDate ? (DateTime?)null : dtpFNacimiento.Value,
+                            HireDate = dtpFContratacion.Value == dtpFContratacion.MinDate ? (DateTime?)null : dtpFContratacion.Value,
+                            Address = txtDomicilio.Text.Trim(),
+                            City = txtCiudad.Text.Trim(),
+                            Region = txtRegion.Text.Trim(),
+                            PostalCode = txtCodigoP.Text.Trim(),
+                            Country = txtPais.Text.Trim(),
+                            HomePhone = txtTelefono.Text.Trim(),
+                            Extension = txtExtension.Text.Trim(),
+                            Notes = txtNotas.Text.Trim(),
+                            ReportsTo = cboReportaA.SelectedValue.ToString() == "0" ? (int?)null : Convert.ToInt32(cboReportaA.SelectedValue),
+                            RowVersion = (int)txtId.Tag
+                        };
+                        if (picFoto.Image != null && empleado.EmployeeID > 8)
+                            empleado.Photo = Utils.ImageToByteArray(picFoto.Image);
+                        else
+                            empleado.Photo = null;
+                        int numRegs = _empleadoRepository.Actualizar(empleado);
+                        if (numRegs > 0)
+                            MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se modificó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO fue modificado en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Utils.MsgCatchOueclbdd(ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.MsgCatchOue(ex);
+                    }
+                    LlenarCombos();
+                    ActualizaDgv();
+                }
+            }
         }
     }
 }
+
