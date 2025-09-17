@@ -120,6 +120,7 @@
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoConReportsTo.cs" />
     <Compile Include="EmpleadoRepository.cs" />
+    <Compile Include="EmpleadosBuscar.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,16 +55,14 @@ namespace NorthwindTradersV4MySql
 
         public static byte[] ImageToByteArray(Image image)
         {
-            byte[] foto = null;
-            if (image != null)
+            if (image == null)
+                return null;
+            using (var clone = new Bitmap(image))
+            using (var ms = new MemoryStream())
             {
-                using (var ms = new System.IO.MemoryStream())
-                {
-                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    foto = ms.ToArray();
-                }
+                clone.Save(ms, ImageFormat.Jpeg);
+                return ms.ToArray();
             }
-            return foto;
         }
 
         public static void ValidaTxtBIdIni(TextBox txtBIdIni, TextBox txtBIdFin)
@@ -191,7 +191,7 @@ namespace NorthwindTradersV4MySql
             int[] codigosConexion = { 1040, 1042, 1043, 1044, 1045, 1046, 1049, 1050, 1051, 1054, 1064, 1105, 1114, 1129, 1130, 1153, 1159, 1160, 1161, 1205, 1227, 1235, 1451, 1452, 2002, 2003, 2005 };
 
             if (codigosConexion.Contains(ex.Number)) // Error de conexión
-                MessageBox.Show("No se pudo conectar a la base de datos.\n\nVerifique\n"+ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se pudo realizar la operación en la base de datos.\n\nVerifique\n"+ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
                 MessageBox.Show(Utils.oueclbdd + ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
             MDIPrincipal.ActualizarBarraDeEstado();
@@ -210,6 +210,26 @@ namespace NorthwindTradersV4MySql
             else
                 MessageBox.Show(Utils.oueclbdd + ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
             MDIPrincipal.ActualizarBarraDeEstado();
+        }
+
+        public static void MensajeExclamation(string mensaje)
+        {
+            MessageBox.Show(mensaje, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        public static void MensajeError(string mensaje)
+        {
+            MessageBox.Show(mensaje, nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static void MensajeInformation(string mensaje)
+        {
+            MessageBox.Show(mensaje, nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static DialogResult MensajeQuestion(string mensaje)
+        {
+            return MessageBox.Show(mensaje, Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
         }
 
         public static DialogResult MensajeCerrarForm()

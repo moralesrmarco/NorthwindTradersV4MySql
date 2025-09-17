@@ -1,7 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -56,20 +54,16 @@ namespace NorthwindTradersV4MySql
             txtNotas.ReadOnly = false;
             dtpFNacimiento.Enabled = dtpFContratacion.Enabled = cboReportaA.Enabled = true;
             picFoto.Enabled = true;
-            //btnCargar.Enabled = true;  // no se debe habilitar este control para los registros 1 al nueve
+            //btnCargar.Enabled = true;  // no se debe habilitar este control para los registros 1 al 8
         }
 
         void LlenarCboPais()
         {
-            MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
             try
             {
-                const string query = "SELECT '' As Id, '»--- Seleccione ---«' As Pais UNION ALL SELECT DISTINCT Country As Id, Country As Pais FROM Employees ORDER BY Pais";
-                var dt = new DataTable();
-                using (var cn = new MySqlConnection(cnStr))
-                using (var cmd = new MySqlCommand(query, cn))
-                using (var da = new MySqlDataAdapter(cmd))
-                    da.Fill(dt);
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                var dt = _empleadoRepository.ObtenerPaisesEmpleados();
+                MDIPrincipal.ActualizarBarraDeEstado();
                 cboBPais.DataSource = dt;
                 cboBPais.ValueMember = "Id";
                 cboBPais.DisplayMember = "Pais";
@@ -87,15 +81,11 @@ namespace NorthwindTradersV4MySql
 
         void LlenarCboReportaA()
         {
-            MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
             try
             {
-                const string query = "SELECT -1 As Id, '»--- Seleccione ---«' As Nombre, '000' As Orden UNION ALL SELECT 0 As Id, '' As Nombre, '111' As Orden UNION ALL SELECT EmployeeID As Id, CONCAT(LastName, ', ', FirstName) As Nombre, Concat(LastName, ', ', FirstName) As Orden FROM Employees Order by Orden";
-                var dt = new DataTable();
-                using (var cn = new MySqlConnection(cnStr))
-                using (var cmd = new MySqlCommand(query, cn))
-                using (var da = new MySqlDataAdapter(cmd))
-                    da.Fill(dt);
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                var dt = _empleadoRepository.ObtenerReportaAEmpleados();
+                MDIPrincipal.ActualizarBarraDeEstado();
                 cboReportaA.DataSource = dt;
                 cboReportaA.ValueMember = "Id";
                 cboReportaA.DisplayMember = "Nombre";
@@ -116,80 +106,21 @@ namespace NorthwindTradersV4MySql
             try
             {
                 MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
-                string query;
-                if (sender == null)
+                EmpleadosBuscar empleadosBuscar = new EmpleadosBuscar
                 {
-                    query = @"
-                            SELECT
-                                e.EmployeeID   AS Id,
-                                e.FirstName    AS Nombres,
-                                e.LastName     AS Apellidos,
-                                e.Title        AS `Título`,
-                                e.BirthDate    AS `Fecha de nacimiento`,
-                                e.City         AS Ciudad,
-                                e.Country      AS País,
-                                e.Photo        AS Foto,
-                                CONCAT(e2.LastName, ', ', e2.FirstName) AS `Reporta a`
-                            FROM Employees AS e
-                            LEFT JOIN Employees AS e2
-                                ON e.ReportsTo = e2.EmployeeID
-                            ORDER BY Id DESC
-                            LIMIT 20;
-                            ";
-                }
-                else
-                {
-                    query = @"
-                            SELECT
-                              e.EmployeeID AS Id,
-                              e.FirstName AS Nombres,
-                              e.LastName AS Apellidos,
-                              e.Title AS `Título`,
-                              e.BirthDate AS `Fecha de nacimiento`,
-                              e.City AS Ciudad,
-                              e.Country AS País,
-                              e.Photo AS Foto,
-                              CONCAT(e2.LastName, ', ', e2.FirstName) AS `Reporta a`
-                            FROM Employees AS e
-                            LEFT JOIN Employees AS e2
-                              ON e.ReportsTo = e2.EmployeeID
-                            WHERE
-                              (@IdIni = 0 OR e.EmployeeID BETWEEN @IdIni AND @IdFin)
-                              AND(@Nombres = '' OR e.FirstName  LIKE CONCAT('%', @Nombres, '%'))
-                              AND(@Apellidos = '' OR e.LastName   LIKE CONCAT('%', @Apellidos, '%'))
-                              AND(@Titulo = '' OR e.Title      LIKE CONCAT('%', @Titulo, '%'))
-                              AND(@Domicilio = '' OR e.Address    LIKE CONCAT('%', @Domicilio, '%'))
-                              AND(@Ciudad = '' OR e.City       LIKE CONCAT('%', @Ciudad, '%'))
-                              AND(@Region = '' OR e.Region     LIKE CONCAT('%', @Region, '%'))
-                              AND(@CodigoP = '' OR e.PostalCode LIKE CONCAT('%', @CodigoP, '%'))
-                              AND(@Pais = '' OR e.Country    LIKE CONCAT('%', @Pais, '%'))
-                              AND(@Telefono = '' OR e.HomePhone  LIKE CONCAT('%', @Telefono, '%'))
-                            ORDER BY Id DESC;
-                            ";
-                }
-                var dt = new DataTable();
-                using (var cn = new MySqlConnection(cnStr))
-                {
-                    using (var cmd = new MySqlCommand(query, cn))
-                    {
-                        if (sender != null)
-                        {
-                            cmd.Parameters.AddWithValue("@IdIni", string.IsNullOrEmpty(txtBIdIni.Text) ? 0 : Convert.ToInt32(txtBIdIni.Text));
-                            cmd.Parameters.AddWithValue("@IdFin", string.IsNullOrEmpty(txtBIdFin.Text) ? 0 : Convert.ToInt32(txtBIdFin.Text));
-                            cmd.Parameters.AddWithValue("@Nombres", txtBNombres.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Apellidos", txtBApellidos.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Titulo", txtBTitulo.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Domicilio", txtBDomicilio.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Ciudad", txtBCiudad.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Region", txtBRegion.Text.Trim());
-                            cmd.Parameters.AddWithValue("@CodigoP", txtBCodigoP.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Pais", cboBPais.SelectedValue.ToString());
-                            cmd.Parameters.AddWithValue("@Telefono", txtBTelefono.Text.Trim());
-                        }
-                        using (var da = new MySqlDataAdapter(cmd))
-                            da.Fill(dt);
-                    }
-                }
+                    IdIni = string.IsNullOrEmpty(txtBIdIni.Text) ? 0 : Convert.ToInt32(txtBIdIni.Text),
+                    IdFin = string.IsNullOrEmpty(txtBIdFin.Text) ? 0 : Convert.ToInt32(txtBIdFin.Text),
+                    Nombres = txtBNombres.Text.Trim(),
+                    Apellidos = txtBApellidos.Text.Trim(),
+                    Titulo = txtBTitulo.Text.Trim(),
+                    Domicilio = txtBDomicilio.Text.Trim(),
+                    Ciudad = txtBCiudad.Text.Trim(),
+                    Region = txtBRegion.Text.Trim(),
+                    CodigoP = txtBCodigoP.Text.Trim(),
+                    Pais = cboBPais.SelectedValue.ToString(),
+                    Telefono = txtBTelefono.Text.Trim()
+                };
+                var dt = _empleadoRepository.ObtenerEmpleados(sender, empleadosBuscar);
                 dgv.DataSource = dt;
                 Utils.ConfDgv(dgv);
                 ConfDgv();
@@ -346,7 +277,7 @@ namespace NorthwindTradersV4MySql
                 valida = false;
                 errorProvider1.SetError(dtpFContratacion, "Ingrese la fecha de contratación");
             }
-            if (cboReportaA.SelectedValue.ToString() == "-1")
+            if (cboReportaA.SelectedValue == null || cboReportaA.SelectedValue.ToString() == "-1")
             {
                 valida = false;
                 errorProvider1.SetError(cboReportaA, "Seleccione a quien reporta el empleado");
@@ -372,92 +303,55 @@ namespace NorthwindTradersV4MySql
                 DeshabilitarControles();
                 DataGridViewRow dgvr = dgv.CurrentRow;
                 txtId.Text = dgvr.Cells["Id"].Value.ToString();
+                Empleado empleado = new Empleado();
+                empleado.EmployeeID = Convert.ToInt32(txtId.Text);
                 try
                 {
-                    MySqlCommand cmd = new MySqlCommand(@"
-                                                        SELECT
-                                                            e.EmployeeID                  AS Id,
-                                                            e.FirstName                   AS Nombres,
-                                                            e.LastName                    AS Apellidos,
-                                                            e.Title                       AS Título,
-                                                            e.TitleOfCourtesy             AS `Título de cortesía`,
-                                                            e.BirthDate                   AS `Fecha de nacimiento`,
-                                                            e.HireDate                    AS `Fecha de contratación`,
-                                                            e.Address                     AS Domicilio,
-                                                            e.City                        AS Ciudad,
-                                                            e.Region                      AS Región,
-                                                            e.PostalCode                  AS `Código postal`,
-                                                            e.Country                     AS País,
-                                                            e.HomePhone                   AS Teléfono,
-                                                            e.Extension                   AS Extensión,
-                                                            e.Photo                       AS Foto,
-                                                            e.Notes                       AS Notas,
-                                                            e.ReportsTo                   AS Reportaa,
-                                                            CONCAT(e1.LastName, ', ', e1.FirstName) AS `Reporta a`,
-                                                            e.RowVersion
-                                                        FROM Employees AS e
-                                                        LEFT JOIN Employees AS e1
-                                                            ON e.ReportsTo = e1.EmployeeID
-                                                        WHERE e.EmployeeID = @Id;
-                                                        ", cn);
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("Id", txtId.Text);
-                    if (cn.State != ConnectionState.Open) cn.Open();
-                    using (MySqlDataReader rdr = cmd.ExecuteReader())
+                    empleado = _empleadoRepository.ObtenerEmpleado(empleado);
+                    if (empleado != null)
                     {
-                        if (rdr.Read())
+                        if (empleado.BirthDate != null)
+                            dtpFNacimiento.Value = empleado.BirthDate.Value;
+                        else
+                            dtpFNacimiento.Value = dtpFNacimiento.MinDate;
+                        if (empleado.HireDate != null)
+                            dtpFContratacion.Value = empleado.HireDate.Value;
+                        else
+                            dtpFContratacion.Value = dtpFContratacion.MinDate;
+                        if (empleado.Photo != null)
                         {
-                            txtId.Tag = rdr["RowVersion"];
-                            txtNombres.Text = rdr["Nombres"].ToString();
-                            txtApellidos.Text = rdr["Apellidos"].ToString();
-                            txtTitulo.Text = rdr["Título"].ToString();
-                            txtTitCortesia.Text = rdr["Título de cortesía"].ToString();
-                            txtDomicilio.Text = rdr["Domicilio"].ToString();
-                            txtCiudad.Text = rdr["Ciudad"].ToString();
-                            txtRegion.Text = rdr["Región"].ToString();
-                            txtCodigoP.Text = rdr["Código postal"].ToString();
-                            txtPais.Text = rdr["País"].ToString();
-                            txtTelefono.Text = rdr["Teléfono"].ToString();
-                            txtExtension.Text = rdr["Extensión"].ToString();
-                            if (rdr["Fecha de nacimiento"] != DBNull.Value)
-                                dtpFNacimiento.Value = DateTime.Parse(rdr["Fecha de nacimiento"].ToString());
+                            if (empleado.EmployeeID <= 8)
+                                btnCargar.Enabled = false;
                             else
-                                dtpFNacimiento.Value = dtpFNacimiento.MinDate;
-                            if (rdr["Fecha de contratación"] != DBNull.Value)
-                                dtpFContratacion.Value = DateTime.Parse(rdr["Fecha de contratación"].ToString());
-                            else
-                                dtpFContratacion.Value = dtpFContratacion.MinDate;
-                            if (rdr["Foto"] != DBNull.Value)
-                            {
-                                byte[] foto = (byte[])rdr["Foto"];
-                                MemoryStream ms;
-                                if (int.Parse(txtId.Text) <= 8)
-                                {
-                                    ms = new MemoryStream(foto, 78, foto.Length - 78);
-                                    btnCargar.Enabled = false; // no se permite modificar porque desconozco el formato de la imagen.
-                                }
-                                else
-                                {
-                                    ms = new MemoryStream(foto);
-                                    btnCargar.Enabled = true;
-                                }
+                                btnCargar.Enabled = true;
+                            using (var ms = new MemoryStream(empleado.Photo))
                                 picFoto.Image = Image.FromStream(ms);
-                            }
-                            else
-                                picFoto.Image = null;
-                            txtNotas.Text = rdr["Notas"].ToString();
-                            if (rdr["Reportaa"] != DBNull.Value)
-                                cboReportaA.SelectedValue = rdr["Reportaa"].ToString();
-                            else
-                                cboReportaA.SelectedValue = 0;
                         }
                         else
-                        {
-                            MessageBox.Show($"No se encontró el empleado con Id: {txtId.Text}, es posible que otro usuario lo haya eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            if (cn.State == ConnectionState.Open) cn.Close();
-                            ActualizaDgv();
-                            return;
-                        }
+                            picFoto.Image = null;
+                        if (empleado.ReportsTo != null)
+                            cboReportaA.SelectedValue = empleado.ReportsTo.Value;
+                        else
+                            cboReportaA.SelectedValue = 0;
+                        txtId.Tag = empleado.RowVersion;
+                        txtNombres.Text = empleado.FirstName;
+                        txtApellidos.Text = empleado.LastName;
+                        txtTitulo.Text = empleado.Title;
+                        txtTitCortesia.Text = empleado.TitleOfCourtesy;
+                        txtDomicilio.Text = empleado.Address;
+                        txtCiudad.Text = empleado.City; 
+                        txtRegion.Text = empleado.Region;
+                        txtCodigoP.Text = empleado.PostalCode;
+                        txtPais.Text = empleado.Country;
+                        txtTelefono.Text = empleado.HomePhone;
+                        txtExtension.Text = empleado.Extension;
+                        txtNotas.Text = empleado.Notes;
+                    }
+                    else
+                    {
+                        Utils.MensajeError($"No se encontró el empleado con Id: {txtId.Text}, es posible que otro usuario lo haya eliminado previamente");
+                        ActualizaDgv();
+                        return;
                     }
                 }
                 catch (MySqlException ex)
@@ -467,10 +361,6 @@ namespace NorthwindTradersV4MySql
                 catch (Exception ex)
                 {
                     Utils.MsgCatchOue(ex);
-                }
-                finally
-                {
-                    if (cn.State == ConnectionState.Open) cn.Close();
                 }
                 if (tabcOperacion.SelectedTab == tbpListar)
                 {
@@ -623,11 +513,11 @@ namespace NorthwindTradersV4MySql
                         if (numRegs > 0)
                         {
                             txtId.Text = empleado.EmployeeID.ToString();
-                            MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se registró satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Utils.MensajeInformation($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se registró satisfactoriamente");
                         }
                         else
                         {
-                            MessageBox.Show($"El empleado con Nombre: {txtNombres.Text} {txtApellidos.Text} NO fue registrado en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Utils.MensajeError($"El empleado con Nombre: {txtNombres.Text} {txtApellidos.Text} NO fue registrado en la base de datos");
                         }
                     }
                     catch (MySqlException ex)
@@ -649,7 +539,7 @@ namespace NorthwindTradersV4MySql
             {
                 if (txtId.Text == "")
                 {
-                    MessageBox.Show("Seleccione el empleado a modificar", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Utils.MensajeExclamation("Seleccione el empleado a modificar");
                     return;
                 }
                 if (ValidarControles())
@@ -685,9 +575,43 @@ namespace NorthwindTradersV4MySql
                             empleado.Photo = null;
                         int numRegs = _empleadoRepository.Actualizar(empleado);
                         if (numRegs > 0)
-                            MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se modificó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Utils.MensajeInformation($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se modificó satisfactoriamente");
                         else
-                            MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO fue modificado en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Utils.MensajeError($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO fue modificado en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente");
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Utils.MsgCatchOueclbdd(ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.MsgCatchOue(ex);
+                    }
+                    LlenarCombos();
+                    ActualizaDgv();
+                }
+            }
+            else if (tabcOperacion.SelectedTab == tbpEliminar)
+            {
+                if (txtId.Text == "")
+                {
+                    Utils.MensajeExclamation("Seleccione el empleado a eliminar");
+                    return;
+                }
+                if (Utils.MensajeQuestion($"¿Está seguro de eliminar el empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text}?") == DialogResult.Yes)
+                {
+                    MDIPrincipal.ActualizarBarraDeEstado(Utils.eliminandoRegistro);
+                    btnOperacion.Enabled = false;
+                    try
+                    {
+                        var empleado = new Empleado();
+                        empleado.EmployeeID = Convert.ToInt32(txtId.Text);
+                        empleado.RowVersion = (int)txtId.Tag;
+                        int numRegs = _empleadoRepository.Eliminar(empleado);
+                        if (numRegs > 0)
+                            Utils.MensajeInformation($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se eliminó satisfactoriamente");
+                        else
+                            Utils.MensajeError($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO fue eliminado de la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente");
                     }
                     catch (MySqlException ex)
                     {
