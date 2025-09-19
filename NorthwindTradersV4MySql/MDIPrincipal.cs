@@ -183,5 +183,55 @@ namespace NorthwindTradersV4MySql
             };
             frmRptEmpleado2.Show();
         }
+
+        private void mantenimientoDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmClientesCrud frmClientesCrud = new FrmClientesCrud
+            {
+                MdiParent = this
+            };
+            frmClientesCrud.Show();
+        }
+
+        private void directorioDeClientesYProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmClientesyProveedoresDirectorio frmClientesyProveedoresDirectorio = new FrmClientesyProveedoresDirectorio
+            {
+                MdiParent = this
+            };
+            frmClientesyProveedoresDirectorio.Show();
+        }
+
+        private void directorioDeClientesYProveedoresPorCiudadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void directorioDeClientesYProveedoresPorPaísToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void directorioDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void directorioDeClientesYProveedoresToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void directorioDeClientesYProveedoresPorPaísToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

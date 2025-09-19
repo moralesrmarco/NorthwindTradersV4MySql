@@ -86,6 +86,7 @@
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbEmpleado = new System.Windows.Forms.GroupBox();
+            this.picFoto = new System.Windows.Forms.PictureBox();
             this.grbBuscar = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -103,7 +104,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.picFoto = new System.Windows.Forms.PictureBox();
             this.tbpListar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.grbEmpleados.SuspendLayout();
@@ -114,8 +114,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
             this.grbEmpleado.SuspendLayout();
-            this.grbBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
+            this.grbBuscar.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbpListar
@@ -144,11 +144,11 @@
             // 
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv.Location = new System.Drawing.Point(4, 20);
+            this.dgv.Location = new System.Drawing.Point(15, 31);
             this.dgv.Margin = new System.Windows.Forms.Padding(4);
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersWidth = 51;
-            this.dgv.Size = new System.Drawing.Size(1260, 271);
+            this.dgv.Size = new System.Drawing.Size(1238, 249);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
@@ -219,7 +219,7 @@
             this.grbEmpleados.Location = new System.Drawing.Point(21, 79);
             this.grbEmpleados.Margin = new System.Windows.Forms.Padding(4);
             this.grbEmpleados.Name = "grbEmpleados";
-            this.grbEmpleados.Padding = new System.Windows.Forms.Padding(4);
+            this.grbEmpleados.Padding = new System.Windows.Forms.Padding(15);
             this.grbEmpleados.Size = new System.Drawing.Size(1268, 295);
             this.grbEmpleados.TabIndex = 1;
             this.grbEmpleados.TabStop = false;
@@ -766,6 +766,16 @@
             this.grbEmpleado.Text = "»   Empleado:   «";
             this.grbEmpleado.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
             // 
+            // picFoto
+            // 
+            this.picFoto.Location = new System.Drawing.Point(469, 65);
+            this.picFoto.Margin = new System.Windows.Forms.Padding(4);
+            this.picFoto.Name = "picFoto";
+            this.picFoto.Size = new System.Drawing.Size(171, 158);
+            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFoto.TabIndex = 61;
+            this.picFoto.TabStop = false;
+            // 
             // grbBuscar
             // 
             this.grbBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -975,16 +985,6 @@
             this.label12.TabIndex = 0;
             this.label12.Text = "Código postal:";
             // 
-            // picFoto
-            // 
-            this.picFoto.Location = new System.Drawing.Point(469, 65);
-            this.picFoto.Margin = new System.Windows.Forms.Padding(4);
-            this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(171, 158);
-            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picFoto.TabIndex = 61;
-            this.picFoto.TabStop = false;
-            // 
             // FrmEmpleadosCrud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1012,9 +1012,9 @@
             this.panel1.ResumeLayout(false);
             this.grbEmpleado.ResumeLayout(false);
             this.grbEmpleado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.grbBuscar.ResumeLayout(false);
             this.grbBuscar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

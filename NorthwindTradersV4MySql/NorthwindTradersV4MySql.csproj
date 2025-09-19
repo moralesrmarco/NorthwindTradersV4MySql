@@ -116,6 +116,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente.cs" />
+    <Compile Include="ClienteRepository.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoConReportsTo.cs" />
@@ -126,6 +128,18 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmClientesCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmClientesCrud.Designer.cs">
+      <DependentUpon>FrmClientesCrud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmClientesyProveedoresDirectorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmClientesyProveedoresDirectorio.Designer.cs">
+      <DependentUpon>FrmClientesyProveedoresDirectorio.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmEmpleadosCrud.cs">
       <SubType>Form</SubType>
@@ -169,6 +183,12 @@
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmClientesCrud.resx">
+      <DependentUpon>FrmClientesCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmClientesyProveedoresDirectorio.resx">
+      <DependentUpon>FrmClientesyProveedoresDirectorio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEmpleadosCrud.resx">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
@@ -217,6 +237,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FotoPerfil.png" />
+    <Content Include="ScriptsSql\VW_ClientesProveedores.sql" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

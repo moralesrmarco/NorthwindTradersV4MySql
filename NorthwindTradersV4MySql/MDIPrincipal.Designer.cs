@@ -89,6 +89,17 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mantenimientoDeClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directorioDeClientesYProveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directorioDeClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directorioDeClientesYProveedoresToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -102,6 +113,7 @@
             this.editMenu,
             this.viewMenu,
             this.toolStripMenuItemEmpleados,
+            this.clientesToolStripMenuItem,
             this.toolsMenu,
             this.windowsMenu,
             this.helpMenu});
@@ -379,7 +391,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.optionsToolStripMenuItem.Text = "&Opciones";
             // 
             // windowsMenu
@@ -592,6 +604,93 @@
             this.toolStripStatus.Size = new System.Drawing.Size(43, 20);
             this.toolStripStatus.Text = "Listo.";
             // 
+            // clientesToolStripMenuItem
+            // 
+            this.clientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mantenimientoDeClientesToolStripMenuItem,
+            this.consultasToolStripMenuItem,
+            this.reportesToolStripMenuItem});
+            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.clientesToolStripMenuItem.Text = "Clientes";
+            // 
+            // mantenimientoDeClientesToolStripMenuItem
+            // 
+            this.mantenimientoDeClientesToolStripMenuItem.Name = "mantenimientoDeClientesToolStripMenuItem";
+            this.mantenimientoDeClientesToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.mantenimientoDeClientesToolStripMenuItem.Text = "Mantenimiento de clientes";
+            this.mantenimientoDeClientesToolStripMenuItem.Click += new System.EventHandler(this.mantenimientoDeClientesToolStripMenuItem_Click);
+            // 
+            // consultasToolStripMenuItem
+            // 
+            this.consultasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.directorioDeClientesYProveedoresToolStripMenuItem,
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem,
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem});
+            this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.consultasToolStripMenuItem.Text = "Consultas";
+            // 
+            // reportesToolStripMenuItem
+            // 
+            this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.directorioDeClientesToolStripMenuItem,
+            this.directorioDeClientesYProveedoresToolStripMenuItem1,
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1,
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem1});
+            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.reportesToolStripMenuItem.Text = "Reportes";
+            // 
+            // directorioDeClientesYProveedoresToolStripMenuItem
+            // 
+            this.directorioDeClientesYProveedoresToolStripMenuItem.Name = "directorioDeClientesYProveedoresToolStripMenuItem";
+            this.directorioDeClientesYProveedoresToolStripMenuItem.Size = new System.Drawing.Size(408, 26);
+            this.directorioDeClientesYProveedoresToolStripMenuItem.Text = "Directorio de clientes y proveedores";
+            this.directorioDeClientesYProveedoresToolStripMenuItem.Click += new System.EventHandler(this.directorioDeClientesYProveedoresToolStripMenuItem_Click);
+            // 
+            // directorioDeClientesYProveedoresPorCiudadToolStripMenuItem
+            // 
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem.Name = "directorioDeClientesYProveedoresPorCiudadToolStripMenuItem";
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem.Size = new System.Drawing.Size(408, 26);
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem.Text = "Directorio de clientes y proveedores por ciudad";
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem.Click += new System.EventHandler(this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem_Click);
+            // 
+            // directorioDeClientesYProveedoresPorPaísToolStripMenuItem
+            // 
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem.Name = "directorioDeClientesYProveedoresPorPaísToolStripMenuItem";
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem.Size = new System.Drawing.Size(408, 26);
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem.Text = "Directorio de clientes y proveedores por país";
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem.Click += new System.EventHandler(this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem_Click);
+            // 
+            // directorioDeClientesToolStripMenuItem
+            // 
+            this.directorioDeClientesToolStripMenuItem.Name = "directorioDeClientesToolStripMenuItem";
+            this.directorioDeClientesToolStripMenuItem.Size = new System.Drawing.Size(408, 26);
+            this.directorioDeClientesToolStripMenuItem.Text = "Directorio de clientes";
+            this.directorioDeClientesToolStripMenuItem.Click += new System.EventHandler(this.directorioDeClientesToolStripMenuItem_Click);
+            // 
+            // directorioDeClientesYProveedoresToolStripMenuItem1
+            // 
+            this.directorioDeClientesYProveedoresToolStripMenuItem1.Name = "directorioDeClientesYProveedoresToolStripMenuItem1";
+            this.directorioDeClientesYProveedoresToolStripMenuItem1.Size = new System.Drawing.Size(408, 26);
+            this.directorioDeClientesYProveedoresToolStripMenuItem1.Text = "Directorio de clientes y proveedores";
+            this.directorioDeClientesYProveedoresToolStripMenuItem1.Click += new System.EventHandler(this.directorioDeClientesYProveedoresToolStripMenuItem1_Click);
+            // 
+            // directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1
+            // 
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1.Name = "directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1";
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1.Size = new System.Drawing.Size(408, 26);
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1.Text = "Directorio de clientes y proveedores por ciudad";
+            this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1.Click += new System.EventHandler(this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1_Click);
+            // 
+            // directorioDeClientesYProveedoresPorPaísToolStripMenuItem1
+            // 
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem1.Name = "directorioDeClientesYProveedoresPorPaísToolStripMenuItem1";
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem1.Size = new System.Drawing.Size(408, 26);
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem1.Text = "Directorio de clientes y proveedores por país";
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem1.Click += new System.EventHandler(this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem1_Click);
+            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -678,6 +777,17 @@
         private System.Windows.Forms.ToolStripMenuItem reporteDeEmpleadosConFotoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDeEmpleadosConFoto2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatus;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mantenimientoDeClientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresPorCiudadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresPorPaísToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem directorioDeClientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresPorCiudadToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresPorPaísToolStripMenuItem1;
     }
 }
 
