@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace NorthwindTradersV4MySql
 {
@@ -284,15 +285,75 @@ namespace NorthwindTradersV4MySql
             }
         }
 
-        public DataTable ObtenerDirectorioClientesProveedores(bool checkBoxClientes, bool checkBoxProveedores)
+        public DataTable ObtenerDirectorioClientesProveedores(string nombreDeFormulario, string  comboBoxSelectedValue, bool checkBoxClientes, bool checkBoxProveedores)
         {
             string query = string.Empty;
-            if (checkBoxClientes & checkBoxProveedores)
-                query = "Select * from VW_ClientesProveedores Order by Relation, CompanyName;";
-            else if (checkBoxClientes & !checkBoxProveedores)
-                query = "Select * from VW_ClientesProveedores Where Relation = 'Cliente' Order by CompanyName;";
-            else if (!checkBoxClientes & checkBoxProveedores)
-                query = "Select * from VW_ClientesProveedores Where Relation = 'Proveedor' Order by CompanyName;";
+            if (nombreDeFormulario == "FrmClientesyProveedoresDirectorio")
+            {
+                if (checkBoxClientes & checkBoxProveedores)
+                    query = "Select * from VW_ClientesProveedores Order by Relation, CompanyName;";
+                else if (checkBoxClientes & !checkBoxProveedores)
+                    query = "Select * from VW_ClientesProveedores Where Relation = 'Cliente' Order by CompanyName;";
+                else if (!checkBoxClientes & checkBoxProveedores)
+                    query = "Select * from VW_ClientesProveedores Where Relation = 'Proveedor' Order by CompanyName;";
+            }
+            else if (nombreDeFormulario == "FrmClientesyProveedoresDirectorioxCiudad")
+            {
+                if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & checkBoxProveedores)
+                {
+                    query = "Select * from Vw_ClientesProveedores Order by City, Country, CompanyName";
+                }
+                else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & checkBoxProveedores)
+                {
+                    query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' Order by Country, CompanyName";
+                }
+                else if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & !checkBoxProveedores)
+                {
+                    query = "Select * from Vw_ClientesProveedores Where Relation = 'Cliente' Order by City, Country, CompanyName";
+                }
+                else if (comboBoxSelectedValue == "aaaaa" & !checkBoxClientes & checkBoxProveedores)
+                {
+                    query = "Select * from Vw_ClientesProveedores Where Relation = 'Proveedor' Order by City, Country, CompanyName";
+                }
+                else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & !checkBoxProveedores)
+                {
+                    query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' And Relation = 'Cliente' Order by Country, CompanyName";
+                }
+                else if (comboBoxSelectedValue != "aaaaa" & !checkBoxClientes & checkBoxProveedores)
+                {
+                    query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' And Relation = 'Proveedor' Order by Country, CompanyName";
+                }
+            }
+            else if (nombreDeFormulario == "")
+            {
+
+            }
+            var dt = new DataTable();
+            using (var cn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand(query, cn))
+            using (var da = new MySqlDataAdapter(cmd))
+                da.Fill(dt);
+            return dt;
+        }
+
+        public DataTable ObtenerComboClientesProveedoresCiudad()
+        {
+            string query = @"
+                            SELECT ''          AS Ciudad,
+                                   '»--- Seleccione ---«' AS CiudadPaís
+                            UNION
+                            SELECT 'aaaaa'     AS Ciudad,
+                                   '»--- Todas las ciudades ---«' AS CiudadPaís
+                            UNION
+                            SELECT City        AS Ciudad,
+                                   CONCAT(City, ', ', Country) AS CiudadPaís
+                              FROM Customers
+                            UNION
+                            SELECT City        AS Ciudad,
+                                   CONCAT(City, ', ', Country) AS CiudadPaís
+                              FROM Suppliers
+                            ORDER BY Ciudad;
+                            ";
             var dt = new DataTable();
             using (var cn = new MySqlConnection(_connectionString))
             using (var cmd = new MySqlCommand(query, cn))

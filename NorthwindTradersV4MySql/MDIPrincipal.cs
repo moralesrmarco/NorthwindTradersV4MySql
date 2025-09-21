@@ -206,7 +206,12 @@ namespace NorthwindTradersV4MySql
 
         private void directorioDeClientesYProveedoresPorCiudadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmClientesyProveedoresDirectorioxCiudad frmClientesyProveedoresDirectorioxCiudad = new FrmClientesyProveedoresDirectorioxCiudad
+            {
+                MdiParent = this
+            };
+            frmClientesyProveedoresDirectorioxCiudad.Show();
         }
 
         private void directorioDeClientesYProveedoresPorPaísToolStripMenuItem_Click(object sender, EventArgs e)

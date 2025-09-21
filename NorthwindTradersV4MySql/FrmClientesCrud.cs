@@ -372,7 +372,7 @@ namespace NorthwindTradersV4MySql
                             ContactName = txtContacto.Text,
                             ContactTitle = txtTitulo.Text,
                             Address = txtDomicilio.Text,
-                            City = txtDomicilio.Text,
+                            City = txtCiudad.Text,
                             Region = txtRegion.Text,
                             PostalCode = txtCodigoP.Text,
                             Country = txtPais.Text,

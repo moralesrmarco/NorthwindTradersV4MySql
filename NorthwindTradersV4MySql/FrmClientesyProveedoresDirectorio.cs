@@ -27,6 +27,7 @@ namespace NorthwindTradersV4MySql
         {
             if (!checkBoxClientes.Checked & !checkBoxProveedores.Checked)
             {
+                Dgv.DataSource = null;
                 Utils.MensajeExclamation(Utils.errorCriterioSelec);
                 return;
             }
@@ -44,7 +45,8 @@ namespace NorthwindTradersV4MySql
                     groupBox1.Text = "» Directorio de clientes «";
                 else if (!checkBoxClientes.Checked & checkBoxProveedores.Checked)
                     groupBox1.Text = "» Directorio de proveedores «";
-                var dt = clienteRepository.ObtenerDirectorioClientesProveedores(checkBoxClientes.Checked, checkBoxProveedores.Checked);
+                string nombreDeFormulario = "FrmClientesyProveedoresDirectorio";
+                var dt = clienteRepository.ObtenerDirectorioClientesProveedores(nombreDeFormulario, string.Empty, checkBoxClientes.Checked, checkBoxProveedores.Checked);
                 Dgv.DataSource = dt;
                 ConfDgv();
                 MDIPrincipal.ActualizarBarraDeEstado($"Se encontraron {dt.Rows.Count} registros");
