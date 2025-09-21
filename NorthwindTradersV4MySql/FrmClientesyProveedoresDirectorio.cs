@@ -27,6 +27,7 @@ namespace NorthwindTradersV4MySql
         {
             if (!checkBoxClientes.Checked & !checkBoxProveedores.Checked)
             {
+                groupBox1.Text = "» Directorio de clientes y proveedores «";
                 Dgv.DataSource = null;
                 Utils.MensajeExclamation(Utils.errorCriterioSelec);
                 return;

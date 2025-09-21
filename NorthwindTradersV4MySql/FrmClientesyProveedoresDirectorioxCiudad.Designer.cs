@@ -140,7 +140,7 @@
             this.Grb.Size = new System.Drawing.Size(1027, 457);
             this.Grb.TabIndex = 0;
             this.Grb.TabStop = false;
-            this.Grb.Text = "»   Directorio de clientes y proveedores por ciudad   «";
+            this.Grb.Text = "» Directorio de clientes y proveedores por ciudad «";
             this.Grb.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
             // 
             // Dgv

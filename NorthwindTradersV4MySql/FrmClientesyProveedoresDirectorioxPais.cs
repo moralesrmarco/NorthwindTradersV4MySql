@@ -86,6 +86,7 @@ namespace NorthwindTradersV4MySql
         {
             if (comboBox.SelectedIndex == 0 | (!checkBoxClientes.Checked & !checkBoxProveedores.Checked))
             {
+                Grb.Text = "» Directorio de clientes y proveedores por país «";
                 Dgv.DataSource = null;
                 Utils.MensajeExclamation(Utils.errorCriterioSelec);
                 return;
