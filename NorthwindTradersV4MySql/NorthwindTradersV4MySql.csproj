@@ -147,6 +147,12 @@
     <Compile Include="FrmClientesyProveedoresDirectorioxCiudad.Designer.cs">
       <DependentUpon>FrmClientesyProveedoresDirectorioxCiudad.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmClientesyProveedoresDirectorioxPais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmClientesyProveedoresDirectorioxPais.Designer.cs">
+      <DependentUpon>FrmClientesyProveedoresDirectorioxPais.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmEmpleadosCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmClientesyProveedoresDirectorioxCiudad.resx">
       <DependentUpon>FrmClientesyProveedoresDirectorioxCiudad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmClientesyProveedoresDirectorioxPais.resx">
+      <DependentUpon>FrmClientesyProveedoresDirectorioxPais.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEmpleadosCrud.resx">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>

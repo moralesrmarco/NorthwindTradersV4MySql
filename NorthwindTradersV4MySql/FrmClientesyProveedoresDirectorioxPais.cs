@@ -1,16 +1,15 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Configuration;
 using System.Windows.Forms;
 
 namespace NorthwindTradersV4MySql
 {
-    public partial class FrmClientesyProveedoresDirectorioxCiudad : Form
+    public partial class FrmClientesyProveedoresDirectorioxPais : Form
     {
-        static string cnStr = ConfigurationManager.ConnectionStrings["NorthwindMySql"].ConnectionString;
+        string cnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NorthwindMySql"].ConnectionString;
         private readonly ClienteRepository clienteRepository;
 
-        public FrmClientesyProveedoresDirectorioxCiudad()
+        public FrmClientesyProveedoresDirectorioxPais()
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
@@ -19,9 +18,9 @@ namespace NorthwindTradersV4MySql
 
         private void GrbPaint(object sender, PaintEventArgs e) => Utils.GrbPaint2(this, sender, e);
 
-        private void FrmClientesyProveedoresDirectorioxCiudad_FormClosed(object sender, FormClosedEventArgs e) => MDIPrincipal.ActualizarBarraDeEstado();
+        private void FrmClientesyProveedoresDirectorioxPais_FormClosed(object sender, FormClosedEventArgs e) => MDIPrincipal.ActualizarBarraDeEstado();
 
-        private void FrmClientesyProveedoresDirectorioxCiudad_Load(object sender, EventArgs e)
+        private void FrmClientesyProveedoresDirectorioxPais_Load(object sender, EventArgs e)
         {
             LlenarComboBox();
             Utils.ConfDgv(Dgv);
@@ -32,10 +31,10 @@ namespace NorthwindTradersV4MySql
             try
             {
                 MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
-                var dt = clienteRepository.ObtenerComboClientesProveedoresCiudad();
+                var dt = clienteRepository.ObtenerComboClientesProveedoresPais();
                 comboBox.DataSource = dt;
-                comboBox.DisplayMember = "CiudadPaís";
-                comboBox.ValueMember = "Ciudad";
+                comboBox.DisplayMember = "País";
+                comboBox.ValueMember = "IdPaís";
                 MDIPrincipal.ActualizarBarraDeEstado();
             }
             catch (MySqlException ex)
@@ -48,25 +47,25 @@ namespace NorthwindTradersV4MySql
             }
         }
 
-        private void LlenarDgv()
+        void LlenarDgv()
         {
             try
             {
                 MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
                 string titulo = string.Empty;
-                string nombreDeFormulario = "FrmClientesyProveedoresDirectorioxCiudad";
+                string nombreDeFormulario = "FrmClientesyProveedoresDirectorioxPais";
                 if (comboBox.SelectedValue.ToString() == "aaaaa" & checkBoxClientes.Checked & checkBoxProveedores.Checked)
-                    titulo = "» Directorio de clientes y proveedores por ciudad [ Todas las ciudades ] «";
+                    titulo = "» Directorio de clientes y proveedores por país [ Todos los países ] «";
                 else if (comboBox.SelectedValue.ToString() != "aaaaa" & checkBoxClientes.Checked & checkBoxProveedores.Checked)
-                    titulo = $"» Directorio de clientes y proveedores por ciudad [ Ciudad: {comboBox.SelectedValue.ToString()} ] «";
+                    titulo = $"» Directorio de clientes y proveedores por país [ País: {comboBox.SelectedValue.ToString()} ] «";
                 else if (comboBox.SelectedValue.ToString() == "aaaaa" & checkBoxClientes.Checked & !checkBoxProveedores.Checked)
-                    titulo = "» Directorio de clientes por ciudad [ Todas las ciudades ] «";
+                    titulo = "» Directorio de clientes por país [ Todos los países ] «";
                 else if (comboBox.SelectedValue.ToString() == "aaaaa" & !checkBoxClientes.Checked & checkBoxProveedores.Checked)
-                    titulo = "» Directorio de proveedores por ciudad [ Todas las ciudades ] «";
+                    titulo = "» Directorio de proveedores por país [ Todos los países ] «";
                 else if (comboBox.SelectedValue.ToString() != "aaaaa" & checkBoxClientes.Checked & !checkBoxProveedores.Checked)
-                    titulo = $"» Directorio de clientes por ciudad [ Ciudad: {comboBox.SelectedValue.ToString()} ] «";
+                    titulo = $"» Directorio de clientes por país [ País: {comboBox.SelectedValue.ToString()} ] «";
                 else if (comboBox.SelectedValue.ToString() != "aaaaa" & !checkBoxClientes.Checked & checkBoxProveedores.Checked)
-                    titulo = $"» Directorio de proveedores por ciudad [ Ciudad: {comboBox.SelectedValue.ToString()} ] «";
+                    titulo = $"» Directorio de proveedores por país [ País: {comboBox.SelectedValue.ToString()} ] «";
                 Grb.Text = titulo;
                 var dt = clienteRepository.ObtenerDirectorioClientesProveedores(nombreDeFormulario, comboBox.SelectedValue.ToString(), checkBoxClientes.Checked, checkBoxProveedores.Checked);
                 Dgv.DataSource = dt;
@@ -83,7 +82,7 @@ namespace NorthwindTradersV4MySql
             }
         }
 
-        private void BtnBuscar_Click(object sender, EventArgs e)
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
             if (comboBox.SelectedIndex == 0 | (!checkBoxClientes.Checked & !checkBoxProveedores.Checked))
             {
@@ -94,7 +93,7 @@ namespace NorthwindTradersV4MySql
             LlenarDgv();
         }
 
-        private void ConfDgv()
+        void ConfDgv()
         {
             Dgv.Columns["City"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             Dgv.Columns["Country"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -121,8 +120,8 @@ namespace NorthwindTradersV4MySql
             Dgv.Columns["Country"].HeaderText = "País";
             Dgv.Columns["Phone"].HeaderText = "Teléfono";
 
-            Dgv.Columns["City"].DisplayIndex = 0;
-            Dgv.Columns["Country"].DisplayIndex = 1;
+            Dgv.Columns["Country"].DisplayIndex = 0;
+            Dgv.Columns["City"].DisplayIndex = 1;
             Dgv.Columns["CompanyName"].DisplayIndex = 2;
             Dgv.Columns["Contact"].DisplayIndex = 3;
             Dgv.Columns["Relation"].DisplayIndex = 4;
@@ -131,7 +130,6 @@ namespace NorthwindTradersV4MySql
             Dgv.Columns["Region"].DisplayIndex = 7;
             Dgv.Columns["PostalCode"].DisplayIndex = 8;
             Dgv.Columns["Fax"].DisplayIndex = 9;
-
         }
     }
 }

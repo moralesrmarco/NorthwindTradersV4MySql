@@ -324,9 +324,20 @@ namespace NorthwindTradersV4MySql
                     query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' And Relation = 'Proveedor' Order by Country, CompanyName";
                 }
             }
-            else if (nombreDeFormulario == "")
+            else if (nombreDeFormulario == "FrmClientesyProveedoresDirectorioxPais")
             {
-
+                if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & checkBoxProveedores)
+                    query = "Select * from Vw_ClientesProveedores Order by Country, City, CompanyName";
+                else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & checkBoxProveedores)
+                    query = $"Select * from Vw_ClientesProveedores Where Country = '{comboBoxSelectedValue}' Order by City, CompanyName";
+                else if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & !checkBoxProveedores)
+                    query = "Select * from Vw_ClientesProveedores Where Relation = 'Cliente' Order by Country, City, CompanyName";
+                else if (comboBoxSelectedValue == "aaaaa" & !checkBoxClientes & checkBoxProveedores)
+                    query = "Select * from Vw_ClientesProveedores Where Relation = 'Proveedor' Order by Country, City, CompanyName";
+                else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & !checkBoxProveedores)
+                    query = $"Select * from Vw_ClientesProveedores Where Country = '{comboBoxSelectedValue}' And Relation = 'Cliente' Order by City, CompanyName";
+                else if (comboBoxSelectedValue != "aaaaa" & !checkBoxClientes & checkBoxProveedores)
+                    query = $"Select * from Vw_ClientesProveedores Where Country = '{comboBoxSelectedValue}' And Relation = 'Proveedor' Order by City, CompanyName";
             }
             var dt = new DataTable();
             using (var cn = new MySqlConnection(_connectionString))
@@ -357,6 +368,25 @@ namespace NorthwindTradersV4MySql
             var dt = new DataTable();
             using (var cn = new MySqlConnection(_connectionString))
             using (var cmd = new MySqlCommand(query, cn))
+            using (var da = new MySqlDataAdapter(cmd))
+                da.Fill(dt);
+            return dt;
+        }
+
+        public DataTable ObtenerComboClientesProveedoresPais()
+        {
+            DataTable dt = new DataTable();
+            using (var cn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand(@" 
+                            SELECT '' AS IdPaís, '»--- Seleccione ---«' AS País
+                            UNION ALL
+                            SELECT 'aaaaa' AS IdPaís, '»--- Todos los países ---«' AS País
+                            UNION ALL
+                            SELECT Country AS IdPaís, Country AS País FROM Customers
+                            UNION
+                            SELECT Country AS IdPaís, Country AS País 
+                            FROM Suppliers
+                            ORDER BY País;", cn))
             using (var da = new MySqlDataAdapter(cmd))
                 da.Fill(dt);
             return dt;
