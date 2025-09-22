@@ -118,6 +118,8 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="ClienteRepository.cs" />
+    <Compile Include="ClientesyProveedores.cs" />
+    <Compile Include="ClientesyProveedoresRepository.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoConReportsTo.cs" />
     <Compile Include="EmpleadoRepository.cs" />
@@ -157,6 +159,12 @@
     </Compile>
     <Compile Include="FrmRptClientes.Designer.cs">
       <DependentUpon>FrmRptClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptClientesyProveedoresDirectorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptClientesyProveedoresDirectorio.Designer.cs">
+      <DependentUpon>FrmRptClientesyProveedoresDirectorio.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmRptEmpleado.cs">
       <SubType>Form</SubType>
@@ -210,6 +218,9 @@
     <EmbeddedResource Include="FrmRptClientes.resx">
       <DependentUpon>FrmRptClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptClientesyProveedoresDirectorio.resx">
+      <DependentUpon>FrmRptClientesyProveedoresDirectorio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptEmpleado.resx">
       <DependentUpon>FrmRptEmpleado.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,12 +246,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RptClientesyProveedoresDirectorio.rdlc" />
     <EmbeddedResource Include="RptLayoutMySql.rdlc" />
     <EmbeddedResource Include="RptEmpleado.rdlc" />
     <EmbeddedResource Include="RptClientes.rdlc" />
     <EmbeddedResource Include="RptEmpleados.rdlc" />
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ClientesyProveedores.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -271,8 +284,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\DataSources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

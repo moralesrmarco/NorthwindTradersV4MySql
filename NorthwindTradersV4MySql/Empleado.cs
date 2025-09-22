@@ -1,6 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Windows.Forms;
+﻿using System;
 
 namespace NorthwindTradersV4MySql
 {
