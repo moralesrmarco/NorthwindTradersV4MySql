@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace NorthwindTradersV4MySql
 {
@@ -20,52 +21,45 @@ namespace NorthwindTradersV4MySql
             if (nombreDeFormulario == "FrmRptClientesyProveedoresDirectorio")
             {
                 if (checkBoxClientes & checkBoxProveedores)
-                {
                     query = "Select * from Vw_ClientesProveedores Order by Relation, CompanyName";
-                }
                 else if (checkBoxClientes & !checkBoxProveedores)
-                {
                     query = "Select * from Vw_ClientesProveedores Where Relation = 'Cliente' Order by CompanyName";
-                }
                 else if (!checkBoxClientes & checkBoxProveedores)
-                {
                     query = "Select * from Vw_ClientesProveedores Where Relation = 'Proveedor' Order by CompanyName";
-                }
             }
             else if (nombreDeFormulario == "FrmRptClientesyProveedoresDirectorioxCiudad")
             {
                 if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & checkBoxProveedores)
-                {
                     query = "Select * from Vw_ClientesProveedores Order by City, Country, CompanyName";
-                }
                 else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & checkBoxProveedores)
-                {
                     query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' Order by Country, CompanyName";
-                }
                 else if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & !checkBoxProveedores)
-                {
                     query = "Select * from Vw_ClientesProveedores Where Relation = 'Cliente' Order by City, Country, CompanyName";
-                }
                 else if (comboBoxSelectedValue == "aaaaa" & !checkBoxClientes & checkBoxProveedores)
-                {
                     query = "Select * from Vw_ClientesProveedores Where Relation = 'Proveedor' Order by City, Country, CompanyName";
-                }
                 else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & !checkBoxProveedores)
-                {
                     query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' And Relation = 'Cliente' Order by Country, CompanyName";
-                }
                 else if (comboBoxSelectedValue != "aaaaa" & !checkBoxClientes & checkBoxProveedores)
-                {
                     query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' And Relation = 'Proveedor' Order by Country, CompanyName";
-                }
             }
-            else if (nombreDeFormulario == "")
+            else if (nombreDeFormulario == "FrmRptClientesyProveedoresDirectorioxPais")
             {
-
+                if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & checkBoxProveedores)
+                    query = "Select * from Vw_ClientesProveedores Order by Country, City, CompanyName";
+                else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & checkBoxProveedores)
+                    query = $"Select * from Vw_ClientesProveedores Where Country = '{comboBoxSelectedValue}' Order by City, CompanyName";
+                else if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & !checkBoxProveedores)
+                    query = "Select * from Vw_ClientesProveedores Where Relation = 'Cliente' Order by Country, City, CompanyName";
+                else if (comboBoxSelectedValue == "aaaaa" & !checkBoxClientes & checkBoxProveedores)
+                    query = "Select * from Vw_ClientesProveedores Where Relation = 'Proveedor' Order by Country, City, CompanyName";
+                else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & !checkBoxProveedores)
+                    query = $"Select * from Vw_ClientesProveedores Where Country = '{comboBoxSelectedValue}' And Relation = 'Cliente' Order by City, CompanyName";
+                else if (comboBoxSelectedValue != "aaaaa" & !checkBoxClientes & checkBoxProveedores)
+                    query = $"Select * from Vw_ClientesProveedores Where Country = '{comboBoxSelectedValue}' And Relation = 'Proveedor' Order by City, CompanyName";
             }
             var lista = new List<ClientesyProveedores>();
-            using (var cn = new MySql.Data.MySqlClient.MySqlConnection(_connectionString))
-            using (var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, cn))
+            using (var cn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand(query, cn))
             {
                 if (cn.State != ConnectionState.Open) cn.Open();
                 using (var dr = cmd.ExecuteReader())

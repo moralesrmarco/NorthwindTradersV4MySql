@@ -172,6 +172,12 @@
     <Compile Include="FrmRptClientesyProveedoresDirectorioxCiudad.Designer.cs">
       <DependentUpon>FrmRptClientesyProveedoresDirectorioxCiudad.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptClientesyProveedoresDirectorioxPais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptClientesyProveedoresDirectorioxPais.Designer.cs">
+      <DependentUpon>FrmRptClientesyProveedoresDirectorioxPais.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +236,9 @@
     <EmbeddedResource Include="FrmRptClientesyProveedoresDirectorioxCiudad.resx">
       <DependentUpon>FrmRptClientesyProveedoresDirectorioxCiudad.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptClientesyProveedoresDirectorioxPais.resx">
+      <DependentUpon>FrmRptClientesyProveedoresDirectorioxPais.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptEmpleado.resx">
       <DependentUpon>FrmRptEmpleado.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,6 +266,7 @@
     </Compile>
     <EmbeddedResource Include="RptClientesyProveedoresDirectorio.rdlc" />
     <EmbeddedResource Include="RptClientesyProveedoresDirectorioxCiudad.rdlc" />
+    <EmbeddedResource Include="RptClientesyProveedoresDirectorioxPais.rdlc" />
     <EmbeddedResource Include="RptLayoutMySql.rdlc" />
     <EmbeddedResource Include="RptEmpleado.rdlc" />
     <EmbeddedResource Include="RptClientes.rdlc" />

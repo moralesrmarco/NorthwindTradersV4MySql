@@ -300,29 +300,17 @@ namespace NorthwindTradersV4MySql
             else if (nombreDeFormulario == "FrmClientesyProveedoresDirectorioxCiudad")
             {
                 if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & checkBoxProveedores)
-                {
                     query = "Select * from Vw_ClientesProveedores Order by City, Country, CompanyName";
-                }
                 else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & checkBoxProveedores)
-                {
                     query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' Order by Country, CompanyName";
-                }
                 else if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & !checkBoxProveedores)
-                {
                     query = "Select * from Vw_ClientesProveedores Where Relation = 'Cliente' Order by City, Country, CompanyName";
-                }
                 else if (comboBoxSelectedValue == "aaaaa" & !checkBoxClientes & checkBoxProveedores)
-                {
                     query = "Select * from Vw_ClientesProveedores Where Relation = 'Proveedor' Order by City, Country, CompanyName";
-                }
                 else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & !checkBoxProveedores)
-                {
                     query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' And Relation = 'Cliente' Order by Country, CompanyName";
-                }
                 else if (comboBoxSelectedValue != "aaaaa" & !checkBoxClientes & checkBoxProveedores)
-                {
                     query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' And Relation = 'Proveedor' Order by Country, CompanyName";
-                }
             }
             else if (nombreDeFormulario == "FrmClientesyProveedoresDirectorioxPais")
             {
