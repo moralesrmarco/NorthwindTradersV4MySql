@@ -14,19 +14,54 @@ namespace NorthwindTradersV4MySql
             _connectionString = connectionString;
         }
 
-        public List<ClientesyProveedores> ObtenerClientesyProveedores(bool checkBoxClientes, bool checkBoxProveedores)
+        public List<ClientesyProveedores> ObtenerClientesyProveedores(string nombreDeFormulario, string comboBoxSelectedValue, bool checkBoxClientes, bool checkBoxProveedores)
         {
             string query = string.Empty;
-            if (checkBoxClientes & checkBoxProveedores)
+            if (nombreDeFormulario == "FrmRptClientesyProveedoresDirectorio")
             {
-                query = "Select * from Vw_ClientesProveedores Order by Relation, CompanyName";
-            } else if (checkBoxClientes & !checkBoxProveedores)
-            {
-                query = "Select * from Vw_ClientesProveedores Where Relation = 'Cliente' Order by CompanyName";
+                if (checkBoxClientes & checkBoxProveedores)
+                {
+                    query = "Select * from Vw_ClientesProveedores Order by Relation, CompanyName";
+                }
+                else if (checkBoxClientes & !checkBoxProveedores)
+                {
+                    query = "Select * from Vw_ClientesProveedores Where Relation = 'Cliente' Order by CompanyName";
+                }
+                else if (!checkBoxClientes & checkBoxProveedores)
+                {
+                    query = "Select * from Vw_ClientesProveedores Where Relation = 'Proveedor' Order by CompanyName";
+                }
             }
-            else if (!checkBoxClientes & checkBoxProveedores)
+            else if (nombreDeFormulario == "FrmRptClientesyProveedoresDirectorioxCiudad")
             {
-                query = "Select * from Vw_ClientesProveedores Where Relation = 'Proveedor' Order by CompanyName";
+                if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & checkBoxProveedores)
+                {
+                    query = "Select * from Vw_ClientesProveedores Order by City, Country, CompanyName";
+                }
+                else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & checkBoxProveedores)
+                {
+                    query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' Order by Country, CompanyName";
+                }
+                else if (comboBoxSelectedValue == "aaaaa" & checkBoxClientes & !checkBoxProveedores)
+                {
+                    query = "Select * from Vw_ClientesProveedores Where Relation = 'Cliente' Order by City, Country, CompanyName";
+                }
+                else if (comboBoxSelectedValue == "aaaaa" & !checkBoxClientes & checkBoxProveedores)
+                {
+                    query = "Select * from Vw_ClientesProveedores Where Relation = 'Proveedor' Order by City, Country, CompanyName";
+                }
+                else if (comboBoxSelectedValue != "aaaaa" & checkBoxClientes & !checkBoxProveedores)
+                {
+                    query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' And Relation = 'Cliente' Order by Country, CompanyName";
+                }
+                else if (comboBoxSelectedValue != "aaaaa" & !checkBoxClientes & checkBoxProveedores)
+                {
+                    query = $"Select * from Vw_ClientesProveedores Where City = '{comboBoxSelectedValue}' And Relation = 'Proveedor' Order by Country, CompanyName";
+                }
+            }
+            else if (nombreDeFormulario == "")
+            {
+
             }
             var lista = new List<ClientesyProveedores>();
             using (var cn = new MySql.Data.MySqlClient.MySqlConnection(_connectionString))

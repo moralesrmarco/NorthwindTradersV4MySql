@@ -85,7 +85,7 @@ namespace NorthwindTradersV4MySql
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            if (comboBox.SelectedIndex == 0 | (!checkBoxClientes.Checked & !checkBoxProveedores.Checked))
+            if (comboBox.SelectedIndex <= 0 | (!checkBoxClientes.Checked & !checkBoxProveedores.Checked))
             {
                 Grb.Text = "» Directorio de clientes y proveedores por ciudad «";
                 Dgv.DataSource = null;

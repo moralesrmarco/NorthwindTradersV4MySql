@@ -53,7 +53,8 @@ namespace NorthwindTradersV4MySql
                     titulo = "» Reporte directorio de proveedores «";
                 }
                 groupBox1.Text = titulo;
-                var clientesyProveedores = repo.ObtenerClientesyProveedores(checkBoxClientes.Checked, checkBoxProveedores.Checked);
+                string nombreDeFormulario = "FrmRptClientesyProveedoresDirectorio";
+                var clientesyProveedores = repo.ObtenerClientesyProveedores(nombreDeFormulario, "", checkBoxClientes.Checked, checkBoxProveedores.Checked);
                 MDIPrincipal.ActualizarBarraDeEstado($"Se encontraron {clientesyProveedores.Count} registros");
                 reportViewer1.LocalReport.DataSources.Clear();
                 reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", clientesyProveedores));
@@ -69,11 +70,6 @@ namespace NorthwindTradersV4MySql
             {
                 Utils.MsgCatchOue(ex);
             }
-        }
-
-        private void FrmRptClientesyProveedoresDirectorio_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
