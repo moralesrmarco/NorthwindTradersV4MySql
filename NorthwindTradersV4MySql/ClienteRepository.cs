@@ -1,7 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace NorthwindTradersV4MySql
 {
@@ -390,6 +390,54 @@ namespace NorthwindTradersV4MySql
             using (var da = new MySqlDataAdapter(cmd))
                 da.Fill(dt);
             return dt;
+        }
+
+        public List<Cliente> ObtenerClientesList()
+        {
+            const string query = @"
+                            SELECT 
+                              CustomerID,
+                              CompanyName,
+                              ContactName,
+                              ContactTitle,
+                              Address,
+                              City,
+                              Region,
+                              PostalCode,
+                              Country,
+                              Phone,
+                              Fax
+                            FROM Customers
+                            ORDER BY CustomerID;
+                            ";
+            var clientes = new List<Cliente>();
+            using (var cn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand(query, cn))
+            {
+                if (cn.State != ConnectionState.Open) cn.Open();
+                using (MySqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        var cliente = new Cliente
+                        {
+                            CustomerID = rdr["CustomerId"].ToString(),
+                            CompanyName = rdr["CompanyName"].ToString(),
+                            ContactName = rdr["ContactName"].ToString(),
+                            ContactTitle = rdr["ContactTitle"].ToString(),
+                            Address = rdr["Address"].ToString(),
+                            City = rdr["City"].ToString(),
+                            Region = rdr["Region"].ToString(),
+                            PostalCode = rdr["PostalCode"].ToString(),
+                            Country = rdr["Country"].ToString(),
+                            Phone = rdr["Phone"].ToString(),
+                            Fax = rdr["Fax"].ToString()
+                        };
+                        clientes.Add(cliente);
+                    }
+                }
+            }
+            return clientes;
         }
     }
 }
