@@ -202,14 +202,37 @@
     <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptProdPorProvConDetProv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptProdPorProvConDetProv.Designer.cs">
+      <DependentUpon>FrmRptProdPorProvConDetProv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptProductosPorProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptProductosPorProveedor.Designer.cs">
+      <DependentUpon>FrmRptProductosPorProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptProveedores.Designer.cs">
+      <DependentUpon>FrmRptProveedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDIPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MDIPrincipal.Designer.cs">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductosxProveedores.cs" />
+    <Compile Include="ProductosxProveedoresConDetProv.cs" />
+    <Compile Include="ProductosxProveedoresRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedor.cs" />
+    <Compile Include="ProveedorRepository.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="FrmClientesCrud.resx">
@@ -251,6 +274,15 @@
     <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptProdPorProvConDetProv.resx">
+      <DependentUpon>FrmRptProdPorProvConDetProv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptProductosPorProveedor.resx">
+      <DependentUpon>FrmRptProductosPorProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptProveedores.resx">
+      <DependentUpon>FrmRptProveedores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -272,8 +304,12 @@
     <EmbeddedResource Include="RptClientes.rdlc" />
     <EmbeddedResource Include="RptEmpleados.rdlc" />
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc" />
+    <EmbeddedResource Include="RptProdPorProvConDetProv.rdlc" />
+    <EmbeddedResource Include="RptProductosPorProveedor.rdlc" />
+    <EmbeddedResource Include="RptProveedores.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ClientesyProveedores.datasource" />
+    <None Include="Properties\DataSources\Proveedor.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

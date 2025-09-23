@@ -263,5 +263,105 @@ namespace NorthwindTradersV4MySql
             };
             frmRptClientesyProveedoresDirectorioxPais.Show();
         }
+
+        private void mantenimientoDeProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void directorioDeClientesYProveedoresToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmClientesyProveedoresDirectorio frmClientesyProveedoresDirectorio = new FrmClientesyProveedoresDirectorio
+            {
+                MdiParent = this
+            };
+            frmClientesyProveedoresDirectorio.Show();
+        }
+
+        private void directorioDeClientesYProveedoresPorCiudadToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmClientesyProveedoresDirectorioxCiudad frmClientesyProveedoresDirectorioxCiudad = new FrmClientesyProveedoresDirectorioxCiudad
+            {
+                MdiParent = this
+            };
+            frmClientesyProveedoresDirectorioxCiudad.Show();
+        }
+
+        private void directorioDeClientesYProveedoresPorPaísToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmClientesyProveedoresDirectorioxPais frmClientesyProveedoresDirectorioxPais = new FrmClientesyProveedoresDirectorioxPais
+            {
+                MdiParent = this
+            };
+            frmClientesyProveedoresDirectorioxPais.Show();
+        }
+
+        private void consultaDeProductosPorProveedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void directorioDeProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptProveedores frmRptProveedores = new FrmRptProveedores
+            {
+                MdiParent = this
+            };
+            frmRptProveedores.Show();
+        }
+
+        private void directorioDeClientesYProveedoresToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptClientesyProveedoresDirectorio frmRptClientesyProveedoresDirectorio = new FrmRptClientesyProveedoresDirectorio
+            {
+                MdiParent = this
+            };
+            frmRptClientesyProveedoresDirectorio.Show();
+        }
+
+        private void directorioDeClientesYProveedoresPorCiudadToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptClientesyProveedoresDirectorioxCiudad frmRptClientesyProveedoresDirectorioxCiudad = new FrmRptClientesyProveedoresDirectorioxCiudad
+            {
+                MdiParent = this
+            };
+            frmRptClientesyProveedoresDirectorioxCiudad.Show();
+        }
+
+        private void directorioDeClientesYProveedoresPorPaísToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptClientesyProveedoresDirectorioxPais frmRptClientesyProveedoresDirectorioxPais = new FrmRptClientesyProveedoresDirectorioxPais
+            {
+                MdiParent = this
+            };
+            frmRptClientesyProveedoresDirectorioxPais.Show();
+        }
+
+        private void reporteDeProductosPorProveedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptProductosPorProveedor frmRptProductosPorProveedor = new FrmRptProductosPorProveedor
+            {
+                MdiParent = this
+            };
+            frmRptProductosPorProveedor.Show();
+        }
+
+        private void reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptProdPorProvConDetProv frmRptProdPorProvConDetProv = new FrmRptProdPorProvConDetProv
+            {
+                MdiParent = this
+            };
+            frmRptProdPorProvConDetProv.Show();
+        }
     }
 }
