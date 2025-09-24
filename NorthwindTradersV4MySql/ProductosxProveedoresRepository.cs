@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace NorthwindTradersV4MySql
 {
@@ -141,6 +142,51 @@ namespace NorthwindTradersV4MySql
                 }
             }
             return lista;
+        }
+
+        public DataSet ObtenerProveedoresProductosDataSet()
+        {
+            var ds = new DataSet();
+            ds.Locale = System.Globalization.CultureInfo.InvariantCulture;
+            using (var connection = new MySql.Data.MySqlClient.MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                string queryProveedores = "Select * from Suppliers Order by SupplierId Desc";
+                using (var dapProveedores = new MySql.Data.MySqlClient.MySqlDataAdapter(queryProveedores, connection))
+                {
+                    dapProveedores.Fill(ds, "Proveedores");
+                }
+                string queryProductos = @"
+                                SELECT
+                                  Products.ProductID,
+                                  Products.ProductName,
+                                  Products.QuantityPerUnit,
+                                  Products.UnitPrice,
+                                  Products.UnitsInStock,
+                                  Products.UnitsOnOrder,
+                                  Products.ReorderLevel,
+                                  Products.Discontinued,
+                                  Categories.CategoryName,
+                                  Categories.Description,
+                                  Suppliers.CompanyName,
+                                  Categories.CategoryID,
+                                  Suppliers.SupplierID
+                                FROM Products
+                                LEFT OUTER JOIN Categories
+                                  ON Products.CategoryID = Categories.CategoryID
+                                LEFT OUTER JOIN Suppliers
+                                  ON Products.SupplierID = Suppliers.SupplierID
+                                ORDER BY Products.ProductName;
+                                ";
+                using (var dapProductos = new MySql.Data.MySqlClient.MySqlDataAdapter(queryProductos, connection))
+                {
+                    dapProductos.Fill(ds, "Productos");
+                }
+            }
+            // en la siguiente instrucción se deben de proporcionar los nombres de los campos (alias) que devuelve el store procedure
+            DataRelation dataRelation = new DataRelation("ProveedoresProductos", ds.Tables["Proveedores"].Columns["SupplierID"], ds.Tables["Productos"].Columns["SupplierID"]);
+            ds.Relations.Add(dataRelation);
+            return ds;
         }
     }
 }

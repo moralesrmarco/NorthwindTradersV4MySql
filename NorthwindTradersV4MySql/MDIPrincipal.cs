@@ -301,7 +301,12 @@ namespace NorthwindTradersV4MySql
 
         private void consultaDeProductosPorProveedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmProveedoresProductos frmProveedoresProductos = new FrmProveedoresProductos
+            {
+                MdiParent = this
+            };
+            frmProveedoresProductos.Show();
         }
 
         private void directorioDeProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
