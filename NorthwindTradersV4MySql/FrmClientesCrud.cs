@@ -154,42 +154,42 @@ namespace NorthwindTradersV4MySql
         private bool ValidarControles()
         {
             bool valida = true;
-            if (txtId.Text == "")
+            if (txtId.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtId, "Ingrese el Id del cliente");
             }
-            if (txtCompañia.Text == "")
+            if (txtCompañia.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtCompañia, "Ingrese el nombre de la compañía");
             }
-            if (txtContacto.Text == "")
+            if (txtContacto.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtContacto, "Ingrese el nombre del contacto");
             }
-            if (txtTitulo.Text == "")
+            if (txtTitulo.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtTitulo, "Ingrese el título del contacto");
             }
-            if (txtDomicilio.Text == "")
+            if (txtDomicilio.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtDomicilio, "Ingrese el domicilio");
             }
-            if (txtCiudad.Text == "")
+            if (txtCiudad.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtCiudad, "Ingrese la ciudad");
             }
-            if (txtPais.Text == "")
+            if (txtPais.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtPais, "Ingrese el país");
             }
-            if (txtTelefono.Text == "")
+            if (txtTelefono.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtTelefono, "Ingrese el teléfono");
@@ -200,7 +200,7 @@ namespace NorthwindTradersV4MySql
         private void FrmClientesCrud_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (tabcOperacion.SelectedTab != tbpListar)
-                if (txtId.Text != "" || txtCompañia.Text != "" || txtContacto.Text != "" || txtTitulo.Text != "" || txtDomicilio.Text != "" || txtCiudad.Text != "" || txtRegion.Text != "" || txtCodigoP.Text != "" || txtPais.Text != "" || txtTelefono.Text != "" || txtFax.Text != "")
+                if (txtId.Text.Trim() != "" || txtCompañia.Text.Trim() != "" || txtContacto.Text.Trim() != "" || txtTitulo.Text.Trim() != "" || txtDomicilio.Text.Trim() != "" || txtCiudad.Text.Trim() != "" || txtRegion.Text.Trim() != "" || txtCodigoP.Text.Trim() != "" || txtPais.Text.Trim() != "" || txtTelefono.Text.Trim() != "" || txtFax.Text != "")
                 {
                     if (Utils.MensajeCerrarForm() == DialogResult.No)
                         e.Cancel = true;

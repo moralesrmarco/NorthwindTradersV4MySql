@@ -106,7 +106,7 @@ namespace NorthwindTradersV4MySql
             try
             {
                 MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
-                EmpleadosBuscar empleadosBuscar = new EmpleadosBuscar
+                DtoEmpleadosBuscar empleadosBuscar = new DtoEmpleadosBuscar
                 {
                     IdIni = string.IsNullOrEmpty(txtBIdIni.Text) ? 0 : Convert.ToInt32(txtBIdIni.Text),
                     IdFin = string.IsNullOrEmpty(txtBIdFin.Text) ? 0 : Convert.ToInt32(txtBIdFin.Text),
@@ -222,42 +222,42 @@ namespace NorthwindTradersV4MySql
         private bool ValidarControles()
         {
             bool valida = true;
-            if (txtNombres.Text == "")
+            if (txtNombres.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtNombres, "Ingrese el nombre");
             }
-            if (txtApellidos.Text == "")
+            if (txtApellidos.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtApellidos, "Ingrese el apellido");
             }
-            if (txtTitulo.Text == "")
+            if (txtTitulo.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtTitulo, "Ingrese el título");
             }
-            if (txtTitCortesia.Text == "")
+            if (txtTitCortesia.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtTitCortesia, "Ingrese el título de cortesia");
             }
-            if (txtDomicilio.Text == "")
+            if (txtDomicilio.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtDomicilio, "Ingrese el domicilio");
             }
-            if (txtCiudad.Text == "")
+            if (txtCiudad.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtCiudad, "Ingrese la ciudad");
             }
-            if (txtPais.Text == "")
+            if (txtPais.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtPais, "Ingrese el país");
             }
-            if (txtTelefono.Text == "")
+            if (txtTelefono.Text.Trim() == "")
             {
                 valida = false;
                 errorProvider1.SetError(txtTelefono, "Ingrese el teléfono");
@@ -288,7 +288,7 @@ namespace NorthwindTradersV4MySql
         private void FrmEmpleadosCrud_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (tabcOperacion.SelectedTab != tbpListar)
-                if (txtId.Text != "" || txtNombres.Text != "" || txtApellidos.Text != "" || txtTitulo.Text != "" || txtTitCortesia.Text != "" || txtDomicilio.Text != "" || txtCiudad.Text != "" || txtRegion.Text != "" || txtCodigoP.Text != "" || txtPais.Text != "" || txtTelefono.Text != "" || txtExtension.Text != "" || dtpFNacimiento.Value != dtpFNacimiento.MinDate || dtpFContratacion.Value != dtpFContratacion.MinDate || txtNotas.Text.Trim() != "" || cboReportaA.SelectedIndex > 0)
+                if (txtId.Text.Trim() != "" || txtNombres.Text.Trim() != "" || txtApellidos.Text.Trim() != "" || txtTitulo.Text.Trim() != "" || txtTitCortesia.Text.Trim() != "" || txtDomicilio.Text.Trim() != "" || txtCiudad.Text.Trim() != "" || txtRegion.Text.Trim() != "" || txtCodigoP.Text.Trim() != "" || txtPais.Text.Trim() != "" || txtTelefono.Text.Trim() != "" || txtExtension.Text.Trim() != "" || dtpFNacimiento.Value != dtpFNacimiento.MinDate || dtpFContratacion.Value != dtpFContratacion.MinDate || txtNotas.Text.Trim() != "" || cboReportaA.SelectedIndex > 0)
                 {
                     if (Utils.MensajeCerrarForm() == DialogResult.No)
                         e.Cancel = true;

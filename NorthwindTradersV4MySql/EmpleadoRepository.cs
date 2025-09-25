@@ -99,7 +99,7 @@ namespace NorthwindTradersV4MySql
             return empleado;
         }
 
-        public DataTable ObtenerEmpleados(object sender, EmpleadosBuscar empleadosBuscar)
+        public DataTable ObtenerEmpleados(object sender, DtoEmpleadosBuscar empleadosBuscar)
         {
             DataTable dt = new DataTable();
             string query;
@@ -155,6 +155,7 @@ namespace NorthwindTradersV4MySql
             }
             using (var cn = new MySqlConnection(_connectionString))
             using (var cmd = new MySqlCommand(query, cn))
+            using (var da = new MySqlDataAdapter(cmd))
             {
                 if (sender != null)
                 {
@@ -170,8 +171,7 @@ namespace NorthwindTradersV4MySql
                     cmd.Parameters.AddWithValue("@Pais", empleadosBuscar.Pais);
                     cmd.Parameters.AddWithValue("@Telefono", empleadosBuscar.Telefono);
                 }
-                using (var da = new MySqlDataAdapter(cmd))
-                    da.Fill(dt);
+                da.Fill(dt);
             }
             return dt;
         }

@@ -1,6 +1,6 @@
 ﻿namespace NorthwindTradersV4MySql
 {
-    internal class EmpleadosBuscar
+    internal class DtoEmpleadosBuscar
     {
         public int? IdIni { get; set; }
         public int? IdFin { get; set; }
