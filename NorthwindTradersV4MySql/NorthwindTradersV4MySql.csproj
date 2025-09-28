@@ -116,15 +116,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categoria.cs" />
+    <Compile Include="CategoriaRepository.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="ClienteRepository.cs" />
     <Compile Include="ClientesyProveedores.cs" />
     <Compile Include="ClientesyProveedoresRepository.cs" />
+    <Compile Include="DtoCategoriasBuscar.cs" />
     <Compile Include="DtoProveedoresBuscar.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoConReportsTo.cs" />
     <Compile Include="EmpleadoRepository.cs" />
     <Compile Include="DtoEmpleadosBuscar.cs" />
+    <Compile Include="FrmCategoriasCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCategoriasCrud.Designer.cs">
+      <DependentUpon>FrmCategoriasCrud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCategoriasProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCategoriasProductos.Designer.cs">
+      <DependentUpon>FrmCategoriasProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmClientesCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +169,12 @@
     </Compile>
     <Compile Include="FrmEmpleadosCrud.Designer.cs">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProductosPorCategoriasListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProductosPorCategoriasListado.Designer.cs">
+      <DependentUpon>FrmProductosPorCategoriasListado.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmProveedoresCrud.cs">
       <SubType>Form</SubType>
@@ -248,6 +269,12 @@
     <Compile Include="ProveedorRepository.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="FrmCategoriasCrud.resx">
+      <DependentUpon>FrmCategoriasCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCategoriasProductos.resx">
+      <DependentUpon>FrmCategoriasProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmClientesCrud.resx">
       <DependentUpon>FrmClientesCrud.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEmpleadosCrud.resx">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProductosPorCategoriasListado.resx">
+      <DependentUpon>FrmProductosPorCategoriasListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProveedoresCrud.resx">
       <DependentUpon>FrmProveedoresCrud.cs</DependentUpon>
@@ -344,7 +374,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FotoPerfil.png" />
+    <None Include="Resources\Categorias.png" />
     <Content Include="ScriptsSql\VW_ClientesProveedores.sql" />
+    <Content Include="ScriptsSql\VW_ProductosPorCategoriaListado.sql" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

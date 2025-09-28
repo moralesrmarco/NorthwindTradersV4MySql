@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Management.Instrumentation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NorthwindTradersV4MySql
@@ -372,6 +365,46 @@ namespace NorthwindTradersV4MySql
                 MdiParent = this
             };
             frmRptProdPorProvConDetProv.Show();
+        }
+
+        private void mantenimientoDeCategoríasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmCategoriasCrud frmCategoriasCrud = new FrmCategoriasCrud
+            {
+                MdiParent = this
+            };
+            frmCategoriasCrud.Show();
+        }
+
+        private void consultaDeProductosPorCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmCategoriasProductos frmCategoriasProductos = new FrmCategoriasProductos
+            {
+                MdiParent = this
+            };
+            frmCategoriasProductos.Show();
+        }
+
+        private void listadoDeProductosPorCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmProductosPorCategoriasListado frmProductosPorCategoriasListado = new FrmProductosPorCategoriasListado
+            {
+                MdiParent = this
+            };
+            frmProductosPorCategoriasListado.Show();
+        }
+
+        private void reporteDeCategoríasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reporteDeProductosPorCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

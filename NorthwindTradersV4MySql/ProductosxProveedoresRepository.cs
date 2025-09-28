@@ -153,9 +153,7 @@ namespace NorthwindTradersV4MySql
                 connection.Open();
                 string queryProveedores = "Select * from Suppliers Order by SupplierId Desc";
                 using (var dapProveedores = new MySql.Data.MySqlClient.MySqlDataAdapter(queryProveedores, connection))
-                {
                     dapProveedores.Fill(ds, "Proveedores");
-                }
                 string queryProductos = @"
                                 SELECT
                                   Products.ProductID,
@@ -179,9 +177,7 @@ namespace NorthwindTradersV4MySql
                                 ORDER BY Products.ProductName;
                                 ";
                 using (var dapProductos = new MySql.Data.MySqlClient.MySqlDataAdapter(queryProductos, connection))
-                {
                     dapProductos.Fill(ds, "Productos");
-                }
             }
             // en la siguiente instrucción se deben de proporcionar los nombres de los campos (alias) que devuelve el store procedure
             DataRelation dataRelation = new DataRelation("ProveedoresProductos", ds.Tables["Proveedores"].Columns["SupplierID"], ds.Tables["Productos"].Columns["SupplierID"]);
