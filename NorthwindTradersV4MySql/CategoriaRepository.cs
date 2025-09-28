@@ -154,5 +154,50 @@ namespace NorthwindTradersV4MySql
                 da.Fill(dt);
             return dt;
         }
+
+        public List<Categoria> ObtenerCategoriasList()
+        {
+            var categorias = new List<Categoria>();
+            string query = "SELECT CategoryID, CategoryName, Description, Picture FROM Categories;";
+            using (var cn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand(query, cn))
+            {
+                cn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        var categoria = new Categoria
+                        {
+                            CategoryID = dr.GetInt32(dr.GetOrdinal("CategoryID")),
+                            CategoryName = dr.GetString(dr.GetOrdinal("CategoryName")),
+                            Description = dr.IsDBNull(dr.GetOrdinal("Description")) ? null : dr.GetString(dr.GetOrdinal("Description")),
+                        };
+                        if (!dr.IsDBNull(3))
+                        {
+                            byte[] photoData;
+                            if (categoria.CategoryID <= 8)
+                            {
+                                // Las primeras 8 categorías tienen un encabezado de 78 bytes que debe ser removido
+                                byte[] fullData = (byte[])dr["Picture"];
+                                photoData = new byte[fullData.Length - 78];
+                                Array.Copy(fullData, 78, photoData, 0, photoData.Length);
+                            }
+                            else
+                            {
+                                photoData = (byte[])dr["Picture"];
+                            }
+                            categoria.Picture = photoData;
+                        }
+                        else
+                        {
+                            categoria.Picture = null;
+                        }
+                        categorias.Add(categoria);
+                    }
+                }
+            }
+            return categorias;
+        }
     }
 }

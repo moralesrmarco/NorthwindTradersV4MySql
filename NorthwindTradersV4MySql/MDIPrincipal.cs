@@ -399,12 +399,22 @@ namespace NorthwindTradersV4MySql
 
         private void reporteDeCategoríasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptCategorias frmRptCategorias = new FrmRptCategorias
+            {
+                MdiParent = this
+            };
+            frmRptCategorias.Show();
         }
 
         private void reporteDeProductosPorCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptProductosPorCategorias frmRptProductosPorCategorias = new FrmRptProductosPorCategorias
+            {
+                MdiParent = this
+            };
+            frmRptProductosPorCategorias.Show();
         }
     }
 }
