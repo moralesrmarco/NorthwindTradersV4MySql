@@ -402,7 +402,7 @@ namespace NorthwindTradersV4MySql
                         if (numRegs > 0)
                             Utils.MensajeInformation($"La categoría con Id: {txtId.Text} y Nombre: {txtCategoria.Text} se eliminó satisfactoriamente");
                         else
-                            Utils.MensajeError($"La categoría con Id: {txtId.Text} y Nombre: {txtCategoria.Text} NO se eliminó en la base de datos");
+                            Utils.MensajeExclamation($"La categoría con Id: {txtId.Text} y Nombre: {txtCategoria.Text} NO se eliminó en la base de datos");
                     }
                     catch (MySqlException ex)
                     {

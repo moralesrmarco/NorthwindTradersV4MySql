@@ -419,7 +419,7 @@ namespace NorthwindTradersV4MySql
                         if (numRegs > 0)
                             Utils.MensajeInformation($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} se eliminó satisfactoriamente");
                         else
-                            Utils.MensajeError($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO se eliminó en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente");
+                            Utils.MensajeExclamation($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO se eliminó en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente");
                     }
                     catch (MySqlException ex)
                     {

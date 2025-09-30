@@ -460,7 +460,7 @@ namespace NorthwindTradersV4MySql
                         if (numRegs > 0)
                             Utils.MensajeInformation($"El proveedor con Id: {txtId.Text} y Nombre de compañía: {txtCompañia.Text} se eliminó satisfactoriamente");
                         else
-                            Utils.MensajeError($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO se eliminó en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente");
+                            Utils.MensajeExclamation($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO se eliminó en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente");
                     }
                     catch (MySqlException ex)
                     {

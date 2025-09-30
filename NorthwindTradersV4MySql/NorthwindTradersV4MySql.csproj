@@ -123,6 +123,7 @@
     <Compile Include="ClientesyProveedores.cs" />
     <Compile Include="ClientesyProveedoresRepository.cs" />
     <Compile Include="DtoCategoriasBuscar.cs" />
+    <Compile Include="DtoProductosBuscar.cs" />
     <Compile Include="DtoProveedoresBuscar.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoConReportsTo.cs" />
@@ -169,6 +170,12 @@
     </Compile>
     <Compile Include="FrmEmpleadosCrud.Designer.cs">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProductosCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProductosCrud.Designer.cs">
+      <DependentUpon>FrmProductosCrud.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmProductosPorCategoriasListado.cs">
       <SubType>Form</SubType>
@@ -272,6 +279,8 @@
     <Compile Include="MDIPrincipal.Designer.cs">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductoRepository.cs" />
+    <Compile Include="Producto.cs" />
     <Compile Include="ProductosxProveedores.cs" />
     <Compile Include="ProductosxProveedoresConDetProv.cs" />
     <Compile Include="ProductosxProveedoresRepository.cs" />
@@ -301,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEmpleadosCrud.resx">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProductosCrud.resx">
+      <DependentUpon>FrmProductosCrud.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProductosPorCategoriasListado.resx">
       <DependentUpon>FrmProductosPorCategoriasListado.cs</DependentUpon>
@@ -395,6 +407,14 @@
   <ItemGroup>
     <None Include="Resources\FotoPerfil.png" />
     <None Include="Resources\Categorias.png" />
+    <Content Include="ScriptsSql\spCategoriasSeleccionar.sql" />
+    <Content Include="ScriptsSql\spProductoActualizar.sql" />
+    <Content Include="ScriptsSql\spProductoEliminar.sql" />
+    <Content Include="ScriptsSql\spProductoInsertar.sql" />
+    <Content Include="ScriptsSql\spProductoPorId.sql" />
+    <Content Include="ScriptsSql\spProductosBuscar.sql" />
+    <Content Include="ScriptsSql\spProductosListarLast20.sql" />
+    <Content Include="ScriptsSql\spProveedoresSeleccionar.sql" />
     <Content Include="ScriptsSql\VW_ClientesProveedores.sql" />
     <Content Include="ScriptsSql\VW_ProductosPorCategoriaListado.sql" />
     <Content Include="SqlServerTypes\readme.htm" />

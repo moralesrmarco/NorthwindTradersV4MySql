@@ -611,7 +611,7 @@ namespace NorthwindTradersV4MySql
                         if (numRegs > 0)
                             Utils.MensajeInformation($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se eliminó satisfactoriamente");
                         else
-                            Utils.MensajeError($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO fue eliminado de la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente");
+                            Utils.MensajeExclamation($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO fue eliminado de la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente");
                     }
                     catch (MySqlException ex)
                     {

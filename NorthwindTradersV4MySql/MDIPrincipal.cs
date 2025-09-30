@@ -416,5 +416,15 @@ namespace NorthwindTradersV4MySql
             };
             frmRptProductosPorCategorias.Show();
         }
+
+        private void mantenimientoDeProductosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmProductosCrud frmProductosCrud = new FrmProductosCrud
+            {
+                MdiParent = this
+            };
+            frmProductosCrud.Show();
+        }
     }
 }
