@@ -177,6 +177,12 @@
     <Compile Include="FrmProductosCrud.Designer.cs">
       <DependentUpon>FrmProductosCrud.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmProductosListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProductosListado.Designer.cs">
+      <DependentUpon>FrmProductosListado.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProductosPorCategoriasListado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +320,9 @@
     <EmbeddedResource Include="FrmProductosCrud.resx">
       <DependentUpon>FrmProductosCrud.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmProductosListado.resx">
+      <DependentUpon>FrmProductosListado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmProductosPorCategoriasListado.resx">
       <DependentUpon>FrmProductosPorCategoriasListado.cs</DependentUpon>
     </EmbeddedResource>
@@ -412,6 +421,7 @@
     <Content Include="ScriptsSql\spProductoEliminar.sql" />
     <Content Include="ScriptsSql\spProductoInsertar.sql" />
     <Content Include="ScriptsSql\spProductoPorId.sql" />
+    <Content Include="ScriptsSql\spProductos.sql" />
     <Content Include="ScriptsSql\spProductosBuscar.sql" />
     <Content Include="ScriptsSql\spProductosListarLast20.sql" />
     <Content Include="ScriptsSql\spProveedoresSeleccionar.sql" />

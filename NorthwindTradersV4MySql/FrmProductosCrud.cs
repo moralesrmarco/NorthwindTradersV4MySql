@@ -153,7 +153,7 @@ namespace NorthwindTradersV4MySql
             Dgv.Columns["UnitPrice"].HeaderText = "Precio";
             Dgv.Columns["UnitsInStock"].HeaderText = "Unidades en inventario";
             Dgv.Columns["UnitsOnOrder"].HeaderText = "Unidades en pedido";
-            Dgv.Columns["ReorderLevel"].HeaderText = "Punto de pedido";
+            Dgv.Columns["ReorderLevel"].HeaderText = "Nivel de reorden";
             Dgv.Columns["Discontinued"].HeaderText = "Descontinuado";
             Dgv.Columns["CategoryName"].HeaderText = "Categoría";
             Dgv.Columns["Description"].HeaderText = "Descripción de categoría";

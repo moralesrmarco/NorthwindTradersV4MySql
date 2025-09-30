@@ -220,5 +220,33 @@ namespace NorthwindTradersV4MySql
             }
             return numRegs;
         }
+
+        public DataTable ProductosListado(DtoProductosBuscar dtoProductosBuscar, string nombreStoreProcedure)
+        {
+            var dt = new DataTable();
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand(nombreStoreProcedure, cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (dtoProductosBuscar != null)
+                    {
+                        cmd.Parameters.AddWithValue("IdIni", dtoProductosBuscar.IdIni);
+                        cmd.Parameters.AddWithValue("IdFin", dtoProductosBuscar.IdFin);
+                        cmd.Parameters.AddWithValue("Producto", dtoProductosBuscar.Producto ?? string.Empty);
+                        cmd.Parameters.AddWithValue("Categoria", dtoProductosBuscar.Categoria);
+                        cmd.Parameters.AddWithValue("Proveedor", dtoProductosBuscar.Proveedor);
+                    }
+                    using (var da = new MySqlDataAdapter(cmd))
+                        da.Fill(dt);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener el listado de productos: " + ex.Message);
+            }
+            return dt;
+        }
     }
 }
