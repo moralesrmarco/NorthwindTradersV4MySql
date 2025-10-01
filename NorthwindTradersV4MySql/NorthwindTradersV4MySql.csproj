@@ -171,6 +171,12 @@
     <Compile Include="FrmEmpleadosCrud.Designer.cs">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmProductosConsultaAlfabetica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProductosConsultaAlfabetica.Designer.cs">
+      <DependentUpon>FrmProductosConsultaAlfabetica.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProductosCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -316,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEmpleadosCrud.resx">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProductosConsultaAlfabetica.resx">
+      <DependentUpon>FrmProductosConsultaAlfabetica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProductosCrud.resx">
       <DependentUpon>FrmProductosCrud.cs</DependentUpon>

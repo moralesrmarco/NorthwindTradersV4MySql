@@ -248,5 +248,25 @@ namespace NorthwindTradersV4MySql
             }
             return dt;
         }
+
+        public DataTable ProductosListaAlfabetica()
+        {
+            var dt = new DataTable();
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("Select * From vwproductoslistaalfabetica Order by ProductName", cn))
+                {
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    using (var da = new MySqlDataAdapter(cmd))
+                        da.Fill(dt);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener la lista alfabética de productos: " + ex.Message);
+            }
+            return dt;
+        }
     }
 }

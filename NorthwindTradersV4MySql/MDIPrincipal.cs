@@ -439,27 +439,42 @@ namespace NorthwindTradersV4MySql
 
         private void consultaDeProductosPorCategoríaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //Utils.CerrarFormularios();
-            //FrmProductosPorCategoriasListado frmProductosPorCategoriasListado = new FrmProductosPorCategoriasListado
-            //{
-            //    MdiParent = this
-            //};
-            //frmProductosPorCategoriasListado.Show();
+            Utils.CerrarFormularios();
+            FrmCategoriasProductos frmCategoriasProductos = new FrmCategoriasProductos
+            {
+                MdiParent = this
+            };
+            frmCategoriasProductos.Show();
         }
 
         private void consultaDeProductosPorProveedorToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmProveedoresProductos frmProveedoresProductos = new FrmProveedoresProductos
+            {
+                MdiParent = this
+            };
+            frmProveedoresProductos.Show();
         }
 
         private void consultaAlfabéticaDeProductosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmProductosConsultaAlfabetica frmProductosConsultaAlfabetica = new FrmProductosConsultaAlfabetica
+            {
+                MdiParent = this
+            };
+            frmProductosConsultaAlfabetica.Show();
         }
 
         private void listadoDeProductosPorCategoríasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmProductosPorCategoriasListado frmProductosPorCategoriasListado = new FrmProductosPorCategoriasListado
+            {
+                MdiParent = this
+            };
+            frmProductosPorCategoriasListado.Show();
         }
 
         private void productosPorEncimaDelPrecioPromedioToolStripMenuItem_Click(object sender, EventArgs e)

@@ -64,6 +64,9 @@ namespace NorthwindTradersV4MySql
             DgvListado.Columns["ReorderLevel"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             DgvListado.Columns["UnitPrice"].DefaultCellStyle.Format = "c";
+            DgvListado.Columns["UnitsInStock"].DefaultCellStyle.Format = "N0";
+            DgvListado.Columns["UnitsOnOrder"].DefaultCellStyle.Format = "N0";
+            DgvListado.Columns["ReorderLevel"].DefaultCellStyle.Format = "N0";
 
             DgvListado.Columns["CategoryName"].HeaderText = "Categoría";
             DgvListado.Columns["ProductName"].HeaderText = "Producto";
