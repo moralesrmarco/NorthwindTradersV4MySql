@@ -256,15 +256,52 @@ namespace NorthwindTradersV4MySql
             {
                 using (var cn = new MySqlConnection(_connectionString))
                 using (var cmd = new MySqlCommand("Select * From vwproductoslistaalfabetica Order by ProductName", cn))
-                {
-                    //cmd.CommandType = CommandType.StoredProcedure;
-                    using (var da = new MySqlDataAdapter(cmd))
-                        da.Fill(dt);
-                }
+                using (var da = new MySqlDataAdapter(cmd))
+                    da.Fill(dt);
             }
             catch (MySqlException ex)
             {
                 throw new Exception("Error al obtener la lista alfabética de productos: " + ex.Message);
+            }
+            return dt;
+        }
+
+        public decimal ObtenerPrecioPromedio()
+        {
+            decimal precioPromedio = 0;
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("Select Avg(UnitPrice) As PrecioPromedio from products", cn))
+                {
+                    cn.Open();
+                    using (var rdr = cmd.ExecuteReader(CommandBehavior.SingleRow))
+                    {
+                        if (rdr.Read())
+                            precioPromedio = Convert.ToDecimal(rdr["PrecioPromedio"]);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al calcular el precio promedio: " + ex.Message);
+            }
+            return precioPromedio;
+        }
+
+        public DataTable ObtenerProductosPorEncimaDelPrecioPromedio()
+        {
+            var dt = new DataTable();
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("Select * from VwProductosPorEncimaDelPrecioPromedio", cn))
+                using (var da = new MySqlDataAdapter(cmd))
+                    da.Fill(dt);
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener los productos por encima del precio promedio: " + ex.Message);
             }
             return dt;
         }

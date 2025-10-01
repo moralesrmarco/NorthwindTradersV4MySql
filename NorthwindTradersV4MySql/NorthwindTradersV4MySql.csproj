@@ -195,6 +195,12 @@
     <Compile Include="FrmProductosPorCategoriasListado.Designer.cs">
       <DependentUpon>FrmProductosPorCategoriasListado.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmProductosPorEncimaPrecioPromedio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProductosPorEncimaPrecioPromedio.Designer.cs">
+      <DependentUpon>FrmProductosPorEncimaPrecioPromedio.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProveedoresCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -335,6 +341,9 @@
     <EmbeddedResource Include="FrmProductosPorCategoriasListado.resx">
       <DependentUpon>FrmProductosPorCategoriasListado.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmProductosPorEncimaPrecioPromedio.resx">
+      <DependentUpon>FrmProductosPorEncimaPrecioPromedio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmProveedoresCrud.resx">
       <DependentUpon>FrmProveedoresCrud.cs</DependentUpon>
     </EmbeddedResource>
@@ -434,6 +443,8 @@
     <Content Include="ScriptsSql\spProductosBuscar.sql" />
     <Content Include="ScriptsSql\spProductosListarLast20.sql" />
     <Content Include="ScriptsSql\spProveedoresSeleccionar.sql" />
+    <Content Include="ScriptsSql\vwProductosListaAlfabetica.sql" />
+    <Content Include="ScriptsSql\vwproductosporencimadelpreciopromedio.sql" />
     <Content Include="ScriptsSql\VW_ClientesProveedores.sql" />
     <Content Include="ScriptsSql\VW_ProductosPorCategoriaListado.sql" />
     <Content Include="SqlServerTypes\readme.htm" />

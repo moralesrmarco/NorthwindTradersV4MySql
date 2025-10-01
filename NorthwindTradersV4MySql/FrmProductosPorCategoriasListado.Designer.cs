@@ -36,16 +36,14 @@
             // 
             // GrbListado
             // 
-            this.GrbListado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.GrbListado.Controls.Add(this.DgvListado);
+            this.GrbListado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GrbListado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GrbListado.Location = new System.Drawing.Point(21, 20);
-            this.GrbListado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbListado.Location = new System.Drawing.Point(30, 30);
+            this.GrbListado.Margin = new System.Windows.Forms.Padding(4);
             this.GrbListado.Name = "GrbListado";
             this.GrbListado.Padding = new System.Windows.Forms.Padding(30);
-            this.GrbListado.Size = new System.Drawing.Size(1269, 729);
+            this.GrbListado.Size = new System.Drawing.Size(1252, 704);
             this.GrbListado.TabIndex = 0;
             this.GrbListado.TabStop = false;
             this.GrbListado.Text = "»   Listado de productos por categorías:   «";
@@ -56,10 +54,10 @@
             this.DgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvListado.Location = new System.Drawing.Point(30, 49);
-            this.DgvListado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DgvListado.Margin = new System.Windows.Forms.Padding(4);
             this.DgvListado.Name = "DgvListado";
             this.DgvListado.RowHeadersWidth = 51;
-            this.DgvListado.Size = new System.Drawing.Size(1209, 650);
+            this.DgvListado.Size = new System.Drawing.Size(1192, 625);
             this.DgvListado.TabIndex = 0;
             // 
             // FrmProductosPorCategoriasListado
@@ -69,8 +67,9 @@
             this.ClientSize = new System.Drawing.Size(1312, 764);
             this.ControlBox = false;
             this.Controls.Add(this.GrbListado);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmProductosPorCategoriasListado";
+            this.Padding = new System.Windows.Forms.Padding(30);
             this.Text = "» Listado de productos por categorías: «";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmProductosPorCategoriasListado_FormClosed);
             this.Load += new System.EventHandler(this.FrmProductosPorCategoriasListado_Load);

@@ -479,7 +479,12 @@ namespace NorthwindTradersV4MySql
 
         private void productosPorEncimaDelPrecioPromedioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmProductosPorEncimaPrecioPromedio frmProductosPorEncimaPrecioPromedio = new FrmProductosPorEncimaPrecioPromedio
+            {
+                MdiParent = this
+            };
+            frmProductosPorEncimaPrecioPromedio.Show();
         }
 
         private void reporteDeProductosToolStripMenuItem_Click(object sender, EventArgs e)
