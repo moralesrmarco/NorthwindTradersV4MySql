@@ -1,13 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NorthwindTradersV4MySql
@@ -27,14 +26,23 @@ namespace NorthwindTradersV4MySql
         public static string noDatos = "No se encontraron datos para mostrar en el reporte";
         #endregion
 
-        // <summary>
-        /// Elimina un posible encabezado OLE de un array de bytes de imagen.
-        /// </summary>
-        /// <param name="oleBytes">Bytes crudos con encabezado OLE + datos de imagen.</param>
-        /// <param name="employeeId">
-        /// ID del empleado; si es menor o igual a 9, se asume encabezado de 78 bytes.
-        /// </param>
-        /// <returns>Bytes de la imagen sin encabezado OLE.</returns>
+        public static void LlenarCbo(ComboBox cbo, string storedProcedure, string displayMember, string valueMember)
+        {
+            MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+            try
+            {
+                DataTable dt = DataAccess.LlenarCbo(storedProcedure);
+                cbo.DataSource = dt;
+                cbo.DisplayMember = displayMember;
+                cbo.ValueMember = valueMember;
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            MDIPrincipal.ActualizarBarraDeEstado();
+        }
+
         public static byte[] StripOleHeader(byte[] oleBytes, int employeeId)
         {
             if (oleBytes == null || oleBytes.Length == 0)

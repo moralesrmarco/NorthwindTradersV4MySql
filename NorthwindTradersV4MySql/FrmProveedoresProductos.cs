@@ -85,8 +85,10 @@ namespace NorthwindTradersV4MySql
 
         private void ConfDgvProductos()
         {
+            DgvProductos.Columns["CategoryID"].Visible = false;
+            DgvProductos.Columns["SupplierID"].Visible = false;
+
             DgvProductos.Columns["UnitPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            DgvProductos.Columns["UnitPrice"].DefaultCellStyle.Format = "c";
             DgvProductos.Columns["UnitsInStock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             DgvProductos.Columns["UnitsOnOrder"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             DgvProductos.Columns["ReorderLevel"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -101,8 +103,10 @@ namespace NorthwindTradersV4MySql
             DgvProductos.Columns["CategoryName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             DgvProductos.Columns["CompanyName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
 
-            DgvProductos.Columns["CategoryID"].Visible = false;
-            DgvProductos.Columns["SupplierID"].Visible = false;
+            DgvProductos.Columns["UnitPrice"].DefaultCellStyle.Format = "c";
+            DgvProductos.Columns["UnitsInStock"].DefaultCellStyle.Format = "n0";
+            DgvProductos.Columns["UnitsOnOrder"].DefaultCellStyle.Format = "n0";
+            DgvProductos.Columns["ReorderLevel"].DefaultCellStyle.Format = "n0";
 
             DgvProductos.Columns["ProductID"].HeaderText = "ID";
             DgvProductos.Columns["ProductName"].HeaderText = "Producto";

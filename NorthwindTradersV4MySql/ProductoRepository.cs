@@ -221,13 +221,13 @@ namespace NorthwindTradersV4MySql
             return numRegs;
         }
 
-        public DataTable ProductosListado(DtoProductosBuscar dtoProductosBuscar, string nombreStoreProcedure)
+        public DataTable ProductosListado(DtoProductosBuscar dtoProductosBuscar, string nombreStoredProcedure)
         {
             var dt = new DataTable();
             try
             {
                 using (var cn = new MySqlConnection(_connectionString))
-                using (var cmd = new MySqlCommand(nombreStoreProcedure, cn))
+                using (var cmd = new MySqlCommand(nombreStoredProcedure, cn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     if (dtoProductosBuscar != null)
@@ -302,6 +302,58 @@ namespace NorthwindTradersV4MySql
             catch (MySqlException ex)
             {
                 throw new Exception("Error al obtener los productos por encima del precio promedio: " + ex.Message);
+            }
+            return dt;
+        }
+
+        public DataTable ObtenerProductosConInventarioBajo()
+        {
+            var dt = new DataTable();
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("Select * from VwProductosConStockBajo", cn))
+                using (var da = new MySqlDataAdapter(cmd))
+                    da.Fill(dt);
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener los productos con stock bajo: " + ex.Message);
+            }
+            return dt;
+        }
+
+        public DataTable RptProductosListado(DtoProductosBuscar dtoProductosBuscar, string nombreStoredProcedure)
+        {
+            var dt = new DataTable();
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand(nombreStoredProcedure, cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (nombreStoredProcedure == "spProductosBuscarV2")
+                    {
+                        cmd.Parameters.AddWithValue("IdIni", dtoProductosBuscar.IdIni);
+                        cmd.Parameters.AddWithValue("IdFin", dtoProductosBuscar.IdFin);
+                        cmd.Parameters.AddWithValue("Producto", dtoProductosBuscar.Producto ?? string.Empty);
+                        cmd.Parameters.AddWithValue("Categoria", dtoProductosBuscar.Categoria);
+                        cmd.Parameters.AddWithValue("Proveedor", dtoProductosBuscar.Proveedor);
+                        cmd.Parameters.AddWithValue("OrdenadoPor", dtoProductosBuscar.OrdenadoPor ?? string.Empty);
+                        cmd.Parameters.AddWithValue("AscDesc", dtoProductosBuscar.AscDesc ?? string.Empty);
+                    }
+                    else if (nombreStoredProcedure == "spProductosV2")
+                    {
+                        cmd.Parameters.AddWithValue("OrdenadoPor", dtoProductosBuscar.OrdenadoPor);
+                        cmd.Parameters.AddWithValue("AscDesc", dtoProductosBuscar.AscDesc);
+                    }
+                        using (var da = new MySqlDataAdapter(cmd))
+                            da.Fill(dt);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener el listado de productos: " + ex.Message);
             }
             return dt;
         }

@@ -61,7 +61,7 @@
             this.tabcOperacion.Controls.Add(this.tabpListarTodos);
             this.tabcOperacion.Controls.Add(this.tabpBuscarProducto);
             this.tabcOperacion.Location = new System.Drawing.Point(21, 20);
-            this.tabcOperacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabcOperacion.Margin = new System.Windows.Forms.Padding(4);
             this.tabcOperacion.Name = "tabcOperacion";
             this.tabcOperacion.SelectedIndex = 0;
             this.tabcOperacion.Size = new System.Drawing.Size(1373, 73);
@@ -73,9 +73,9 @@
             // 
             this.tabpListarTodos.Controls.Add(this.btnListarTodos);
             this.tabpListarTodos.Location = new System.Drawing.Point(4, 25);
-            this.tabpListarTodos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabpListarTodos.Margin = new System.Windows.Forms.Padding(4);
             this.tabpListarTodos.Name = "tabpListarTodos";
-            this.tabpListarTodos.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabpListarTodos.Padding = new System.Windows.Forms.Padding(4);
             this.tabpListarTodos.Size = new System.Drawing.Size(1365, 44);
             this.tabpListarTodos.TabIndex = 0;
             this.tabpListarTodos.Text = "   Listar todos los productos   ";
@@ -85,7 +85,7 @@
             // 
             this.btnListarTodos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListarTodos.Location = new System.Drawing.Point(21, 6);
-            this.btnListarTodos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnListarTodos.Margin = new System.Windows.Forms.Padding(4);
             this.btnListarTodos.Name = "btnListarTodos";
             this.btnListarTodos.Size = new System.Drawing.Size(267, 28);
             this.btnListarTodos.TabIndex = 0;
@@ -110,9 +110,9 @@
             this.tabpBuscarProducto.Controls.Add(this.label2);
             this.tabpBuscarProducto.Controls.Add(this.label1);
             this.tabpBuscarProducto.Location = new System.Drawing.Point(4, 25);
-            this.tabpBuscarProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabpBuscarProducto.Margin = new System.Windows.Forms.Padding(4);
             this.tabpBuscarProducto.Name = "tabpBuscarProducto";
-            this.tabpBuscarProducto.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabpBuscarProducto.Padding = new System.Windows.Forms.Padding(4);
             this.tabpBuscarProducto.Size = new System.Drawing.Size(1365, 44);
             this.tabpBuscarProducto.TabIndex = 1;
             this.tabpBuscarProducto.Text = "   Buscar un producto   ";
@@ -121,7 +121,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(1255, 6);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 28);
             this.btnLimpiar.TabIndex = 12;
@@ -133,7 +133,7 @@
             // 
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Location = new System.Drawing.Point(1147, 6);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(100, 28);
             this.btnBuscar.TabIndex = 11;
@@ -147,7 +147,7 @@
             this.cboProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProveedor.FormattingEnabled = true;
             this.cboProveedor.Location = new System.Drawing.Point(979, 7);
-            this.cboProveedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboProveedor.Margin = new System.Windows.Forms.Padding(4);
             this.cboProveedor.Name = "cboProveedor";
             this.cboProveedor.Size = new System.Drawing.Size(160, 24);
             this.cboProveedor.TabIndex = 10;
@@ -167,7 +167,7 @@
             this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Location = new System.Drawing.Point(735, 7);
-            this.cboCategoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboCategoria.Margin = new System.Windows.Forms.Padding(4);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(160, 24);
             this.cboCategoria.TabIndex = 8;
@@ -185,7 +185,7 @@
             // txtProducto
             // 
             this.txtProducto.Location = new System.Drawing.Point(527, 7);
-            this.txtProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtProducto.Margin = new System.Windows.Forms.Padding(4);
             this.txtProducto.MaxLength = 40;
             this.txtProducto.Name = "txtProducto";
             this.txtProducto.Size = new System.Drawing.Size(132, 22);
@@ -197,9 +197,9 @@
             this.label4.Location = new System.Drawing.Point(465, 12);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 16);
+            this.label4.Size = new System.Drawing.Size(80, 20);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Nombre:";
+            this.label4.Text = "Producto:";
             // 
             // label3
             // 
@@ -214,7 +214,7 @@
             // txtIdFinal
             // 
             this.txtIdFinal.Location = new System.Drawing.Point(373, 7);
-            this.txtIdFinal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIdFinal.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdFinal.MaxLength = 10;
             this.txtIdFinal.Name = "txtIdFinal";
             this.txtIdFinal.Size = new System.Drawing.Size(87, 22);
@@ -226,7 +226,7 @@
             // txtIdInicial
             // 
             this.txtIdInicial.Location = new System.Drawing.Point(224, 7);
-            this.txtIdInicial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIdInicial.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdInicial.MaxLength = 10;
             this.txtIdInicial.Name = "txtIdInicial";
             this.txtIdInicial.Size = new System.Drawing.Size(87, 22);
@@ -264,7 +264,7 @@
             this.Grb.Controls.Add(this.Dgv);
             this.Grb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Grb.Location = new System.Drawing.Point(21, 98);
-            this.Grb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Grb.Margin = new System.Windows.Forms.Padding(4);
             this.Grb.Name = "Grb";
             this.Grb.Padding = new System.Windows.Forms.Padding(30);
             this.Grb.Size = new System.Drawing.Size(1373, 657);
@@ -278,7 +278,7 @@
             this.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv.Location = new System.Drawing.Point(30, 46);
-            this.Dgv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Dgv.Margin = new System.Windows.Forms.Padding(4);
             this.Dgv.Name = "Dgv";
             this.Dgv.RowHeadersWidth = 51;
             this.Dgv.Size = new System.Drawing.Size(1313, 581);
@@ -292,7 +292,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.Grb);
             this.Controls.Add(this.tabcOperacion);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmProductosListado";
             this.Text = "» Listado de productos «";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmProductosListado_FormClosed);

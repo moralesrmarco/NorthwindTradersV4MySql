@@ -122,6 +122,7 @@
     <Compile Include="ClienteRepository.cs" />
     <Compile Include="ClientesyProveedores.cs" />
     <Compile Include="ClientesyProveedoresRepository.cs" />
+    <Compile Include="DataAccess.cs" />
     <Compile Include="DtoCategoriasBuscar.cs" />
     <Compile Include="DtoProductosBuscar.cs" />
     <Compile Include="DtoProveedoresBuscar.cs" />
@@ -273,6 +274,12 @@
     <Compile Include="FrmRptProdPorProvConDetProv.Designer.cs">
       <DependentUpon>FrmRptProdPorProvConDetProv.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptProductos.Designer.cs">
+      <DependentUpon>FrmRptProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptProductosPorCategorias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -380,6 +387,9 @@
     <EmbeddedResource Include="FrmRptProdPorProvConDetProv.resx">
       <DependentUpon>FrmRptProdPorProvConDetProv.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptProductos.resx">
+      <DependentUpon>FrmRptProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptProductosPorCategorias.resx">
       <DependentUpon>FrmRptProductosPorCategorias.cs</DependentUpon>
     </EmbeddedResource>
@@ -412,6 +422,7 @@
     <EmbeddedResource Include="RptEmpleados.rdlc" />
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc" />
     <EmbeddedResource Include="RptProdPorProvConDetProv.rdlc" />
+    <EmbeddedResource Include="RptProductos.rdlc" />
     <EmbeddedResource Include="RptProductosPorCategorias.rdlc" />
     <EmbeddedResource Include="RptProductosPorProveedor.rdlc" />
     <EmbeddedResource Include="RptProveedores.rdlc" />
@@ -441,7 +452,9 @@
     <Content Include="ScriptsSql\spProductoPorId.sql" />
     <Content Include="ScriptsSql\spProductos.sql" />
     <Content Include="ScriptsSql\spProductosBuscar.sql" />
+    <Content Include="ScriptsSql\spProductosBuscarV2.sql" />
     <Content Include="ScriptsSql\spProductosListarLast20.sql" />
+    <Content Include="ScriptsSql\spProductosV2.sql" />
     <Content Include="ScriptsSql\spProveedoresSeleccionar.sql" />
     <Content Include="ScriptsSql\vwProductosListaAlfabetica.sql" />
     <Content Include="ScriptsSql\vwproductosporencimadelpreciopromedio.sql" />
