@@ -228,7 +228,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Punto de pedido</Value>
+                                                <Value>Nivel de reorden</Value>
                                                 <Style>
                                                   <FontSize>9pt</FontSize>
                                                 </Style>
@@ -1225,7 +1225,7 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Left</TextAlign>
+              <TextAlign>Center</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
@@ -1328,7 +1328,7 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Left</TextAlign>
+              <TextAlign>Center</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>

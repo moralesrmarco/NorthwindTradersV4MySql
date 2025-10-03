@@ -221,7 +221,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Punto de pedido</Value>
+                              <Value>Nivel de reorden</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -777,7 +777,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -938,7 +937,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Left</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -1391,7 +1390,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Left</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
