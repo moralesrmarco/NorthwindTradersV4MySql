@@ -124,6 +124,8 @@
     <Compile Include="ClientesyProveedoresRepository.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="DtoCategoriasBuscar.cs" />
+    <Compile Include="DtoPedidosBuscar.cs" />
+    <Compile Include="DtoProductoCostoInventario.cs" />
     <Compile Include="DtoProductosBuscar.cs" />
     <Compile Include="DtoProveedoresBuscar.cs" />
     <Compile Include="Empleado.cs" />
@@ -171,6 +173,12 @@
     </Compile>
     <Compile Include="FrmEmpleadosCrud.Designer.cs">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPedidosCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPedidosCrud.Designer.cs">
+      <DependentUpon>FrmPedidosCrud.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmProductosConsultaAlfabetica.cs">
       <SubType>Form</SubType>
@@ -310,6 +318,8 @@
     <Compile Include="MDIPrincipal.Designer.cs">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pedido.cs" />
+    <Compile Include="PedidoRepository.cs" />
     <Compile Include="ProductoRepository.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="ProductosxProveedores.cs" />
@@ -319,6 +329,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor.cs" />
     <Compile Include="ProveedorRepository.cs" />
+    <Compile Include="DtoEnvioInformacion.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="FrmCategoriasCrud.resx">
@@ -341,6 +352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEmpleadosCrud.resx">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPedidosCrud.resx">
+      <DependentUpon>FrmPedidosCrud.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProductosConsultaAlfabetica.resx">
       <DependentUpon>FrmProductosConsultaAlfabetica.cs</DependentUpon>
@@ -455,6 +469,11 @@
     <None Include="Resources\FotoPerfil.png" />
     <None Include="Resources\Categorias.png" />
     <Content Include="ScriptsSql\spCategoriasSeleccionar.sql" />
+    <Content Include="ScriptsSql\spClientesSeleccionar.sql" />
+    <Content Include="ScriptsSql\spEmpleadosSeleccionar.sql" />
+    <Content Include="ScriptsSql\spPedidoPorId.sql" />
+    <Content Include="ScriptsSql\spPedidosBuscar.sql" />
+    <Content Include="ScriptsSql\spPedidosListarLast20.sql" />
     <Content Include="ScriptsSql\spProductoActualizar.sql" />
     <Content Include="ScriptsSql\spProductoEliminar.sql" />
     <Content Include="ScriptsSql\spProductoInsertar.sql" />
@@ -463,8 +482,10 @@
     <Content Include="ScriptsSql\spProductosBuscar.sql" />
     <Content Include="ScriptsSql\spProductosBuscarV2.sql" />
     <Content Include="ScriptsSql\spProductosListarLast20.sql" />
+    <Content Include="ScriptsSql\spProductosSeleccionarPorCategorias.sql" />
     <Content Include="ScriptsSql\spProductosV2.sql" />
     <Content Include="ScriptsSql\spProveedoresSeleccionar.sql" />
+    <Content Include="ScriptsSql\spTransportistasSeleccionar.sql" />
     <Content Include="ScriptsSql\vwProductosListaAlfabetica.sql" />
     <Content Include="ScriptsSql\vwproductosporencimadelpreciopromedio.sql" />
     <Content Include="ScriptsSql\VW_ClientesProveedores.sql" />

@@ -97,7 +97,18 @@
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultasToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.listadoDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultaDeProductosPorCategoríaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultaDeProductosPorProveedorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultaAlfabéticaDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listadoDeProductosPorCategoríasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productosPorEncimaDelPrecioPromedioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeProductosPorCategoríaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeProductosPorProveedorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteAlfabéticoDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,17 +140,14 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.listadoDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultaDeProductosPorCategoríaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultaDeProductosPorProveedorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultaAlfabéticaDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listadoDeProductosPorCategoríasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.productosPorEncimaDelPrecioPromedioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteDeProductosPorCategoríaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteDeProductosPorProveedorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteAlfabéticoDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mantenimientoDePedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mantenimientoDeDetalleDePedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mantenimientoDePedidosV2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultasToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportesToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDePedidosPorDiferentesCriteriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -157,6 +165,7 @@
             this.proveedoresToolStripMenuItem,
             this.categoríasToolStripMenuItem,
             this.productosToolStripMenuItem,
+            this.pedidosToolStripMenuItem,
             this.toolsMenu,
             this.windowsMenu,
             this.helpMenu});
@@ -715,6 +724,48 @@
             this.consultasToolStripMenuItem3.Size = new System.Drawing.Size(285, 26);
             this.consultasToolStripMenuItem3.Text = "Consultas";
             // 
+            // listadoDeProductosToolStripMenuItem
+            // 
+            this.listadoDeProductosToolStripMenuItem.Name = "listadoDeProductosToolStripMenuItem";
+            this.listadoDeProductosToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
+            this.listadoDeProductosToolStripMenuItem.Text = "Listado de productos";
+            this.listadoDeProductosToolStripMenuItem.Click += new System.EventHandler(this.listadoDeProductosToolStripMenuItem_Click);
+            // 
+            // consultaDeProductosPorCategoríaToolStripMenuItem1
+            // 
+            this.consultaDeProductosPorCategoríaToolStripMenuItem1.Name = "consultaDeProductosPorCategoríaToolStripMenuItem1";
+            this.consultaDeProductosPorCategoríaToolStripMenuItem1.Size = new System.Drawing.Size(378, 26);
+            this.consultaDeProductosPorCategoríaToolStripMenuItem1.Text = "Consulta de productos por categoría";
+            this.consultaDeProductosPorCategoríaToolStripMenuItem1.Click += new System.EventHandler(this.consultaDeProductosPorCategoríaToolStripMenuItem1_Click);
+            // 
+            // consultaDeProductosPorProveedorToolStripMenuItem1
+            // 
+            this.consultaDeProductosPorProveedorToolStripMenuItem1.Name = "consultaDeProductosPorProveedorToolStripMenuItem1";
+            this.consultaDeProductosPorProveedorToolStripMenuItem1.Size = new System.Drawing.Size(378, 26);
+            this.consultaDeProductosPorProveedorToolStripMenuItem1.Text = "Consulta de productos por proveedor";
+            this.consultaDeProductosPorProveedorToolStripMenuItem1.Click += new System.EventHandler(this.consultaDeProductosPorProveedorToolStripMenuItem1_Click);
+            // 
+            // consultaAlfabéticaDeProductosToolStripMenuItem
+            // 
+            this.consultaAlfabéticaDeProductosToolStripMenuItem.Name = "consultaAlfabéticaDeProductosToolStripMenuItem";
+            this.consultaAlfabéticaDeProductosToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
+            this.consultaAlfabéticaDeProductosToolStripMenuItem.Text = "Consulta alfabética de productos";
+            this.consultaAlfabéticaDeProductosToolStripMenuItem.Click += new System.EventHandler(this.consultaAlfabéticaDeProductosToolStripMenuItem_Click);
+            // 
+            // listadoDeProductosPorCategoríasToolStripMenuItem
+            // 
+            this.listadoDeProductosPorCategoríasToolStripMenuItem.Name = "listadoDeProductosPorCategoríasToolStripMenuItem";
+            this.listadoDeProductosPorCategoríasToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
+            this.listadoDeProductosPorCategoríasToolStripMenuItem.Text = "Listado de productos por categorías";
+            this.listadoDeProductosPorCategoríasToolStripMenuItem.Click += new System.EventHandler(this.listadoDeProductosPorCategoríasToolStripMenuItem_Click);
+            // 
+            // productosPorEncimaDelPrecioPromedioToolStripMenuItem
+            // 
+            this.productosPorEncimaDelPrecioPromedioToolStripMenuItem.Name = "productosPorEncimaDelPrecioPromedioToolStripMenuItem";
+            this.productosPorEncimaDelPrecioPromedioToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
+            this.productosPorEncimaDelPrecioPromedioToolStripMenuItem.Text = "Productos por encima del precio promedio";
+            this.productosPorEncimaDelPrecioPromedioToolStripMenuItem.Click += new System.EventHandler(this.productosPorEncimaDelPrecioPromedioToolStripMenuItem_Click);
+            // 
             // reportesToolStripMenuItem3
             // 
             this.reportesToolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -726,6 +777,41 @@
             this.reportesToolStripMenuItem3.Name = "reportesToolStripMenuItem3";
             this.reportesToolStripMenuItem3.Size = new System.Drawing.Size(285, 26);
             this.reportesToolStripMenuItem3.Text = "Reportes";
+            // 
+            // reporteDeProductosToolStripMenuItem
+            // 
+            this.reporteDeProductosToolStripMenuItem.Name = "reporteDeProductosToolStripMenuItem";
+            this.reporteDeProductosToolStripMenuItem.Size = new System.Drawing.Size(513, 26);
+            this.reporteDeProductosToolStripMenuItem.Text = "Reporte de productos";
+            this.reporteDeProductosToolStripMenuItem.Click += new System.EventHandler(this.reporteDeProductosToolStripMenuItem_Click);
+            // 
+            // reporteDeProductosPorCategoríaToolStripMenuItem1
+            // 
+            this.reporteDeProductosPorCategoríaToolStripMenuItem1.Name = "reporteDeProductosPorCategoríaToolStripMenuItem1";
+            this.reporteDeProductosPorCategoríaToolStripMenuItem1.Size = new System.Drawing.Size(513, 26);
+            this.reporteDeProductosPorCategoríaToolStripMenuItem1.Text = "Reporte de productos por categoría";
+            this.reporteDeProductosPorCategoríaToolStripMenuItem1.Click += new System.EventHandler(this.reporteDeProductosPorCategoríaToolStripMenuItem1_Click);
+            // 
+            // reporteDeProductosPorProveedorToolStripMenuItem1
+            // 
+            this.reporteDeProductosPorProveedorToolStripMenuItem1.Name = "reporteDeProductosPorProveedorToolStripMenuItem1";
+            this.reporteDeProductosPorProveedorToolStripMenuItem1.Size = new System.Drawing.Size(513, 26);
+            this.reporteDeProductosPorProveedorToolStripMenuItem1.Text = "Reporte de productos por proveedor";
+            this.reporteDeProductosPorProveedorToolStripMenuItem1.Click += new System.EventHandler(this.reporteDeProductosPorProveedorToolStripMenuItem1_Click);
+            // 
+            // reporteAlfabéticoDeProductosToolStripMenuItem
+            // 
+            this.reporteAlfabéticoDeProductosToolStripMenuItem.Name = "reporteAlfabéticoDeProductosToolStripMenuItem";
+            this.reporteAlfabéticoDeProductosToolStripMenuItem.Size = new System.Drawing.Size(513, 26);
+            this.reporteAlfabéticoDeProductosToolStripMenuItem.Text = "Reporte alfabético de productos";
+            this.reporteAlfabéticoDeProductosToolStripMenuItem.Click += new System.EventHandler(this.reporteAlfabéticoDeProductosToolStripMenuItem_Click);
+            // 
+            // reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1
+            // 
+            this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1.Name = "reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1";
+            this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1.Size = new System.Drawing.Size(513, 26);
+            this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1.Text = "Reporte de productos por proveedor con detalle del proveedor";
+            this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1.Click += new System.EventHandler(this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1_Click);
             // 
             // toolsMenu
             // 
@@ -972,82 +1058,67 @@
             this.toolStripStatus.Size = new System.Drawing.Size(43, 20);
             this.toolStripStatus.Text = "Listo.";
             // 
-            // listadoDeProductosToolStripMenuItem
+            // pedidosToolStripMenuItem
             // 
-            this.listadoDeProductosToolStripMenuItem.Name = "listadoDeProductosToolStripMenuItem";
-            this.listadoDeProductosToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
-            this.listadoDeProductosToolStripMenuItem.Text = "Listado de productos";
-            this.listadoDeProductosToolStripMenuItem.Click += new System.EventHandler(this.listadoDeProductosToolStripMenuItem_Click);
+            this.pedidosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mantenimientoDePedidosToolStripMenuItem,
+            this.mantenimientoDeDetalleDePedidosToolStripMenuItem,
+            this.mantenimientoDePedidosV2ToolStripMenuItem,
+            this.consultasToolStripMenuItem4,
+            this.reportesToolStripMenuItem4});
+            this.pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
+            this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.pedidosToolStripMenuItem.Text = "Pedidos";
             // 
-            // consultaDeProductosPorCategoríaToolStripMenuItem1
+            // mantenimientoDePedidosToolStripMenuItem
             // 
-            this.consultaDeProductosPorCategoríaToolStripMenuItem1.Name = "consultaDeProductosPorCategoríaToolStripMenuItem1";
-            this.consultaDeProductosPorCategoríaToolStripMenuItem1.Size = new System.Drawing.Size(378, 26);
-            this.consultaDeProductosPorCategoríaToolStripMenuItem1.Text = "Consulta de productos por categoría";
-            this.consultaDeProductosPorCategoríaToolStripMenuItem1.Click += new System.EventHandler(this.consultaDeProductosPorCategoríaToolStripMenuItem1_Click);
+            this.mantenimientoDePedidosToolStripMenuItem.Name = "mantenimientoDePedidosToolStripMenuItem";
+            this.mantenimientoDePedidosToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
+            this.mantenimientoDePedidosToolStripMenuItem.Text = "Mantenimiento de pedidos";
+            this.mantenimientoDePedidosToolStripMenuItem.Click += new System.EventHandler(this.mantenimientoDePedidosToolStripMenuItem_Click);
             // 
-            // consultaDeProductosPorProveedorToolStripMenuItem1
+            // mantenimientoDeDetalleDePedidosToolStripMenuItem
             // 
-            this.consultaDeProductosPorProveedorToolStripMenuItem1.Name = "consultaDeProductosPorProveedorToolStripMenuItem1";
-            this.consultaDeProductosPorProveedorToolStripMenuItem1.Size = new System.Drawing.Size(378, 26);
-            this.consultaDeProductosPorProveedorToolStripMenuItem1.Text = "Consulta de productos por proveedor";
-            this.consultaDeProductosPorProveedorToolStripMenuItem1.Click += new System.EventHandler(this.consultaDeProductosPorProveedorToolStripMenuItem1_Click);
+            this.mantenimientoDeDetalleDePedidosToolStripMenuItem.Name = "mantenimientoDeDetalleDePedidosToolStripMenuItem";
+            this.mantenimientoDeDetalleDePedidosToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
+            this.mantenimientoDeDetalleDePedidosToolStripMenuItem.Text = "Mantenimiento de detalle de pedidos";
+            this.mantenimientoDeDetalleDePedidosToolStripMenuItem.Click += new System.EventHandler(this.mantenimientoDeDetalleDePedidosToolStripMenuItem_Click);
             // 
-            // consultaAlfabéticaDeProductosToolStripMenuItem
+            // mantenimientoDePedidosV2ToolStripMenuItem
             // 
-            this.consultaAlfabéticaDeProductosToolStripMenuItem.Name = "consultaAlfabéticaDeProductosToolStripMenuItem";
-            this.consultaAlfabéticaDeProductosToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
-            this.consultaAlfabéticaDeProductosToolStripMenuItem.Text = "Consulta alfabética de productos";
-            this.consultaAlfabéticaDeProductosToolStripMenuItem.Click += new System.EventHandler(this.consultaAlfabéticaDeProductosToolStripMenuItem_Click);
+            this.mantenimientoDePedidosV2ToolStripMenuItem.Name = "mantenimientoDePedidosV2ToolStripMenuItem";
+            this.mantenimientoDePedidosV2ToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
+            this.mantenimientoDePedidosV2ToolStripMenuItem.Text = "Mantenimiento de pedidos V2";
+            this.mantenimientoDePedidosV2ToolStripMenuItem.Click += new System.EventHandler(this.mantenimientoDePedidosV2ToolStripMenuItem_Click);
             // 
-            // listadoDeProductosPorCategoríasToolStripMenuItem
+            // consultasToolStripMenuItem4
             // 
-            this.listadoDeProductosPorCategoríasToolStripMenuItem.Name = "listadoDeProductosPorCategoríasToolStripMenuItem";
-            this.listadoDeProductosPorCategoríasToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
-            this.listadoDeProductosPorCategoríasToolStripMenuItem.Text = "Listado de productos por categorías";
-            this.listadoDeProductosPorCategoríasToolStripMenuItem.Click += new System.EventHandler(this.listadoDeProductosPorCategoríasToolStripMenuItem_Click);
+            this.consultasToolStripMenuItem4.Name = "consultasToolStripMenuItem4";
+            this.consultasToolStripMenuItem4.Size = new System.Drawing.Size(343, 26);
+            this.consultasToolStripMenuItem4.Text = "Consultas";
             // 
-            // productosPorEncimaDelPrecioPromedioToolStripMenuItem
+            // reportesToolStripMenuItem4
             // 
-            this.productosPorEncimaDelPrecioPromedioToolStripMenuItem.Name = "productosPorEncimaDelPrecioPromedioToolStripMenuItem";
-            this.productosPorEncimaDelPrecioPromedioToolStripMenuItem.Size = new System.Drawing.Size(378, 26);
-            this.productosPorEncimaDelPrecioPromedioToolStripMenuItem.Text = "Productos por encima del precio promedio";
-            this.productosPorEncimaDelPrecioPromedioToolStripMenuItem.Click += new System.EventHandler(this.productosPorEncimaDelPrecioPromedioToolStripMenuItem_Click);
+            this.reportesToolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem,
+            this.reporteDePedidosPorDiferentesCriteriosToolStripMenuItem});
+            this.reportesToolStripMenuItem4.Name = "reportesToolStripMenuItem4";
+            this.reportesToolStripMenuItem4.Size = new System.Drawing.Size(343, 26);
+            this.reportesToolStripMenuItem4.Text = "Reportes";
             // 
-            // reporteDeProductosToolStripMenuItem
+            // reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem
             // 
-            this.reporteDeProductosToolStripMenuItem.Name = "reporteDeProductosToolStripMenuItem";
-            this.reporteDeProductosToolStripMenuItem.Size = new System.Drawing.Size(513, 26);
-            this.reporteDeProductosToolStripMenuItem.Text = "Reporte de productos";
-            this.reporteDeProductosToolStripMenuItem.Click += new System.EventHandler(this.reporteDeProductosToolStripMenuItem_Click);
+            this.reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem.Name = "reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem";
+            this.reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem.Size = new System.Drawing.Size(428, 26);
+            this.reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem.Text = "Reporte de pedidos por rango de fecha de pedido";
+            this.reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem.Click += new System.EventHandler(this.reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem_Click);
             // 
-            // reporteDeProductosPorCategoríaToolStripMenuItem1
+            // reporteDePedidosPorDiferentesCriteriosToolStripMenuItem
             // 
-            this.reporteDeProductosPorCategoríaToolStripMenuItem1.Name = "reporteDeProductosPorCategoríaToolStripMenuItem1";
-            this.reporteDeProductosPorCategoríaToolStripMenuItem1.Size = new System.Drawing.Size(513, 26);
-            this.reporteDeProductosPorCategoríaToolStripMenuItem1.Text = "Reporte de productos por categoría";
-            this.reporteDeProductosPorCategoríaToolStripMenuItem1.Click += new System.EventHandler(this.reporteDeProductosPorCategoríaToolStripMenuItem1_Click);
-            // 
-            // reporteDeProductosPorProveedorToolStripMenuItem1
-            // 
-            this.reporteDeProductosPorProveedorToolStripMenuItem1.Name = "reporteDeProductosPorProveedorToolStripMenuItem1";
-            this.reporteDeProductosPorProveedorToolStripMenuItem1.Size = new System.Drawing.Size(513, 26);
-            this.reporteDeProductosPorProveedorToolStripMenuItem1.Text = "Reporte de productos por proveedor";
-            this.reporteDeProductosPorProveedorToolStripMenuItem1.Click += new System.EventHandler(this.reporteDeProductosPorProveedorToolStripMenuItem1_Click);
-            // 
-            // reporteAlfabéticoDeProductosToolStripMenuItem
-            // 
-            this.reporteAlfabéticoDeProductosToolStripMenuItem.Name = "reporteAlfabéticoDeProductosToolStripMenuItem";
-            this.reporteAlfabéticoDeProductosToolStripMenuItem.Size = new System.Drawing.Size(513, 26);
-            this.reporteAlfabéticoDeProductosToolStripMenuItem.Text = "Reporte alfabético de productos";
-            this.reporteAlfabéticoDeProductosToolStripMenuItem.Click += new System.EventHandler(this.reporteAlfabéticoDeProductosToolStripMenuItem_Click);
-            // 
-            // reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1
-            // 
-            this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1.Name = "reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1";
-            this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1.Size = new System.Drawing.Size(513, 26);
-            this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1.Text = "Reporte de productos por proveedor con detalle del proveedor";
-            this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1.Click += new System.EventHandler(this.reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1_Click);
+            this.reporteDePedidosPorDiferentesCriteriosToolStripMenuItem.Name = "reporteDePedidosPorDiferentesCriteriosToolStripMenuItem";
+            this.reporteDePedidosPorDiferentesCriteriosToolStripMenuItem.Size = new System.Drawing.Size(428, 26);
+            this.reporteDePedidosPorDiferentesCriteriosToolStripMenuItem.Text = "Reporte de pedidos por diferentes criterios";
+            this.reporteDePedidosPorDiferentesCriteriosToolStripMenuItem.Click += new System.EventHandler(this.reporteDePedidosPorDiferentesCriteriosToolStripMenuItem_Click);
             // 
             // MDIPrincipal
             // 
@@ -1059,7 +1130,7 @@
             this.Controls.Add(this.menuStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MDIPrincipal";
             this.ShowIcon = false;
             this.Text = "» Northwind Traders Ver. 4 MySql «";
@@ -1186,6 +1257,14 @@
         private System.Windows.Forms.ToolStripMenuItem reporteDeProductosPorProveedorToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem reporteAlfabéticoDeProductosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDeProductosPorProveedorConDetalleDelProveedorToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem pedidosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mantenimientoDePedidosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mantenimientoDeDetalleDePedidosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mantenimientoDePedidosV2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultasToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reporteDePedidosPorDiferentesCriteriosToolStripMenuItem;
     }
 }
 

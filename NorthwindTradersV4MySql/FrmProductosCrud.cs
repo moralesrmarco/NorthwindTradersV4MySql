@@ -273,7 +273,7 @@ namespace NorthwindTradersV4MySql
                         cboProveedor.SelectedValue = producto.SupplierID ?? 0;
                         txtProducto.Text = producto.ProductName;
                         txtCantidadxU.Text = producto.QuantityPerUnit ?? "";
-                        txtPrecio.Text = producto.UnitPrice.ToString("F2");
+                        txtPrecio.Text = (producto.UnitPrice ?? 0m).ToString("F2");
                         txtUInventario.Text = producto.UnitsInStock.ToString();
                         txtUPedido.Text = producto.UnitsOnOrder.ToString();
                         txtPPedido.Text = producto.ReorderLevel.ToString();

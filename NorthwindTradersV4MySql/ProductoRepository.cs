@@ -102,16 +102,16 @@ namespace NorthwindTradersV4MySql
                         {
                             producto = new Producto
                             {
-                                RowVersion = Convert.ToInt32(reader["RowVersion"]),
+                                RowVersion = reader.IsDBNull(reader.GetOrdinal("RowVersion")) ? 0 : Convert.ToInt32(reader["RowVersion"]),
                                 ProductName = reader.IsDBNull(reader.GetOrdinal("ProductName")) ? null : reader["ProductName"].ToString(),
-                                SupplierID = Convert.ToInt32(reader["SupplierID"]),
-                                CategoryID = Convert.ToInt32(reader["CategoryID"]),
-                                QuantityPerUnit = reader["QuantityPerUnit"].ToString(),
-                                UnitPrice = Convert.ToDecimal(reader["UnitPrice"]),
-                                UnitsInStock = Convert.ToInt16(reader["UnitsInStock"]),
-                                UnitsOnOrder = Convert.ToInt16(reader["UnitsOnOrder"]),
-                                ReorderLevel = Convert.ToInt16(reader["ReorderLevel"]),
-                                Discontinued = Convert.ToBoolean(reader["Discontinued"])
+                                SupplierID = reader.IsDBNull(reader.GetOrdinal("SupplierID")) ? (int?)null : Convert.ToInt32(reader["SupplierID"]),
+                                CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? (int?)null : Convert.ToInt32(reader["CategoryID"]),
+                                QuantityPerUnit = reader.IsDBNull(reader.GetOrdinal("QuantityPerUnit")) ? null : reader["QuantityPerUnit"].ToString(),
+                                UnitPrice = reader.IsDBNull(reader.GetOrdinal("UnitPrice")) ? (decimal?)null : Convert.ToDecimal(reader["UnitPrice"]),
+                                UnitsInStock = reader.IsDBNull(reader.GetOrdinal("UnitsInStock")) ? (short?)null : Convert.ToInt16(reader["UnitsInStock"]),
+                                UnitsOnOrder = reader.IsDBNull(reader.GetOrdinal("UnitsOnOrder")) ? (short?)null : Convert.ToInt16(reader["UnitsOnOrder"]),
+                                ReorderLevel = reader.IsDBNull(reader.GetOrdinal("ReorderLevel")) ? (short?)null : Convert.ToInt16(reader["ReorderLevel"]),
+                                Discontinued = reader.IsDBNull(reader.GetOrdinal("Discontinued")) ? false : Convert.ToBoolean(reader["Discontinued"])
                             };
                         }
                         else
