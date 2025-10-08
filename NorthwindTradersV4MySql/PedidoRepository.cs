@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 
 namespace NorthwindTradersV4MySql
 {
-    internal class PedidoRepository
+    internal class PedidoRepository : IDisposable
     {
         private readonly string _connectionString;
+        private bool _disposed;
 
         public PedidoRepository(string connectionString)
         {
@@ -212,6 +213,183 @@ namespace NorthwindTradersV4MySql
                 throw new Exception("Error al obtener el pedido por ID: " + ex.Message);
             }
             return pedido;
+        }
+
+        public List<PedidoDetalle> ObtenerDetallePedidoPorPedidoId(int orderId)
+        {
+            var detalles = new List<PedidoDetalle>();
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("spPedidoDetallePorPedidoId", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("pPedidoId", orderId);
+                    cn.Open();
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            var detalle = new PedidoDetalle
+                            {
+                                OrderID = rdr.GetInt32(rdr.GetOrdinal("OrderID")),
+                                ProductID = rdr.GetInt32(rdr.GetOrdinal("ProductID")),
+                                ProductName = rdr.IsDBNull(rdr.GetOrdinal("ProductName")) ? null : rdr.GetString(rdr.GetOrdinal("ProductName")),
+                                UnitPrice = rdr.GetDecimal(rdr.GetOrdinal("UnitPrice")),
+                                Quantity = rdr.GetInt16(rdr.GetOrdinal("Quantity")),
+                                Discount = rdr.GetDecimal(rdr.GetOrdinal("Discount")),
+                                RowVersion = rdr.IsDBNull(rdr.GetOrdinal("RowVersion")) ? 0 : Convert.ToInt32(rdr["RowVersion"])
+                            };
+                            detalles.Add(detalle);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener los detalles del pedido: " + ex.Message);
+            }
+            return detalles;
+        }
+
+        public int Insertar(Pedido pedido, List<PedidoDetalle> detalles, out int orderId)
+        {
+            orderId = 0;
+            int filasAfectadas = 0;
+            using (var cn = new MySqlConnection(_connectionString))
+            {
+                cn.Open();
+                using (var tx = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        int tempOrderId;
+                        // 1) Insertar registro padre (SP)
+                        using (var cmd = new MySqlCommand("spPedidosInsertar", cn, tx))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("pCustomerId", string.IsNullOrWhiteSpace(pedido.CustomerID) ? (object)DBNull.Value : pedido.CustomerID);
+                            cmd.Parameters.AddWithValue("pEmployeeId", pedido.EmployeeID);
+                            cmd.Parameters.AddWithValue("pOrderDate", pedido.OrderDate.HasValue ? (object)pedido.OrderDate.Value : DBNull.Value);
+                            cmd.Parameters.AddWithValue("pRequiredDate", pedido.RequiredDate.HasValue ? (object)pedido.RequiredDate.Value : DBNull.Value);
+                            cmd.Parameters.AddWithValue("pShippedDate", pedido.ShippedDate.HasValue ? (object)pedido.ShippedDate.Value : DBNull.Value);
+                            cmd.Parameters.AddWithValue("pShipVia", pedido.ShipVia);
+                            cmd.Parameters.AddWithValue("pShipName", string.IsNullOrWhiteSpace(pedido.ShipName) ? (object)DBNull.Value : pedido.ShipName);
+                            cmd.Parameters.AddWithValue("pShipAddress", string.IsNullOrWhiteSpace(pedido.ShipAddress) ? (object)DBNull.Value : pedido.ShipAddress);
+                            cmd.Parameters.AddWithValue("pShipCity", string.IsNullOrWhiteSpace(pedido.ShipCity) ? (object)DBNull.Value : pedido.ShipCity); 
+                            cmd.Parameters.AddWithValue("pShipRegion", string.IsNullOrWhiteSpace(pedido.ShipRegion) ? (object)DBNull.Value : pedido.ShipRegion);
+                            cmd.Parameters.AddWithValue("pShipPostalCode", string.IsNullOrWhiteSpace(pedido.ShipPostalCode) ? (object)DBNull.Value : pedido.ShipPostalCode);
+                            cmd.Parameters.AddWithValue("pShipCountry", string.IsNullOrWhiteSpace(pedido.ShipCountry) ? (object)DBNull.Value : pedido.ShipCountry);
+                            cmd.Parameters.AddWithValue("pFreight", pedido.Freight);
+                            cmd.Parameters.AddWithValue("pRowVersion", 1);
+                            filasAfectadas += cmd.ExecuteNonQuery();
+                        }
+                        // Obtener OrderID generado
+                        using (var cmd = new MySqlCommand("SELECT LAST_INSERT_ID();", cn, tx))
+                        {
+                            var idObj = cmd.ExecuteScalar();
+                            tempOrderId = idObj == DBNull.Value ? 0 : Convert.ToInt32(idObj);
+                        }
+                        // 2) Preparar comandos reutilizables para cada detalle:
+                        // 2.1) Preparar SELECT UnitsInStock FOR UPDATE
+                        using (var cmdCheckStock = new MySqlCommand("SELECT UnitsInStock FROM products WHERE ProductID = @pid FOR UPDATE;", cn, tx))
+                        {
+                            cmdCheckStock.Parameters.Add(new MySqlParameter("@pid", MySqlDbType.Int32));
+
+                            // 2.2) Preparar UPDATE products
+                            using (var cmdUpdateStock = new MySqlCommand("UPDATE products SET UnitsInStock = UnitsInStock - @qty WHERE ProductID = @pid;", cn, tx))
+                            {
+                                cmdUpdateStock.Parameters.Add(new MySqlParameter("@qty", MySqlDbType.Int32));
+                                cmdUpdateStock.Parameters.Add(new MySqlParameter("@pid", MySqlDbType.Int32));
+
+                                // 2.3) Preparar inserción de detalle (SP)
+                                using (var cmdInsertDetail = new MySqlCommand("spPedidoDetalleInsertar", cn, tx))
+                                {
+                                    cmdInsertDetail.CommandType = CommandType.StoredProcedure;
+                                    cmdInsertDetail.Parameters.Add(new MySqlParameter("pOrderId", MySqlDbType.Int32));
+                                    cmdInsertDetail.Parameters.Add(new MySqlParameter("pProductId", MySqlDbType.Int32));
+                                    cmdInsertDetail.Parameters.Add(new MySqlParameter("pUnitPrice", MySqlDbType.Decimal));
+                                    cmdInsertDetail.Parameters.Add(new MySqlParameter("pQuantity", MySqlDbType.Int16));
+                                    cmdInsertDetail.Parameters.Add(new MySqlParameter("pDiscount", MySqlDbType.Float));
+                                    cmdInsertDetail.Parameters.Add(new MySqlParameter("pRowVersion", MySqlDbType.Int32));
+
+                                    // 3) Procesar cada detalle
+                                    foreach (var d in detalles)
+                                    {
+                                        // 3.1) Validar existencia y bloquear fila del producto
+                                        cmdCheckStock.Parameters["@pid"].Value = d.ProductID;
+                                        var stockObj = cmdCheckStock.ExecuteScalar();
+                                        if (stockObj == null || stockObj == DBNull.Value)
+                                        {
+                                            throw new InvalidOperationException($"Producto {d.ProductID} no existe.");
+                                        }
+
+                                        int currentStock = Convert.ToInt32(stockObj);
+
+                                        // 3.2) Validar stock suficiente
+                                        if (currentStock < d.Quantity)
+                                        {
+                                            throw new InvalidOperationException($"Inventario insuficiente para el producto {d.ProductID} {d.ProductName}. Disponible: {currentStock}, solicitado: {d.Quantity}.");
+                                        }
+
+                                        // 3.3) Actualizar stock
+                                        cmdUpdateStock.Parameters["@qty"].Value = d.Quantity;
+                                        cmdUpdateStock.Parameters["@pid"].Value = d.ProductID;
+                                        var rowsUpdated = cmdUpdateStock.ExecuteNonQuery();
+                                        if (rowsUpdated == 0)
+                                        {
+                                            throw new InvalidOperationException($"No se pudo actualizar el stock para el producto {d.ProductID}.");
+                                        }
+
+                                        // 3.4) Insertar detalle (SP)
+                                        cmdInsertDetail.Parameters["pOrderId"].Value = tempOrderId;
+                                        cmdInsertDetail.Parameters["pProductId"].Value = d.ProductID;
+                                        cmdInsertDetail.Parameters["pUnitPrice"].Value = d.UnitPrice;
+                                        cmdInsertDetail.Parameters["pQuantity"].Value = d.Quantity;
+                                        cmdInsertDetail.Parameters["pDiscount"].Value = d.Discount;
+                                        cmdInsertDetail.Parameters["pRowVersion"].Value = 1;
+
+                                        filasAfectadas += cmdInsertDetail.ExecuteNonQuery();
+                                    } // foreach detalles
+                                } // cmdInsertDetail
+                            } // cmdUpdateStock
+                        } // cmdCheckStock
+                        tx.Commit();
+                        orderId = tempOrderId;
+                        return filasAfectadas;
+                    }
+                    catch (MySqlException ex) when (ex.Number == 1451)
+                    {
+                        try { tx.Rollback(); } catch (Exception) { }
+                        orderId = 0;
+                        throw new Exception("Algún producto en el pedido fue previamente eliminado o existe una restricción de integridad referencial.\n" + ex.Message);
+                    }
+                    catch (MySqlException ex) when (ex.Number == 1452)
+                    {
+                        try { tx.Rollback(); } catch (Exception) { }
+                        orderId = 0;
+                        throw new Exception("Operación inválida por restricción de clave foránea (no existe el registro padre).\n" + ex.Message);
+                    }
+                    catch (MySqlException ex) when (ex.Number == 1062)
+                    {
+                        try { tx.Rollback(); } catch (Exception) { }
+                        orderId = 0;
+                        throw new Exception("Error, existe un producto duplicado en el pedido, elimine el producto duplicado y modifique la cantidad del producto");
+                    }
+                    catch (Exception)
+                    {
+                        try { tx.Rollback(); } catch (Exception) { }
+                        orderId = 0;
+                        throw;
+                    }
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            if (_disposed) return;
+            _disposed = true;
         }
     }
 }

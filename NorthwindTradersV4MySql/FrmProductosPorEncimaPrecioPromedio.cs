@@ -8,7 +8,6 @@ namespace NorthwindTradersV4MySql
     {
 
         string cnStr = ConfigurationManager.ConnectionStrings["NorthwindMySql"].ConnectionString;
-        decimal precioPromedio = 0;
 
         public FrmProductosPorEncimaPrecioPromedio()
         {

@@ -26,6 +26,13 @@ namespace NorthwindTradersV4MySql
         public static string noDatos = "No se encontraron datos para mostrar en el reporte";
         #endregion
 
+        public static DateTime? ObtenerFechaHora(DateTimePicker dtpFecha, DateTimePicker dtpHora)
+        {
+            if (!dtpFecha.Checked)
+                return null;
+            return dtpFecha.Value.Date.Add(dtpHora.Value.TimeOfDay);
+        }
+
         public static void LlenarCbo(ComboBox cbo, string storedProcedure, string displayMember, string valueMember)
         {
             MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);

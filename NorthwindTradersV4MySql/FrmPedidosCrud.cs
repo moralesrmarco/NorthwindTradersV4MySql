@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace NorthwindTradersV4MySql
 {
@@ -11,7 +13,7 @@ namespace NorthwindTradersV4MySql
         string cnStr = ConfigurationManager.ConnectionStrings["NorthwindMySql"].ConnectionString;
         private TabPage lastSelectedTab;
         bool EventoCargardo = true; // esta variable es necesaria para controlar el manejador de eventos de la celda del dgv, ojo no quitar
-        int IdDetalle = 1;
+        int numDetalle = 1;
         bool PedidoGenerado = false;
 
         public FrmPedidosCrud()
@@ -642,9 +644,9 @@ namespace NorthwindTradersV4MySql
             }
             DeshabilitarControlesProducto();
             txtPrecio.Text = txtPrecio.Text.Replace("$", "");
-            dgvDetalle.Rows.Add(new object[] { IdDetalle, cboProducto.Text, txtPrecio.Text, txtCantidad.Text, txtDescuento.Text, ((decimal.Parse(txtPrecio.Text) * decimal.Parse(txtCantidad.Text)) * (1 - decimal.Parse(txtDescuento.Text))).ToString(), "Eliminar", cboProducto.SelectedValue });
+            dgvDetalle.Rows.Add(new object[] { numDetalle, cboProducto.Text, txtPrecio.Text, txtCantidad.Text, txtDescuento.Text, ((decimal.Parse(txtPrecio.Text) * decimal.Parse(txtCantidad.Text)) * (1 - decimal.Parse(txtDescuento.Text))).ToString(), "Eliminar", cboProducto.SelectedValue });
             CalcularTotal();
-            ++IdDetalle;
+            ++numDetalle;
             cboCategoria.SelectedIndex = cboProducto.SelectedIndex = 0;
             txtPrecio.Text = "$0.00";
             txtCantidad.Text = txtUInventario.Text = "0";
@@ -697,7 +699,7 @@ namespace NorthwindTradersV4MySql
         private void tabcOperacion_Selected(object sender, TabControlEventArgs e)
         {          
             lastSelectedTab = e.TabPage;  // actualizar la pestaña actual
-            IdDetalle = 1;
+            numDetalle = 1;
             BorrarDatosPedido();
             BorrarMensajesError();
             if (tabcOperacion.SelectedTab == tabpRegistrar)
@@ -877,87 +879,74 @@ namespace NorthwindTradersV4MySql
 
         private void LlenarDatosDetallePedido()
         {
-            //try
-            //{
-            //    IdDetalle = 1;
-            //    Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
-            //    using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
-            //    {
-            //        using (SqlCommand cmd = new SqlCommand("Sp_DetallePedidos_Productos_Listar1", cn))
-            //        {
-            //            cmd.CommandType = CommandType.StoredProcedure;
-            //            cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
-            //            cn.Open();
-            //            using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleResult))
-            //            {
-            //                PedidoDetalle pedidoDetalle;
-            //                if (rdr.Read())
-            //                {
-            //                    do
-            //                    {
-            //                        pedidoDetalle = new PedidoDetalle();
-            //                        pedidoDetalle.ProductId = (int)rdr["Id Producto"];
-            //                        pedidoDetalle.ProductName = rdr["Producto"].ToString();
-            //                        pedidoDetalle.UnitPrice = (decimal)rdr["Precio"];
-            //                        pedidoDetalle.Quantity = (short)rdr["Cantidad"];
-            //                        pedidoDetalle.Discount = decimal.Parse(rdr["Descuento"].ToString());
-            //                        pedidoDetalle.RowVersion = (byte[])rdr["RowVersion"];
-            //                        dgvDetalle.Rows.Add(new object[] { IdDetalle, pedidoDetalle.ProductName, pedidoDetalle.UnitPrice, pedidoDetalle.Quantity, pedidoDetalle.Discount, (pedidoDetalle.UnitPrice * pedidoDetalle.Quantity) * (1 - pedidoDetalle.Discount), "Eliminar", pedidoDetalle.ProductId, pedidoDetalle.RowVersion });
-            //                        ++IdDetalle;
-            //                    } while (rdr.Read());
-            //                }
-            //                else
-            //                    MessageBox.Show("No se encontraron detalles para el pedido especificado", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //                rdr.Close();
-            //            }
-            //        }
-            //    }
-            //    CalcularTotal();
-            //    Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
-            //}
-            //catch (SqlException ex)
-            //{
-            //    Utils.MsgCatchOueclbdd(this, ex);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Utils.MsgCatchOue(this, ex);
-            //}
-            //finally
-            //{
-            //    cn.Close();
-            //}
+            try
+            {
+                numDetalle = 1;
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                using (var repo = new PedidoRepository(cnStr))
+                {
+                    var detalles = repo.ObtenerDetallePedidoPorPedidoId(int.Parse(txtId.Text));
+                    if (detalles.Count == 0)
+                        Utils.MensajeExclamation("No se encontraron detalles para el pedido especificado");
+                    else
+                    {
+                        foreach (var pedidoDetalle in detalles)
+                        {
+                            var totalLinea = (pedidoDetalle.UnitPrice * pedidoDetalle.Quantity) * (1 - pedidoDetalle.Discount);
+                            dgvDetalle.Rows.Add(new object[]
+                            {
+                                numDetalle,
+                                pedidoDetalle.ProductName,
+                                pedidoDetalle.UnitPrice,
+                                pedidoDetalle.Quantity,
+                                pedidoDetalle.Discount,
+                                totalLinea,
+                                "Eliminar",
+                                pedidoDetalle.ProductID,
+                                pedidoDetalle.RowVersion
+                            });
+                            ++numDetalle;
+                        }
+                    }
+                }
+                CalcularTotal();
+                MDIPrincipal.ActualizarBarraDeEstado($"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
         }
 
         // se anidan las clases para evitar interfieran con otro código similar del sistema, solo son accesibles desde su tipo contenedor
-        private class PedidoDetalle
-        {
-            public int ProductId { get; set; }
-            public decimal UnitPrice { get; set; }
-            public short Quantity { get; set; }
-            public decimal Discount { get; set; }
-            public string ProductName { get; set; }
-            public byte[] RowVersion { get; set; }
-        }
+        //private class PedidoDetalle
+        //{
+        //    public int ProductId { get; set; }
+        //    public decimal UnitPrice { get; set; }
+        //    public short Quantity { get; set; }
+        //    public decimal Discount { get; set; }
+        //    public string ProductName { get; set; }
+        //    public byte[] RowVersion { get; set; }
+        //}
 
-        private class Pedido
-        {
-            public int OrderId { get; set; }
-            public string CustomerId { get; set; }
-            public int EmployeeId { get; set; }
-            public DateTime? OrderDate { get; set; }
-            public DateTime? RequiredDate { get; set; }
-            public DateTime? ShippedDate { get; set; }
-            public int ShipVia { get; set; }
-            public decimal Freight { get; set; }
-            public string ShipName { get; set; }
-            public string ShipAddress { get; set; }
-            public string ShipCity { get; set; }
-            public string ShipRegion { get; set; }
-            public string ShipPostalCode { get; set;}
-            public string ShipCountry { get; set; }
-            public byte[] RowVersion { get; set; }
-        }
+        //private class Pedido
+        //{
+        //    public int OrderId { get; set; }
+        //    public string CustomerId { get; set; }
+        //    public int EmployeeId { get; set; }
+        //    public DateTime? OrderDate { get; set; }
+        //    public DateTime? RequiredDate { get; set; }
+        //    public DateTime? ShippedDate { get; set; }
+        //    public int ShipVia { get; set; }
+        //    public decimal Freight { get; set; }
+        //    public string ShipName { get; set; }
+        //    public string ShipAddress { get; set; }
+        //    public string ShipCity { get; set; }
+        //    public string ShipRegion { get; set; }
+        //    public string ShipPostalCode { get; set;}
+        //    public string ShipCountry { get; set; }
+        //    public byte[] RowVersion { get; set; }
+        //}
 
         private class PedidosDB
         {
@@ -1115,89 +1104,74 @@ namespace NorthwindTradersV4MySql
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            //int numRegs = 0;
-            //BorrarMensajesError();
-            //if (tabcOperacion.SelectedTab == tabpRegistrar)
-            //{
-            //    try
-            //    {
-            //        if (ValidarControles())
-            //        {
-            //            Utils.ActualizarBarraDeEstado(this, Utils.insertandoRegistro);
-            //            DeshabilitarControles();
-            //            btnGenerar.Enabled = false;
-            //            List<PedidoDetalle> lstDetalle = new List<PedidoDetalle>();
-            //            // llenado de elementos hijos
-            //            foreach(DataGridViewRow dgvr in dgvDetalle.Rows)
-            //            {
-            //                PedidoDetalle detalle = new PedidoDetalle();
-            //                detalle.ProductId = int.Parse(dgvr.Cells["ProductoId"].Value.ToString());
-            //                detalle.UnitPrice = decimal.Parse(dgvr.Cells["Precio"].Value.ToString());
-            //                detalle.Quantity = short.Parse(dgvr.Cells["Cantidad"].Value.ToString());
-            //                detalle.Discount = decimal.Parse(dgvr.Cells["Descuento"].Value.ToString());
-            //                lstDetalle.Add(detalle);
-            //            }
-            //            Pedido pedido = new Pedido();
-            //            pedido.CustomerId = cboCliente.SelectedValue.ToString();
-            //            pedido.EmployeeId = (int)cboEmpleado.SelectedValue;
-            //            //if (!dtpPedido.Checked) pedido.OrderDate = null;
-            //            //else pedido.OrderDate = Convert.ToDateTime(dtpPedido.Value.ToShortDateString() + " " + dtpHoraPedido.Value.ToLongTimeString());
-            //            //if (!dtpRequerido.Checked) pedido.RequiredDate = null;
-            //            //else pedido.RequiredDate = Convert.ToDateTime(dtpRequerido.Value.ToShortDateString() + " " + dtpHoraRequerido.Value.ToLongTimeString());
-            //            //if (!dtpEnvio.Checked) pedido.ShippedDate = null;
-            //            //else pedido.ShippedDate = Convert.ToDateTime(dtpEnvio.Value.ToShortDateString() + " " + dtpHoraEnvio.Value.ToLongTimeString());
-            //            if (dtpPedido != null && dtpHoraPedido != null)
-            //                pedido.OrderDate = Utils.ObtenerFechaHora(dtpPedido, dtpHoraPedido);
-            //            if (dtpRequerido != null && dtpHoraRequerido != null)
-            //                pedido.RequiredDate = Utils.ObtenerFechaHora(dtpRequerido, dtpHoraRequerido);
-            //            if (dtpEnvio != null && dtpHoraEnvio != null)
-            //                pedido.ShippedDate = Utils.ObtenerFechaHora(dtpEnvio, dtpHoraEnvio);
-            //            pedido.ShipVia = (int)cboTransportista.SelectedValue;
-            //            pedido.ShipName = txtDirigidoa.Text;
-            //            pedido.ShipAddress = txtDomicilio.Text;
-            //            pedido.ShipCity = txtCiudad.Text;
-            //            pedido.ShipRegion = txtRegion.Text;
-            //            pedido.ShipPostalCode = txtCP.Text;
-            //            pedido.ShipCountry = txtPais.Text;
-            //            if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
-            //            pedido.Freight = decimal.Parse(txtFlete.Text);
-            //            PedidosDB pedidosDB = new PedidosDB();
-            //            numRegs = pedidosDB.Add(pedido, lstDetalle, txtId);
-            //            if (numRegs > 0) MessageBox.Show($"El pedido con Id: {txtId.Text} del Cliente: {cboCliente.Text}, se registró satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //            else MessageBox.Show("No se pudo realizar el registro, es posible que el pedido ya exista", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        }
-            //    }
-            //    catch (SqlException ex) when (ex.Number == 547)
-            //    {
-            //        MessageBox.Show("Algún producto en el pedido fue previamente eliminado por otro usuario de la red.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //    catch (SqlException ex) when (ex.Number == 2627)
-            //    {
-            //        MessageBox.Show($"Error, existe un producto duplicado en el pedido, elimine el producto duplicado y modifique la cantidad del producto", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //    catch (SqlException ex)
-            //    {
-            //        Utils.MsgCatchOueclbdd(this, ex);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Utils.MsgCatchOue(this, ex);
-            //    }
-            //    if (numRegs > 0)
-            //    {
-            //        PedidoGenerado = true;
-            //        IdDetalle = 1;
-            //        btnNota.Enabled = true;
-            //        btnNota.Visible = true;
-            //        btnNuevo.Enabled = true;
-            //        btnNuevo.Visible = true;
-            //        BorrarDatosBusqueda();
-            //        LlenarDgvPedidos(null);
-            //        dgvDetalle.Rows.Clear();
-            //        dgvDetalle.Columns["Eliminar"].Visible = false;
-            //        LlenarDatosDetallePedido();
-            //    }
-            //}
+            int numRegs = 0;
+            BorrarMensajesError();
+            if (tabcOperacion.SelectedTab == tabpRegistrar)
+            {
+                try
+                {
+                    if (ValidarControles())
+                    {
+                        MDIPrincipal.ActualizarBarraDeEstado(Utils.insertandoRegistro);
+                        DeshabilitarControles();
+                        btnGenerar.Enabled = false;
+                        List<PedidoDetalle> lstDetalle = new List<PedidoDetalle>();
+                        // llenado de elementos hijos
+                        foreach (DataGridViewRow dgvr in dgvDetalle.Rows)
+                        {
+                            PedidoDetalle detalle = new PedidoDetalle();
+                            detalle.ProductID = int.Parse(dgvr.Cells["ProductoId"].Value.ToString());
+                            detalle.ProductName = dgvr.Cells["Producto"].Value.ToString();
+                            detalle.UnitPrice = decimal.Parse(dgvr.Cells["Precio"].Value.ToString());
+                            detalle.Quantity = short.Parse(dgvr.Cells["Cantidad"].Value.ToString());
+                            detalle.Discount = decimal.Parse(dgvr.Cells["Descuento"].Value.ToString());
+                            lstDetalle.Add(detalle);
+                        }
+                        Pedido pedido = new Pedido();
+                        pedido.CustomerID = cboCliente.SelectedValue.ToString();
+                        pedido.EmployeeID = Convert.ToInt32(cboEmpleado.SelectedValue);
+                        if (dtpPedido != null && dtpHoraPedido != null)
+                            pedido.OrderDate = Utils.ObtenerFechaHora(dtpPedido, dtpHoraPedido);
+                        if (dtpRequerido != null && dtpHoraRequerido != null)
+                            pedido.RequiredDate = Utils.ObtenerFechaHora(dtpRequerido, dtpHoraRequerido);
+                        if (dtpEnvio != null && dtpHoraEnvio != null)
+                            pedido.ShippedDate = Utils.ObtenerFechaHora(dtpEnvio, dtpHoraEnvio);
+                        pedido.ShipVia = int.Parse(cboTransportista.SelectedValue.ToString());
+                        pedido.ShipName = txtDirigidoa.Text;
+                        pedido.ShipAddress = txtDomicilio.Text;
+                        pedido.ShipCity = txtCiudad.Text;
+                        pedido.ShipRegion = txtRegion.Text;
+                        pedido.ShipPostalCode = txtCP.Text;
+                        pedido.ShipCountry = txtPais.Text;
+                        if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
+                        pedido.Freight = decimal.Parse(txtFlete.Text);
+                        int orderId = 0;
+                        numRegs = new PedidoRepository(cnStr).Insertar(pedido, lstDetalle, out orderId);
+                        txtId.Text = orderId.ToString();
+                        txtId.Tag = 1;
+                        if (numRegs > 0) Utils.MensajeInformation($"El pedido con Id: {txtId.Text} del Cliente: {cboCliente.Text}, se registró satisfactoriamente");
+                        else Utils.MensajeExclamation("No se pudo realizar el registro, es posible que el pedido ya exista");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(ex);
+                }
+                if (numRegs > 0)
+                {
+                    PedidoGenerado = true;
+                    numDetalle = 1;
+                    btnNota.Enabled = true;
+                    btnNota.Visible = true;
+                    btnNuevo.Enabled = true;
+                    btnNuevo.Visible = true;
+                    BorrarDatosBusqueda();
+                    LlenarDgvPedidos(null);
+                    dgvDetalle.Rows.Clear();
+                    dgvDetalle.Columns["Eliminar"].Visible = false;
+                    LlenarDatosDetallePedido();
+                }
+            }
             //else if (tabcOperacion.SelectedTab == tabpModificar)
             //{
             //    try
@@ -1337,7 +1311,7 @@ namespace NorthwindTradersV4MySql
             btnNuevo.Visible = true;
             PedidoGenerado = false;
             dgvDetalle.Columns["Eliminar"].Visible = true;
-            IdDetalle = 1;
+            numDetalle = 1;
         }
 
         private bool chkRowVersion()

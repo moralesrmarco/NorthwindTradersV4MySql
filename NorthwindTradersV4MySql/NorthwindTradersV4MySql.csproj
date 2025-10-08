@@ -319,6 +319,7 @@
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Pedido.cs" />
+    <Compile Include="PedidoDetalle.cs" />
     <Compile Include="PedidoRepository.cs" />
     <Compile Include="ProductoRepository.cs" />
     <Compile Include="Producto.cs" />
@@ -471,8 +472,11 @@
     <Content Include="ScriptsSql\spCategoriasSeleccionar.sql" />
     <Content Include="ScriptsSql\spClientesSeleccionar.sql" />
     <Content Include="ScriptsSql\spEmpleadosSeleccionar.sql" />
+    <Content Include="ScriptsSql\spPedidoDetalleInsertar.sql" />
+    <Content Include="ScriptsSql\spPedidoDetallePorPedidoId.sql" />
     <Content Include="ScriptsSql\spPedidoPorId.sql" />
     <Content Include="ScriptsSql\spPedidosBuscar.sql" />
+    <Content Include="ScriptsSql\spPedidosInsertar.sql" />
     <Content Include="ScriptsSql\spPedidosListarLast20.sql" />
     <Content Include="ScriptsSql\spProductoActualizar.sql" />
     <Content Include="ScriptsSql\spProductoEliminar.sql" />
