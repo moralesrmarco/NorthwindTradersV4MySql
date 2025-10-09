@@ -1028,62 +1028,62 @@ namespace NorthwindTradersV4MySql
 
             //public byte Update(Pedido pedido, string cliente, TextBox textBox)
             //{
-            //    //// las excepciones generadas en este segmento de código son capturadas en un nivel superior, por eso no uso bloque try
-            //    //byte numRegs = 0;
-            //    //using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
-            //    //{
-            //    //    SqlCommand cmd = new SqlCommand("Sp_Pedidos_Actualizar_V2", cn);
-            //    //    cmd.CommandType = CommandType.StoredProcedure;
-            //    //    //cmd.Parameters.AddWithValue("OrderId", pedido.OrderId);
-            //    //    //cmd.Parameters.AddWithValue("CustomerId", pedido.CustomerId);
-            //    //    //cmd.Parameters.AddWithValue("EmployeeId", pedido.EmployeeId);
-            //    //    //if (pedido.OrderDate == null) cmd.Parameters.AddWithValue("OrderDate", DBNull.Value);
-            //    //    //else cmd.Parameters.AddWithValue("OrderDate", pedido.OrderDate);
-            //    //    //if (pedido.RequiredDate == null) cmd.Parameters.AddWithValue("RequiredDate", DBNull.Value);
-            //    //    //else cmd.Parameters.AddWithValue("RequiredDate", pedido.RequiredDate);
-            //    //    //if (pedido.ShippedDate == null) cmd.Parameters.AddWithValue("ShippedDate", DBNull.Value);
-            //    //    //else cmd.Parameters.AddWithValue("ShippedDate", pedido.ShippedDate);
-            //    //    //cmd.Parameters.AddWithValue("ShipVia", pedido.ShipVia);
-            //    //    //cmd.Parameters.AddWithValue("Freight", pedido.Freight);
-            //    //    //if (pedido.ShipName.Trim() == "") cmd.Parameters.AddWithValue("ShipName", DBNull.Value);
-            //    //    //else cmd.Parameters.AddWithValue("ShipName", pedido.ShipName);
-            //    //    //if (pedido.ShipAddress.Trim() == "") cmd.Parameters.AddWithValue("ShipAddress", DBNull.Value);
-            //    //    //else cmd.Parameters.AddWithValue("ShipAddress", pedido.ShipAddress);
-            //    //    //if (pedido.ShipCity.Trim() == "") cmd.Parameters.AddWithValue("ShipCity", DBNull.Value);
-            //    //    //else cmd.Parameters.AddWithValue("ShipCity", pedido.ShipCity);
-            //    //    //if (pedido.ShipRegion.Trim() == "") cmd.Parameters.AddWithValue("ShipRegion", DBNull.Value);
-            //    //    //else cmd.Parameters.AddWithValue("ShipRegion", pedido.ShipRegion);
-            //    //    //if (pedido.ShipPostalCode.Trim() == "") cmd.Parameters.AddWithValue("ShipPostalCode", DBNull.Value);
-            //    //    //else cmd.Parameters.AddWithValue("ShipPostalCode", pedido.ShipPostalCode);
-            //    //    //if (pedido.ShipCountry.Trim() == "") cmd.Parameters.AddWithValue("ShipCountry", DBNull.Value);
-            //    //    //else cmd.Parameters.AddWithValue("ShipCountry", pedido.ShipCountry);
-            //    //    cmd.Parameters.AddWithValue("@OrderId", pedido.OrderId);
-            //    //    cmd.Parameters.AddWithValue("@CustomerId", pedido.CustomerId);
-            //    //    cmd.Parameters.AddWithValue("@EmployeeId", pedido.EmployeeId);
-            //    //    cmd.Parameters.AddWithValue("@OrderDate", pedido.OrderDate ?? (object)DBNull.Value);
-            //    //    cmd.Parameters.AddWithValue("@RequiredDate", pedido.RequiredDate ?? (object)DBNull.Value);
-            //    //    cmd.Parameters.AddWithValue("@ShippedDate", pedido.ShippedDate ?? (object)DBNull.Value);
-            //    //    cmd.Parameters.AddWithValue("@ShipVia", pedido.ShipVia);
-            //    //    cmd.Parameters.AddWithValue("@Freight", pedido.Freight);
-            //    //    cmd.Parameters.AddWithValue("@ShipName", string.IsNullOrWhiteSpace(pedido.ShipName) ? (object)DBNull.Value : pedido.ShipName);
-            //    //    cmd.Parameters.AddWithValue("@ShipAddress", string.IsNullOrWhiteSpace(pedido.ShipAddress) ? (object)DBNull.Value : pedido.ShipAddress);
-            //    //    cmd.Parameters.AddWithValue("@ShipCity", string.IsNullOrWhiteSpace(pedido.ShipCity) ? (object)DBNull.Value : pedido.ShipCity);
-            //    //    cmd.Parameters.AddWithValue("@ShipRegion", string.IsNullOrWhiteSpace(pedido.ShipRegion) ? (object)DBNull.Value : pedido.ShipRegion);
-            //    //    cmd.Parameters.AddWithValue("@ShipPostalCode", string.IsNullOrWhiteSpace(pedido.ShipPostalCode) ? (object)DBNull.Value : pedido.ShipPostalCode);
-            //    //    cmd.Parameters.AddWithValue("@ShipCountry", string.IsNullOrWhiteSpace(pedido.ShipCountry) ? (object)DBNull.Value : pedido.ShipCountry);
-            //    //    cn.Open();
-            //    //    // Con ExecuteScalar obtenemos el primer valor de la primera columna que regresa nuestro SELECT,
-            //    //    // que en este caso es el valor del rowversion (devuelto como un arreglo de bytes: byte[])
-            //    //    object rowVersionObj = cmd.ExecuteScalar();
-            //    //    // Asignamos el valor obtenido a txtId.Tag. 
-            //    //    // Si necesitas mostrarlo, considera convertirlo (por ejemplo a hexadecimal) para su representación.
-            //    //    textBox.Tag = rowVersionObj;
-            //    //    // Si rowVersionObj no es nulo se asume que la actualización fue exitosa.
-            //    //    if (rowVersionObj != null)
-            //    //        numRegs = 1;
-            //    //    cn.Close();
-            //    //}
-            //    //return numRegs;
+            //    // las excepciones generadas en este segmento de código son capturadas en un nivel superior, por eso no uso bloque try
+            //    byte numRegs = 0;
+            //    using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+            //    {
+            //        SqlCommand cmd = new SqlCommand("Sp_Pedidos_Actualizar_V2", cn);
+            //        cmd.CommandType = CommandType.StoredProcedure;
+            //        //cmd.Parameters.AddWithValue("OrderId", pedido.OrderId);
+            //        //cmd.Parameters.AddWithValue("CustomerId", pedido.CustomerId);
+            //        //cmd.Parameters.AddWithValue("EmployeeId", pedido.EmployeeId);
+            //        //if (pedido.OrderDate == null) cmd.Parameters.AddWithValue("OrderDate", DBNull.Value);
+            //        //else cmd.Parameters.AddWithValue("OrderDate", pedido.OrderDate);
+            //        //if (pedido.RequiredDate == null) cmd.Parameters.AddWithValue("RequiredDate", DBNull.Value);
+            //        //else cmd.Parameters.AddWithValue("RequiredDate", pedido.RequiredDate);
+            //        //if (pedido.ShippedDate == null) cmd.Parameters.AddWithValue("ShippedDate", DBNull.Value);
+            //        //else cmd.Parameters.AddWithValue("ShippedDate", pedido.ShippedDate);
+            //        //cmd.Parameters.AddWithValue("ShipVia", pedido.ShipVia);
+            //        //cmd.Parameters.AddWithValue("Freight", pedido.Freight);
+            //        //if (pedido.ShipName.Trim() == "") cmd.Parameters.AddWithValue("ShipName", DBNull.Value);
+            //        //else cmd.Parameters.AddWithValue("ShipName", pedido.ShipName);
+            //        //if (pedido.ShipAddress.Trim() == "") cmd.Parameters.AddWithValue("ShipAddress", DBNull.Value);
+            //        //else cmd.Parameters.AddWithValue("ShipAddress", pedido.ShipAddress);
+            //        //if (pedido.ShipCity.Trim() == "") cmd.Parameters.AddWithValue("ShipCity", DBNull.Value);
+            //        //else cmd.Parameters.AddWithValue("ShipCity", pedido.ShipCity);
+            //        //if (pedido.ShipRegion.Trim() == "") cmd.Parameters.AddWithValue("ShipRegion", DBNull.Value);
+            //        //else cmd.Parameters.AddWithValue("ShipRegion", pedido.ShipRegion);
+            //        //if (pedido.ShipPostalCode.Trim() == "") cmd.Parameters.AddWithValue("ShipPostalCode", DBNull.Value);
+            //        //else cmd.Parameters.AddWithValue("ShipPostalCode", pedido.ShipPostalCode);
+            //        //if (pedido.ShipCountry.Trim() == "") cmd.Parameters.AddWithValue("ShipCountry", DBNull.Value);
+            //        //else cmd.Parameters.AddWithValue("ShipCountry", pedido.ShipCountry);
+            //        cmd.Parameters.AddWithValue("@OrderId", pedido.OrderId);
+            //        cmd.Parameters.AddWithValue("@CustomerId", pedido.CustomerId);
+            //        cmd.Parameters.AddWithValue("@EmployeeId", pedido.EmployeeId);
+            //        cmd.Parameters.AddWithValue("@OrderDate", pedido.OrderDate ?? (object)DBNull.Value);
+            //        cmd.Parameters.AddWithValue("@RequiredDate", pedido.RequiredDate ?? (object)DBNull.Value);
+            //        cmd.Parameters.AddWithValue("@ShippedDate", pedido.ShippedDate ?? (object)DBNull.Value);
+            //        cmd.Parameters.AddWithValue("@ShipVia", pedido.ShipVia);
+            //        cmd.Parameters.AddWithValue("@Freight", pedido.Freight);
+            //        cmd.Parameters.AddWithValue("@ShipName", string.IsNullOrWhiteSpace(pedido.ShipName) ? (object)DBNull.Value : pedido.ShipName);
+            //        cmd.Parameters.AddWithValue("@ShipAddress", string.IsNullOrWhiteSpace(pedido.ShipAddress) ? (object)DBNull.Value : pedido.ShipAddress);
+            //        cmd.Parameters.AddWithValue("@ShipCity", string.IsNullOrWhiteSpace(pedido.ShipCity) ? (object)DBNull.Value : pedido.ShipCity);
+            //        cmd.Parameters.AddWithValue("@ShipRegion", string.IsNullOrWhiteSpace(pedido.ShipRegion) ? (object)DBNull.Value : pedido.ShipRegion);
+            //        cmd.Parameters.AddWithValue("@ShipPostalCode", string.IsNullOrWhiteSpace(pedido.ShipPostalCode) ? (object)DBNull.Value : pedido.ShipPostalCode);
+            //        cmd.Parameters.AddWithValue("@ShipCountry", string.IsNullOrWhiteSpace(pedido.ShipCountry) ? (object)DBNull.Value : pedido.ShipCountry);
+            //        cn.Open();
+            //        // Con ExecuteScalar obtenemos el primer valor de la primera columna que regresa nuestro SELECT,
+            //        // que en este caso es el valor del rowversion (devuelto como un arreglo de bytes: byte[])
+            //        object rowVersionObj = cmd.ExecuteScalar();
+            //        // Asignamos el valor obtenido a txtId.Tag. 
+            //        // Si necesitas mostrarlo, considera convertirlo (por ejemplo a hexadecimal) para su representación.
+            //        textBox.Tag = rowVersionObj;
+            //        // Si rowVersionObj no es nulo se asume que la actualización fue exitosa.
+            //        if (rowVersionObj != null)
+            //            numRegs = 1;
+            //        cn.Close();
+            //    }
+            //    return numRegs;
             //}
 
             //public byte Delete(Pedido pedido)
@@ -1172,64 +1172,61 @@ namespace NorthwindTradersV4MySql
                     LlenarDatosDetallePedido();
                 }
             }
-            //else if (tabcOperacion.SelectedTab == tabpModificar)
-            //{
-            //    try
-            //    {
-            //        if (ValidarControles())
-            //        {
-            //            if (!chkRowVersion())
-            //            {
-            //                MessageBox.Show("El registro ha sido modificado por otro usuario de la red, no se realizará la actualización del registro, vuelva a cargar el registro para que se muestre el pedido con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //                return;
-            //            }
-            //            Utils.ActualizarBarraDeEstado(this, Utils.modificandoRegistro);
-            //            DeshabilitarControles();
-            //            btnGenerar.Enabled = false;
-            //            Pedido pedido = new Pedido();
-            //            pedido.OrderId = int.Parse(txtId.Text);
-            //            pedido.CustomerId = cboCliente.SelectedValue.ToString();
-            //            pedido.EmployeeId = (int)cboEmpleado.SelectedValue;
-            //            if (!dtpPedido.Checked) pedido.OrderDate = null;
-            //            else pedido.OrderDate = Convert.ToDateTime(dtpPedido.Value.ToShortDateString() + " " + dtpHoraPedido.Value.ToLongTimeString());
-            //            if (!dtpRequerido.Checked) pedido.RequiredDate = null;
-            //            else pedido.RequiredDate = Convert.ToDateTime(dtpRequerido.Value.ToShortDateString() + " " + dtpHoraRequerido.Value.ToLongTimeString());
-            //            if (!dtpEnvio.Checked) pedido.ShippedDate = null;
-            //            else pedido.ShippedDate = Convert.ToDateTime(dtpEnvio.Value.ToShortDateString() + " " + dtpHoraEnvio.Value.ToLongTimeString());
-            //            pedido.ShipVia = (int)cboTransportista.SelectedValue;
-            //            pedido.ShipName = txtDirigidoa.Text;
-            //            pedido.ShipAddress = txtDomicilio.Text;
-            //            pedido.ShipCity = txtCiudad.Text;
-            //            pedido.ShipRegion = txtRegion.Text;
-            //            pedido.ShipPostalCode = txtCP.Text;
-            //            pedido.ShipCountry = txtPais.Text;
-            //            if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
-            //            pedido.Freight = decimal.Parse(txtFlete.Text);
-            //            PedidosDB pedidosDB = new PedidosDB();
-            //            numRegs = pedidosDB.Update(pedido, cboCliente.Text, txtId);
-            //            if (numRegs > 0)
-            //                MessageBox.Show($"El pedido con Id: {pedido.OrderId} del Cliente: {cboCliente.Text}, se actualizó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //            else
-            //                MessageBox.Show("No se pudo realizar la modificación, es posible que el registro se haya eliminado previamente por otro usuario de la red", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        }
-            //    }
-            //    catch (SqlException ex)
-            //    {
-            //        Utils.MsgCatchOueclbdd(this, ex);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Utils.MsgCatchOue(this, ex);
-            //    }
-            //    if (numRegs > 0)
-            //    {
-            //        PedidoGenerado = true;
-            //        btnNota.Enabled = true;
-            //        btnNota.Visible = true;
-            //        btnNuevo.Visible = false;
-            //        LlenarDgvPedidos(null);
-            //    }
-            //}
+            else if (tabcOperacion.SelectedTab == tabpModificar)
+            {
+                try
+                {
+                    if (ValidarControles())
+                    {
+                        //if (!chkRowVersion())
+                        //{
+                        //    Utils.MensajeExclamation("El registro ha sido modificado por otro usuario de la red, no se realizará la actualización del registro, vuelva a cargar el registro para que se muestre el pedido con los datos proporcionados por el otro usuario");
+                        //    return;
+                        //}
+                        MDIPrincipal.ActualizarBarraDeEstado(Utils.modificandoRegistro);
+                        DeshabilitarControles();
+                        btnGenerar.Enabled = false;
+                        Pedido pedido = new Pedido();
+                        pedido.OrderID = int.Parse(txtId.Text);
+                        pedido.CustomerID = cboCliente.SelectedValue.ToString();
+                        pedido.EmployeeID = Convert.ToInt32(cboEmpleado.SelectedValue);
+                        if (!dtpPedido.Checked) pedido.OrderDate = null;
+                        else pedido.OrderDate = Convert.ToDateTime(dtpPedido.Value.ToShortDateString() + " " + dtpHoraPedido.Value.ToLongTimeString());
+                        if (!dtpRequerido.Checked) pedido.RequiredDate = null;
+                        else pedido.RequiredDate = Convert.ToDateTime(dtpRequerido.Value.ToShortDateString() + " " + dtpHoraRequerido.Value.ToLongTimeString());
+                        if (!dtpEnvio.Checked) pedido.ShippedDate = null;
+                        else pedido.ShippedDate = Convert.ToDateTime(dtpEnvio.Value.ToShortDateString() + " " + dtpHoraEnvio.Value.ToLongTimeString());
+                        pedido.ShipVia = Convert.ToInt32(cboTransportista.SelectedValue);
+                        pedido.ShipName = txtDirigidoa.Text;
+                        pedido.ShipAddress = txtDomicilio.Text;
+                        pedido.ShipCity = txtCiudad.Text;
+                        pedido.ShipRegion = txtRegion.Text;
+                        pedido.ShipPostalCode = txtCP.Text;
+                        pedido.ShipCountry = txtPais.Text;
+                        if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
+                        pedido.Freight = decimal.Parse(txtFlete.Text);
+                        numRegs = new PedidoRepository(cnStr).Actualizar(pedido, out int rowVersion);
+                        if (rowVersion > 0)
+                            txtId.Tag = rowVersion;
+                        if (numRegs > 0)
+                            Utils.MensajeInformation($"El pedido con Id: {pedido.OrderID} del Cliente: {cboCliente.Text}, se actualizó satisfactoriamente");
+                        else
+                            Utils.MensajeError("No se pudo realizar la modificación, es posible que el registro se haya eliminado previamente por otro usuario de la red");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(ex);
+                }
+                if (numRegs > 0)
+                {
+                    PedidoGenerado = true;
+                    btnNota.Enabled = true;
+                    btnNota.Visible = true;
+                    btnNuevo.Visible = false;
+                    LlenarDgvPedidos(null);
+                }
+            }
             //else if (tabcOperacion.SelectedTab == tabpEliminar)
             //{
             //    if (txtId.Text == "")
@@ -1284,8 +1281,7 @@ namespace NorthwindTradersV4MySql
         {
             if (!PedidoGenerado & (lastSelectedTab == tabpRegistrar && e.TabPage != tabpRegistrar && dgvDetalle.RowCount > 0))
             {
-                DialogResult respuesta = MessageBox.Show("Se han agregado productos al detalle del pedido, si cambia de pestaña se perderan los datos no guardados.\n¿Desea cambiar de pestaña?", Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                if (respuesta == DialogResult.No)
+                if (Utils.MensajeQuestion("Se han agregado productos al detalle del pedido, si cambia de pestaña se perderan los datos no guardados.\n¿Desea cambiar de pestaña?") == DialogResult.No)
                     e.Cancel = true;
             }
         }

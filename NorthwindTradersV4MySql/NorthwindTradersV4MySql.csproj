@@ -475,6 +475,7 @@
     <Content Include="ScriptsSql\spPedidoDetalleInsertar.sql" />
     <Content Include="ScriptsSql\spPedidoDetallePorPedidoId.sql" />
     <Content Include="ScriptsSql\spPedidoPorId.sql" />
+    <Content Include="ScriptsSql\spPedidosActualizar.sql" />
     <Content Include="ScriptsSql\spPedidosBuscar.sql" />
     <Content Include="ScriptsSql\spPedidosInsertar.sql" />
     <Content Include="ScriptsSql\spPedidosListarLast20.sql" />
