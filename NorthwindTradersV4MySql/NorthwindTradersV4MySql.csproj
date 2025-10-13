@@ -276,6 +276,12 @@
     <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptNotaRemision8.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision8.Designer.cs">
+      <DependentUpon>FrmRptNotaRemision8.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptProdPorProvConDetProv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,6 +411,9 @@
     <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptNotaRemision8.resx">
+      <DependentUpon>FrmRptNotaRemision8.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptProdPorProvConDetProv.resx">
       <DependentUpon>FrmRptProdPorProvConDetProv.cs</DependentUpon>
     </EmbeddedResource>
@@ -445,6 +454,7 @@
     <EmbeddedResource Include="RptClientes.rdlc" />
     <EmbeddedResource Include="RptEmpleados.rdlc" />
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc" />
+    <EmbeddedResource Include="RptNotaRemision9.rdlc" />
     <EmbeddedResource Include="RptProdPorProvConDetProv.rdlc" />
     <EmbeddedResource Include="RptProductos.rdlc" />
     <EmbeddedResource Include="RptProductosPorCategorias.rdlc" />
@@ -471,14 +481,17 @@
     <None Include="Resources\Categorias.png" />
     <Content Include="ScriptsSql\spCategoriasSeleccionar.sql" />
     <Content Include="ScriptsSql\spClientesSeleccionar.sql" />
+    <Content Include="ScriptsSql\spDetallePedidosChkRowVersion.sql" />
     <Content Include="ScriptsSql\spEmpleadosSeleccionar.sql" />
     <Content Include="ScriptsSql\spPedidoDetalleInsertar.sql" />
     <Content Include="ScriptsSql\spPedidoDetallePorPedidoId.sql" />
     <Content Include="ScriptsSql\spPedidoPorId.sql" />
     <Content Include="ScriptsSql\spPedidosActualizar.sql" />
     <Content Include="ScriptsSql\spPedidosBuscar.sql" />
+    <Content Include="ScriptsSql\spPedidosEliminar.sql" />
     <Content Include="ScriptsSql\spPedidosInsertar.sql" />
     <Content Include="ScriptsSql\spPedidosListarLast20.sql" />
+    <Content Include="ScriptsSql\spPedidosNotaRemision.sql" />
     <Content Include="ScriptsSql\spProductoActualizar.sql" />
     <Content Include="ScriptsSql\spProductoEliminar.sql" />
     <Content Include="ScriptsSql\spProductoInsertar.sql" />

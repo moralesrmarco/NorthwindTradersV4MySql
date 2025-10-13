@@ -389,34 +389,139 @@ namespace NorthwindTradersV4MySql
         public int Actualizar(Pedido pedido, out int rowVersion)
         {
             int filasAfectadas = 0;
-            using (var cn = new MySqlConnection(_connectionString))
-            using (var cmd = new MySqlCommand("spPedidosActualizar", cn))
+            try
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("pOrderId", pedido.OrderID);
-                cmd.Parameters.AddWithValue("pCustomerId", string.IsNullOrWhiteSpace(pedido.CustomerID) ? (object)DBNull.Value : pedido.CustomerID);
-                cmd.Parameters.AddWithValue("pEmployeeId", ((object)pedido.EmployeeID == null || pedido.EmployeeID.Equals(0)) ? DBNull.Value : (object)pedido.EmployeeID);
-                cmd.Parameters.AddWithValue("pOrderDate", pedido.OrderDate.HasValue ? (object)pedido.OrderDate.Value : DBNull.Value);
-                cmd.Parameters.AddWithValue("pRequiredDate", pedido.RequiredDate.HasValue ? (object)pedido.RequiredDate.Value : DBNull.Value);
-                cmd.Parameters.AddWithValue("pShippedDate", pedido.ShippedDate.HasValue ? (object)pedido.ShippedDate.Value : DBNull.Value);
-                cmd.Parameters.AddWithValue("pShipVia", ((object)pedido.ShipVia == null || pedido.ShipVia.Equals(0)) ? DBNull.Value : (object)pedido.ShipVia);
-                cmd.Parameters.AddWithValue("pFreight", (object)pedido.Freight ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("pShipName", string.IsNullOrWhiteSpace(pedido.ShipName) ? (object)DBNull.Value : pedido.ShipName);
-                cmd.Parameters.AddWithValue("pShipAddress", string.IsNullOrWhiteSpace(pedido.ShipAddress) ? (object)DBNull.Value : pedido.ShipAddress);
-                cmd.Parameters.AddWithValue("pShipCity", string.IsNullOrWhiteSpace(pedido.ShipCity) ? (object)DBNull.Value : pedido.ShipCity);
-                cmd.Parameters.AddWithValue("pShipRegion", string.IsNullOrWhiteSpace(pedido.ShipRegion) ? (object)DBNull.Value : pedido.ShipRegion);
-                cmd.Parameters.AddWithValue("pShipPostalCode", string.IsNullOrWhiteSpace(pedido.ShipPostalCode) ? (object)DBNull.Value : pedido.ShipPostalCode);
-                cmd.Parameters.AddWithValue("pShipCountry", string.IsNullOrWhiteSpace(pedido.ShipCountry) ? (object)DBNull.Value : pedido.ShipCountry);
-                cmd.Parameters.AddWithValue("pRowVersion", 0);
-                cmd.Parameters["pRowVersion"].Direction = ParameterDirection.Output;
-                cmd.Parameters.AddWithValue("pFilasAfectadas", 0);
-                cmd.Parameters["pFilasAfectadas"].Direction = ParameterDirection.Output;
-                cn.Open();
-                cmd.ExecuteNonQuery();
-                rowVersion = Convert.ToInt32(cmd.Parameters["pRowVersion"].Value);
-                filasAfectadas = Convert.ToInt32(cmd.Parameters["pFilasAfectadas"].Value);
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("spPedidosActualizar", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("pOrderId", pedido.OrderID);
+                    cmd.Parameters.AddWithValue("pCustomerId", string.IsNullOrWhiteSpace(pedido.CustomerID) ? (object)DBNull.Value : pedido.CustomerID);
+                    cmd.Parameters.AddWithValue("pEmployeeId", ((object)pedido.EmployeeID == null || pedido.EmployeeID.Equals(0)) ? DBNull.Value : (object)pedido.EmployeeID);
+                    cmd.Parameters.AddWithValue("pOrderDate", pedido.OrderDate.HasValue ? (object)pedido.OrderDate.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("pRequiredDate", pedido.RequiredDate.HasValue ? (object)pedido.RequiredDate.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("pShippedDate", pedido.ShippedDate.HasValue ? (object)pedido.ShippedDate.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("pShipVia", ((object)pedido.ShipVia == null || pedido.ShipVia.Equals(0)) ? DBNull.Value : (object)pedido.ShipVia);
+                    cmd.Parameters.AddWithValue("pFreight", (object)pedido.Freight ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("pShipName", string.IsNullOrWhiteSpace(pedido.ShipName) ? (object)DBNull.Value : pedido.ShipName);
+                    cmd.Parameters.AddWithValue("pShipAddress", string.IsNullOrWhiteSpace(pedido.ShipAddress) ? (object)DBNull.Value : pedido.ShipAddress);
+                    cmd.Parameters.AddWithValue("pShipCity", string.IsNullOrWhiteSpace(pedido.ShipCity) ? (object)DBNull.Value : pedido.ShipCity);
+                    cmd.Parameters.AddWithValue("pShipRegion", string.IsNullOrWhiteSpace(pedido.ShipRegion) ? (object)DBNull.Value : pedido.ShipRegion);
+                    cmd.Parameters.AddWithValue("pShipPostalCode", string.IsNullOrWhiteSpace(pedido.ShipPostalCode) ? (object)DBNull.Value : pedido.ShipPostalCode);
+                    cmd.Parameters.AddWithValue("pShipCountry", string.IsNullOrWhiteSpace(pedido.ShipCountry) ? (object)DBNull.Value : pedido.ShipCountry);
+                    cmd.Parameters.AddWithValue("pRowVersion", 0);
+                    cmd.Parameters["pRowVersion"].Direction = ParameterDirection.Output;
+                    cmd.Parameters.AddWithValue("pFilasAfectadas", 0);
+                    cmd.Parameters["pFilasAfectadas"].Direction = ParameterDirection.Output;
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    rowVersion = Convert.ToInt32(cmd.Parameters["pRowVersion"].Value);
+                    filasAfectadas = Convert.ToInt32(cmd.Parameters["pFilasAfectadas"].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar el pedido: " + ex.Message);
             }
             return filasAfectadas;
+        }
+
+        public int Eliminar(Pedido pedido)
+        {
+            int filasAfectadas = 0;
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("spPedidosEliminar", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("pOrderId", pedido.OrderID);
+                    cmd.Parameters.AddWithValue("pAffectedRows", 0);
+                    cmd.Parameters["pAffectedRows"].Direction= ParameterDirection.Output;
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    filasAfectadas = Convert.ToInt32(cmd.Parameters["pAffectedRows"].Value);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al eliminar el pedido: " + ex.Message);
+            }
+            return filasAfectadas;
+        }
+
+        public int? DetallePedidosChkRowVersion(int numPedido, int numProducto)
+        {
+            if (numPedido <= 0 || numProducto <= 0)
+                return null;
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("spDetallePedidosChkRowVersion", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("pPedidoId", numPedido);
+                    cmd.Parameters.AddWithValue("pProductId", numProducto);
+                    cn.Open();
+                    return (int?)cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el RowVersion del detalle del pedido: " + ex.Message);
+            }
+        }
+
+        public DataTable ObtenerPedido(int id)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("spPedidosNotaRemision", cn))
+                {
+                    cmd.CommandType= CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("PedidoId", id);
+                    using (var dap = new MySqlDataAdapter(cmd))
+                        dap.Fill(dt);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener los datos del pedido: " + ex.Message);
+            }
+            return dt;
+        }
+
+        public DataTable ObtenerDetallePedidoPorOrderID(int orderID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(_connectionString))
+                {
+                    string query = @"
+                                    SELECT 
+                                        p.ProductName,
+                                        od.UnitPrice,
+                                        od.Quantity,
+                                        od.Discount,
+                                        (od.Quantity * od.UnitPrice) * (1 - od.Discount) AS Total
+                                    FROM 
+                                        `Order Details` od
+                                    JOIN 
+                                        Products p ON p.ProductID = od.ProductID
+                                    where OrderID = " + orderID + ";";
+                    MySqlCommand cmd = new MySqlCommand(query, cn);
+                    MySqlDataAdapter dap = new MySqlDataAdapter(cmd);
+                    dap.Fill(dt);
+                }
+            }
+            catch (MySqlException ex) 
+            { 
+                throw new Exception("Error al obtener los datos de detalle del pedido: " + ex.Message); 
+            }
+            return dt;
         }
 
         public void Dispose()
