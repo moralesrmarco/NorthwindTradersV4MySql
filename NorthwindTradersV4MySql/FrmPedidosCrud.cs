@@ -1180,10 +1180,8 @@ namespace NorthwindTradersV4MySql
             }
             catch (Exception ex)
             {
-                {
-                    Utils.MsgCatchOue(ex);
-                    return false;
-                }
+                Utils.MsgCatchOue(ex);
+                return false;
             }
             return rowVersionOk;
         }

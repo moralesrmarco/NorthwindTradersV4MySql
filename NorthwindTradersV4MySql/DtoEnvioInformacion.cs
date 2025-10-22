@@ -1,4 +1,4 @@
-﻿namespace NorthwindTradersV4MySql.ScriptsSql
+﻿namespace NorthwindTradersV4MySql
 {
     internal class DtoEnvioInformacion
     {

@@ -180,6 +180,18 @@
     <Compile Include="FrmPedidosCrud.Designer.cs">
       <DependentUpon>FrmPedidosCrud.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPedidosDetalleCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPedidosDetalleCrud.Designer.cs">
+      <DependentUpon>FrmPedidosDetalleCrud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPedidosDetalleModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPedidosDetalleModificar.Designer.cs">
+      <DependentUpon>FrmPedidosDetalleModificar.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProductosConsultaAlfabetica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -363,6 +375,12 @@
     <EmbeddedResource Include="FrmPedidosCrud.resx">
       <DependentUpon>FrmPedidosCrud.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmPedidosDetalleCrud.resx">
+      <DependentUpon>FrmPedidosDetalleCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPedidosDetalleModificar.resx">
+      <DependentUpon>FrmPedidosDetalleModificar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmProductosConsultaAlfabetica.resx">
       <DependentUpon>FrmProductosConsultaAlfabetica.cs</DependentUpon>
     </EmbeddedResource>
@@ -488,6 +506,9 @@
     <Content Include="ScriptsSql\spPedidoPorId.sql" />
     <Content Include="ScriptsSql\spPedidosActualizar.sql" />
     <Content Include="ScriptsSql\spPedidosBuscar.sql" />
+    <Content Include="ScriptsSql\spPedidosDetalleActualizar.sql" />
+    <Content Include="ScriptsSql\spPedidosDetalleEliminar.sql" />
+    <Content Include="ScriptsSql\spPedidosDetalleInsertar.sql" />
     <Content Include="ScriptsSql\spPedidosEliminar.sql" />
     <Content Include="ScriptsSql\spPedidosInsertar.sql" />
     <Content Include="ScriptsSql\spPedidosListarLast20.sql" />

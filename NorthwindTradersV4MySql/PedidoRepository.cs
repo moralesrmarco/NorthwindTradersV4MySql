@@ -1,12 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
-using NorthwindTradersV4MySql.ScriptsSql;
-using Org.BouncyCastle.Asn1.X500;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NorthwindTradersV4MySql
 {
@@ -522,6 +517,116 @@ namespace NorthwindTradersV4MySql
                 throw new Exception("Error al obtener los datos de detalle del pedido: " + ex.Message); 
             }
             return dt;
+        }
+
+        public int Insertar(PedidoDetalle pedidoDetalle)
+        {
+            int filasAfectadas = 0;
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("spPedidosDetalleInsertar", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_OrderId", pedidoDetalle.OrderID);
+                    cmd.Parameters.AddWithValue("p_ProductId", pedidoDetalle.ProductID);
+                    cmd.Parameters.AddWithValue("p_UnitPrice", pedidoDetalle.UnitPrice);
+                    cmd.Parameters.AddWithValue("p_Quantity", pedidoDetalle.Quantity);
+                    cmd.Parameters.AddWithValue("p_Discount", pedidoDetalle.Discount);
+                    cmd.Parameters.AddWithValue("p_RowsInserted", 0);
+                    cmd.Parameters["p_RowsInserted"].Direction = ParameterDirection.Output;
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    filasAfectadas = Convert.ToInt32(cmd.Parameters["p_RowsInserted"].Value);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al insertar el detalle del pedido: " + ex.Message);
+            }
+            return filasAfectadas;
+        }
+
+        public int Eliminar(PedidoDetalle pedidoDetalle)
+        {
+            int filasAfectadas = 0;
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("spPedidosDetalleEliminar", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_OrderId", pedidoDetalle.OrderID);
+                    cmd.Parameters.AddWithValue("p_ProductId", pedidoDetalle.ProductID);
+                    cmd.Parameters.AddWithValue("p_RowsDeleted", 0);
+                    cmd.Parameters["p_RowsDeleted"].Direction = ParameterDirection.Output;
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    filasAfectadas = Convert.ToInt32(cmd.Parameters["p_RowsDeleted"].Value);
+                }
+            }
+            catch (MySqlException ex) when (ex.Number == 1264)
+            {
+                throw new Exception("Al tratar de devolver las unidades vendidas al inventario, la cantidad de unidades excede las 32,767 unidades, rango máximo para un campo de tipo SMALLINT");
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al eliminar el detalle del pedido: " + ex.Message);
+            }
+            return filasAfectadas;
+        }
+
+        public short? ObtenerUInventario(int productoId)
+        {
+            short? uInventario = null;
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand($"Select UnitsInStock From Products Where ProductId = @pProductoId Limit 1;", cn))
+                {
+                    cmd.Parameters.AddWithValue("@pProductoId", productoId);
+                    cn.Open();
+                    var result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        uInventario = Convert.ToInt16(result);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener el inventario del producto: " + ex.Message);
+            }
+            return uInventario;
+        }
+
+        public int Actualizar(PedidoDetalle pedidoDetalle, short cantidadOld, decimal descuentoOld)
+        {
+            int filasAfectadas = 0;
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("spPedidosDetalleActualizar", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_OrderId", pedidoDetalle.OrderID);
+                    cmd.Parameters.AddWithValue("p_ProductId", pedidoDetalle.ProductID);
+                    cmd.Parameters.AddWithValue("p_Quantity", pedidoDetalle.Quantity);
+                    cmd.Parameters.AddWithValue("p_Discount", pedidoDetalle.Discount);
+                    cmd.Parameters.AddWithValue("p_QuantityOld", cantidadOld);
+                    cmd.Parameters.AddWithValue("p_DiscountOld", descuentoOld);
+                    cmd.Parameters.AddWithValue("p_RegistrosModificados", 0);
+                    cmd.Parameters["p_RegistrosModificados"].Direction = ParameterDirection.Output;
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    filasAfectadas = Convert.ToInt32(cmd.Parameters["p_RegistrosModificados"].Value);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al actualizar el detalle del pedido: " + ex.Message);
+            }
+            return filasAfectadas;
         }
 
         public void Dispose()
