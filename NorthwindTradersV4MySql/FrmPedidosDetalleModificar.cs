@@ -17,6 +17,7 @@ namespace NorthwindTradersV4MySql
         public decimal Descuento { get; set; }
         public decimal Importe { get; set; }
         public short? UInventario { get; set; }
+        public int RowVersion { get; set; }
         public short CantidadOld { get; set; }
         public decimal DescuentoOld { get; set; }
 
@@ -189,7 +190,8 @@ namespace NorthwindTradersV4MySql
                     OrderID = PedidoId,
                     ProductID = ProductoId,
                     Quantity = short.Parse(txtCantidad.Text.Replace(",", "")),
-                    Discount = decimal.Parse(txtDescuento.Text)
+                    Discount = decimal.Parse(txtDescuento.Text),
+                    RowVersion = RowVersion
                 };
                 numRegs = new PedidoRepository(cnStr).Actualizar(pedidoDetalle, CantidadOld, DescuentoOld);
                 if (numRegs == 0)

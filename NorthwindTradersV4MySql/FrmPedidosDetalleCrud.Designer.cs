@@ -123,7 +123,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1579, 937);
             this.panel1.TabIndex = 0;
@@ -135,9 +135,9 @@
             this.GrbDetalle.Controls.Add(this.DgvDetalle);
             this.GrbDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrbDetalle.Location = new System.Drawing.Point(459, 620);
-            this.GrbDetalle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbDetalle.Margin = new System.Windows.Forms.Padding(4);
             this.GrbDetalle.Name = "GrbDetalle";
-            this.GrbDetalle.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbDetalle.Padding = new System.Windows.Forms.Padding(4);
             this.GrbDetalle.Size = new System.Drawing.Size(1099, 305);
             this.GrbDetalle.TabIndex = 6;
             this.GrbDetalle.TabStop = false;
@@ -160,7 +160,7 @@
             this.RowVersion});
             this.DgvDetalle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvDetalle.Location = new System.Drawing.Point(4, 20);
-            this.DgvDetalle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DgvDetalle.Margin = new System.Windows.Forms.Padding(4);
             this.DgvDetalle.Name = "DgvDetalle";
             this.DgvDetalle.RowHeadersWidth = 51;
             this.DgvDetalle.Size = new System.Drawing.Size(1091, 281);
@@ -269,9 +269,9 @@
             this.GrbAgregarProducto.Controls.Add(this.label36);
             this.GrbAgregarProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrbAgregarProducto.Location = new System.Drawing.Point(459, 512);
-            this.GrbAgregarProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbAgregarProducto.Margin = new System.Windows.Forms.Padding(4);
             this.GrbAgregarProducto.Name = "GrbAgregarProducto";
-            this.GrbAgregarProducto.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbAgregarProducto.Padding = new System.Windows.Forms.Padding(4);
             this.GrbAgregarProducto.Size = new System.Drawing.Size(1099, 98);
             this.GrbAgregarProducto.TabIndex = 5;
             this.GrbAgregarProducto.TabStop = false;
@@ -282,7 +282,7 @@
             // 
             this.txtUInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUInventario.Location = new System.Drawing.Point(459, 59);
-            this.txtUInventario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUInventario.Margin = new System.Windows.Forms.Padding(4);
             this.txtUInventario.Name = "txtUInventario";
             this.txtUInventario.ReadOnly = true;
             this.txtUInventario.Size = new System.Drawing.Size(65, 23);
@@ -303,7 +303,7 @@
             // 
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.Location = new System.Drawing.Point(1003, 53);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(40, 37);
             this.btnAgregar.TabIndex = 4;
@@ -315,7 +315,7 @@
             // 
             this.txtDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescuento.Location = new System.Drawing.Point(875, 59);
-            this.txtDescuento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescuento.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescuento.MaxLength = 4;
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.Size = new System.Drawing.Size(65, 23);
@@ -326,7 +326,7 @@
             // 
             this.txtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantidad.Location = new System.Drawing.Point(651, 59);
-            this.txtCantidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCantidad.Margin = new System.Windows.Forms.Padding(4);
             this.txtCantidad.MaxLength = 15;
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(105, 23);
@@ -337,7 +337,7 @@
             // 
             this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecio.Location = new System.Drawing.Point(128, 59);
-            this.txtPrecio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPrecio.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrecio.MaxLength = 15;
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.ReadOnly = true;
@@ -381,7 +381,7 @@
             this.cboProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboProducto.FormattingEnabled = true;
             this.cboProducto.Location = new System.Drawing.Point(672, 20);
-            this.cboProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboProducto.Margin = new System.Windows.Forms.Padding(4);
             this.cboProducto.Name = "cboProducto";
             this.cboProducto.Size = new System.Drawing.Size(393, 25);
             this.cboProducto.TabIndex = 1;
@@ -394,7 +394,7 @@
             this.cboCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Location = new System.Drawing.Point(128, 20);
-            this.cboCategoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboCategoria.Margin = new System.Windows.Forms.Padding(4);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(393, 25);
             this.cboCategoria.TabIndex = 0;
@@ -433,9 +433,9 @@
             this.GrbPedido.Controls.Add(this.label2);
             this.GrbPedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrbPedido.Location = new System.Drawing.Point(459, 384);
-            this.GrbPedido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbPedido.Margin = new System.Windows.Forms.Padding(4);
             this.GrbPedido.Name = "GrbPedido";
-            this.GrbPedido.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbPedido.Padding = new System.Windows.Forms.Padding(4);
             this.GrbPedido.Size = new System.Drawing.Size(1099, 118);
             this.GrbPedido.TabIndex = 4;
             this.GrbPedido.TabStop = false;
@@ -459,7 +459,7 @@
             // 
             this.txtTotal.BackColor = System.Drawing.Color.White;
             this.txtTotal.Location = new System.Drawing.Point(120, 81);
-            this.txtTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTotal.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(340, 23);
@@ -471,7 +471,7 @@
             this.txtCliente.BackColor = System.Drawing.Color.White;
             this.txtCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCliente.Location = new System.Drawing.Point(120, 52);
-            this.txtCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCliente.Margin = new System.Windows.Forms.Padding(4);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.ReadOnly = true;
             this.txtCliente.Size = new System.Drawing.Size(927, 23);
@@ -482,7 +482,7 @@
             this.txtId.BackColor = System.Drawing.Color.White;
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.Location = new System.Drawing.Point(120, 22);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.MaxLength = 10;
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
@@ -556,9 +556,9 @@
             this.GrbBuscar.Controls.Add(this.label5);
             this.GrbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrbBuscar.Location = new System.Drawing.Point(21, 374);
-            this.GrbBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.GrbBuscar.Name = "GrbBuscar";
-            this.GrbBuscar.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbBuscar.Padding = new System.Windows.Forms.Padding(4);
             this.GrbBuscar.Size = new System.Drawing.Size(405, 551);
             this.GrbBuscar.TabIndex = 3;
             this.GrbBuscar.TabStop = false;
@@ -569,7 +569,7 @@
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.Location = new System.Drawing.Point(103, 457);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(133, 28);
             this.btnLimpiar.TabIndex = 15;
@@ -580,7 +580,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(247, 457);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(133, 28);
             this.btnBuscar.TabIndex = 16;
@@ -602,7 +602,7 @@
             // 
             this.txtBDirigidoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBDirigidoa.Location = new System.Drawing.Point(124, 407);
-            this.txtBDirigidoa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBDirigidoa.Margin = new System.Windows.Forms.Padding(4);
             this.txtBDirigidoa.MaxLength = 40;
             this.txtBDirigidoa.Name = "txtBDirigidoa";
             this.txtBDirigidoa.Size = new System.Drawing.Size(255, 23);
@@ -623,7 +623,7 @@
             // 
             this.txtBCompañiaT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBCompañiaT.Location = new System.Drawing.Point(124, 368);
-            this.txtBCompañiaT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBCompañiaT.Margin = new System.Windows.Forms.Padding(4);
             this.txtBCompañiaT.MaxLength = 40;
             this.txtBCompañiaT.Name = "txtBCompañiaT";
             this.txtBCompañiaT.Size = new System.Drawing.Size(255, 23);
@@ -643,7 +643,7 @@
             // 
             this.txtBEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBEmpleado.Location = new System.Drawing.Point(124, 324);
-            this.txtBEmpleado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBEmpleado.Margin = new System.Windows.Forms.Padding(4);
             this.txtBEmpleado.MaxLength = 40;
             this.txtBEmpleado.Name = "txtBEmpleado";
             this.txtBEmpleado.Size = new System.Drawing.Size(255, 23);
@@ -677,7 +677,7 @@
             this.dtpBFEnvioFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBFEnvioFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBFEnvioFin.Location = new System.Drawing.Point(253, 277);
-            this.dtpBFEnvioFin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpBFEnvioFin.Margin = new System.Windows.Forms.Padding(4);
             this.dtpBFEnvioFin.Name = "dtpBFEnvioFin";
             this.dtpBFEnvioFin.ShowCheckBox = true;
             this.dtpBFEnvioFin.Size = new System.Drawing.Size(125, 23);
@@ -691,7 +691,7 @@
             this.dtpBFEnvioIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBFEnvioIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBFEnvioIni.Location = new System.Drawing.Point(71, 277);
-            this.dtpBFEnvioIni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpBFEnvioIni.Margin = new System.Windows.Forms.Padding(4);
             this.dtpBFEnvioIni.Name = "dtpBFEnvioIni";
             this.dtpBFEnvioIni.ShowCheckBox = true;
             this.dtpBFEnvioIni.Size = new System.Drawing.Size(125, 23);
@@ -704,7 +704,7 @@
             this.chkBFEnvioNull.AutoSize = true;
             this.chkBFEnvioNull.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBFEnvioNull.Location = new System.Drawing.Point(267, 246);
-            this.chkBFEnvioNull.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkBFEnvioNull.Margin = new System.Windows.Forms.Padding(4);
             this.chkBFEnvioNull.Name = "chkBFEnvioNull";
             this.chkBFEnvioNull.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkBFEnvioNull.Size = new System.Drawing.Size(99, 17);
@@ -751,7 +751,7 @@
             this.dtpBFRequeridoFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBFRequeridoFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBFRequeridoFin.Location = new System.Drawing.Point(253, 203);
-            this.dtpBFRequeridoFin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpBFRequeridoFin.Margin = new System.Windows.Forms.Padding(4);
             this.dtpBFRequeridoFin.Name = "dtpBFRequeridoFin";
             this.dtpBFRequeridoFin.ShowCheckBox = true;
             this.dtpBFRequeridoFin.Size = new System.Drawing.Size(125, 23);
@@ -765,7 +765,7 @@
             this.dtpBFRequeridoIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBFRequeridoIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBFRequeridoIni.Location = new System.Drawing.Point(71, 203);
-            this.dtpBFRequeridoIni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpBFRequeridoIni.Margin = new System.Windows.Forms.Padding(4);
             this.dtpBFRequeridoIni.Name = "dtpBFRequeridoIni";
             this.dtpBFRequeridoIni.ShowCheckBox = true;
             this.dtpBFRequeridoIni.Size = new System.Drawing.Size(125, 23);
@@ -778,7 +778,7 @@
             this.chkBFRequeridoNull.AutoSize = true;
             this.chkBFRequeridoNull.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBFRequeridoNull.Location = new System.Drawing.Point(267, 171);
-            this.chkBFRequeridoNull.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkBFRequeridoNull.Margin = new System.Windows.Forms.Padding(4);
             this.chkBFRequeridoNull.Name = "chkBFRequeridoNull";
             this.chkBFRequeridoNull.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkBFRequeridoNull.Size = new System.Drawing.Size(99, 17);
@@ -802,7 +802,7 @@
             this.chkBFPedidoNull.AutoSize = true;
             this.chkBFPedidoNull.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBFPedidoNull.Location = new System.Drawing.Point(267, 103);
-            this.chkBFPedidoNull.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkBFPedidoNull.Margin = new System.Windows.Forms.Padding(4);
             this.chkBFPedidoNull.Name = "chkBFPedidoNull";
             this.chkBFPedidoNull.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkBFPedidoNull.Size = new System.Drawing.Size(99, 17);
@@ -839,7 +839,7 @@
             this.dtpBFPedidoFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBFPedidoFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBFPedidoFin.Location = new System.Drawing.Point(253, 132);
-            this.dtpBFPedidoFin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpBFPedidoFin.Margin = new System.Windows.Forms.Padding(4);
             this.dtpBFPedidoFin.Name = "dtpBFPedidoFin";
             this.dtpBFPedidoFin.ShowCheckBox = true;
             this.dtpBFPedidoFin.Size = new System.Drawing.Size(125, 23);
@@ -853,7 +853,7 @@
             this.dtpBFPedidoIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBFPedidoIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBFPedidoIni.Location = new System.Drawing.Point(71, 132);
-            this.dtpBFPedidoIni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpBFPedidoIni.Margin = new System.Windows.Forms.Padding(4);
             this.dtpBFPedidoIni.Name = "dtpBFPedidoIni";
             this.dtpBFPedidoIni.ShowCheckBox = true;
             this.dtpBFPedidoIni.Size = new System.Drawing.Size(125, 23);
@@ -875,7 +875,7 @@
             // 
             this.txtBCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBCliente.Location = new System.Drawing.Point(124, 63);
-            this.txtBCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBCliente.Margin = new System.Windows.Forms.Padding(4);
             this.txtBCliente.MaxLength = 40;
             this.txtBCliente.Name = "txtBCliente";
             this.txtBCliente.Size = new System.Drawing.Size(255, 23);
@@ -895,7 +895,7 @@
             // 
             this.txtBIdFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBIdFinal.Location = new System.Drawing.Point(295, 28);
-            this.txtBIdFinal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBIdFinal.Margin = new System.Windows.Forms.Padding(4);
             this.txtBIdFinal.MaxLength = 10;
             this.txtBIdFinal.Name = "txtBIdFinal";
             this.txtBIdFinal.Size = new System.Drawing.Size(87, 23);
@@ -908,7 +908,7 @@
             // 
             this.txtBIdInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBIdInicial.Location = new System.Drawing.Point(124, 28);
-            this.txtBIdInicial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBIdInicial.Margin = new System.Windows.Forms.Padding(4);
             this.txtBIdInicial.MaxLength = 10;
             this.txtBIdInicial.Name = "txtBIdInicial";
             this.txtBIdInicial.Size = new System.Drawing.Size(87, 23);
@@ -944,9 +944,9 @@
             this.GrbPedidos.Controls.Add(this.DgvPedidos);
             this.GrbPedidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrbPedidos.Location = new System.Drawing.Point(21, 59);
-            this.GrbPedidos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbPedidos.Margin = new System.Windows.Forms.Padding(4);
             this.GrbPedidos.Name = "GrbPedidos";
-            this.GrbPedidos.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GrbPedidos.Padding = new System.Windows.Forms.Padding(4);
             this.GrbPedidos.Size = new System.Drawing.Size(1536, 295);
             this.GrbPedidos.TabIndex = 2;
             this.GrbPedidos.TabStop = false;
@@ -958,7 +958,7 @@
             this.DgvPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvPedidos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvPedidos.Location = new System.Drawing.Point(4, 20);
-            this.DgvPedidos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DgvPedidos.Margin = new System.Windows.Forms.Padding(4);
             this.DgvPedidos.Name = "DgvPedidos";
             this.DgvPedidos.RowHeadersWidth = 51;
             this.DgvPedidos.Size = new System.Drawing.Size(1528, 271);
@@ -990,7 +990,7 @@
             this.ClientSize = new System.Drawing.Size(1579, 937);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPedidosDetalleCrud";
             this.Text = "» Mantenimiento de detalle de pedidos «";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPedidosDetalleCrud_FormClosing);

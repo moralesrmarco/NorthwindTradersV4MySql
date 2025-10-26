@@ -559,7 +559,12 @@ namespace NorthwindTradersV4MySql
 
         private void mantenimientoDePedidosV2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmPedidosCrudV2 frmPedidosCrudV2 = new FrmPedidosCrudV2
+            {
+                MdiParent = this
+            };
+            frmPedidosCrudV2.Show();
         }
 
         private void reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem_Click(object sender, EventArgs e)

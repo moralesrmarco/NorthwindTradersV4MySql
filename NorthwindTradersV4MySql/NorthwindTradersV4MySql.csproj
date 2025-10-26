@@ -180,6 +180,12 @@
     <Compile Include="FrmPedidosCrud.Designer.cs">
       <DependentUpon>FrmPedidosCrud.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPedidosCrudV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPedidosCrudV2.Designer.cs">
+      <DependentUpon>FrmPedidosCrudV2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPedidosDetalleCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,12 @@
     </Compile>
     <Compile Include="FrmPedidosDetalleModificar.Designer.cs">
       <DependentUpon>FrmPedidosDetalleModificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPedidosDetalleModificar2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPedidosDetalleModificar2.Designer.cs">
+      <DependentUpon>FrmPedidosDetalleModificar2.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmProductosConsultaAlfabetica.cs">
       <SubType>Form</SubType>
@@ -375,11 +387,17 @@
     <EmbeddedResource Include="FrmPedidosCrud.resx">
       <DependentUpon>FrmPedidosCrud.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmPedidosCrudV2.resx">
+      <DependentUpon>FrmPedidosCrudV2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmPedidosDetalleCrud.resx">
       <DependentUpon>FrmPedidosDetalleCrud.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPedidosDetalleModificar.resx">
       <DependentUpon>FrmPedidosDetalleModificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPedidosDetalleModificar2.resx">
+      <DependentUpon>FrmPedidosDetalleModificar2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProductosConsultaAlfabetica.resx">
       <DependentUpon>FrmProductosConsultaAlfabetica.cs</DependentUpon>
@@ -521,6 +539,7 @@
     <Content Include="ScriptsSql\spProductosBuscar.sql" />
     <Content Include="ScriptsSql\spProductosBuscarV2.sql" />
     <Content Include="ScriptsSql\spProductosListarLast20.sql" />
+    <Content Include="ScriptsSql\spProductosSeleccionar.sql" />
     <Content Include="ScriptsSql\spProductosSeleccionarPorCategorias.sql" />
     <Content Include="ScriptsSql\spProductosV2.sql" />
     <Content Include="ScriptsSql\spProveedoresSeleccionar.sql" />

@@ -679,6 +679,7 @@ namespace NorthwindTradersV4MySql
                     frmPedidosDetalleModificar.Cantidad = short.Parse(dgvr.Cells["Cantidad"].Value.ToString());
                     frmPedidosDetalleModificar.Descuento = decimal.Parse(dgvr.Cells["Descuento"].Value.ToString());
                     frmPedidosDetalleModificar.Importe = decimal.Parse(dgvr.Cells["Importe"].Value.ToString());
+                    frmPedidosDetalleModificar.RowVersion = int.Parse(dgvr.Cells["RowVersion"].Value.ToString());
                     DialogResult dialogResult = frmPedidosDetalleModificar.ShowDialog();
                     if (dialogResult == DialogResult.OK)
                     {

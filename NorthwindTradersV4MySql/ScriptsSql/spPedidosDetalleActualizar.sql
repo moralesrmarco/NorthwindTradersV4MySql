@@ -3,6 +3,7 @@ CREATE PROCEDURE `spPedidosDetalleActualizar`(
     IN p_ProductId INT,
     IN p_Quantity SMALLINT,
     IN p_Discount DOUBLE,
+    INOUT p_RowVersion INT,
     IN p_QuantityOld SMALLINT,
     IN p_DiscountOld DOUBLE,
     OUT p_RegistrosModificados INT
@@ -23,7 +24,7 @@ BEGIN
 	-- Verificar si el detalle del pedido existe
     IF EXISTS (
         SELECT 1 FROM `Order Details`
-        WHERE OrderID = p_OrderId AND ProductID = p_ProductId
+        WHERE OrderID = p_OrderId AND ProductID = p_ProductId AND RowVersion = p_RowVersion
         LIMIT 1
     ) THEN
 		-- Si @Difference es mayor que cero, significa que la nueva cantidad (@Quantity) es mayor que la 
@@ -46,10 +47,12 @@ BEGIN
 		-- Actualizar el detalle del pedido
         UPDATE `Order Details`
         SET Quantity = p_Quantity,
-            Discount = p_Discount
-        WHERE OrderID = p_OrderId AND ProductID = p_ProductId;
+            Discount = p_Discount,
+            RowVersion = p_RowVersion + 1
+        WHERE OrderID = p_OrderId AND ProductID = p_ProductId AND RowVersion = p_RowVersion;
 
         SET v_AffectedOrderDetails = ROW_COUNT();
+        SET p_RowVersion = p_RowVersion + 1;
 		-- Commit de la transacción si todo es exitoso
         COMMIT;
         SET p_RegistrosModificados = v_AffectedOrderDetails;

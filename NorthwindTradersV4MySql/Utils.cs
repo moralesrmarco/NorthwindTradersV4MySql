@@ -33,6 +33,23 @@ namespace NorthwindTradersV4MySql
             return dtpFecha.Value.Date.Add(dtpHora.Value.TimeOfDay);
         }
 
+        public static void LlenarCbo(ComboBox cbo, string storedProcedure, string displayMember, string valueMember, string parametroNombre, object parametroValor)
+        {
+            MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+            try
+            {
+                var dt = DataAccess.LlenarCbo(storedProcedure, parametroNombre, parametroValor);
+                cbo.DataSource = dt;
+                cbo.DisplayMember = displayMember;
+                cbo.ValueMember = valueMember;
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            MDIPrincipal.ActualizarBarraDeEstado();
+        }
+
         public static void LlenarCbo(ComboBox cbo, string storedProcedure, string displayMember, string valueMember)
         {
             MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);

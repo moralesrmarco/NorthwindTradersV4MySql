@@ -540,6 +540,10 @@ namespace NorthwindTradersV4MySql
                     filasAfectadas = Convert.ToInt32(cmd.Parameters["p_RowsInserted"].Value);
                 }
             }
+            catch (MySqlException ex) when (ex.Number == 1062) // 1062 = Duplicate entry
+            {
+                throw new Exception("Error al insertar el detalle del pedido: Ya existe un detalle con el mismo ProductID para este OrderID.");
+            }
             catch (MySqlException ex)
             {
                 throw new Exception("Error al insertar el detalle del pedido: " + ex.Message);
@@ -613,6 +617,8 @@ namespace NorthwindTradersV4MySql
                     cmd.Parameters.AddWithValue("p_ProductId", pedidoDetalle.ProductID);
                     cmd.Parameters.AddWithValue("p_Quantity", pedidoDetalle.Quantity);
                     cmd.Parameters.AddWithValue("p_Discount", pedidoDetalle.Discount);
+                    cmd.Parameters.AddWithValue("p_RowVersion", pedidoDetalle.RowVersion);
+                    cmd.Parameters["p_RowVersion"].Direction = ParameterDirection.InputOutput;
                     cmd.Parameters.AddWithValue("p_QuantityOld", cantidadOld);
                     cmd.Parameters.AddWithValue("p_DiscountOld", descuentoOld);
                     cmd.Parameters.AddWithValue("p_RegistrosModificados", 0);

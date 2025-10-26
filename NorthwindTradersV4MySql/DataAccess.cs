@@ -30,5 +30,28 @@ namespace NorthwindTradersV4MySql
             }
             return dt;
         }
+
+        public static DataTable LlenarCbo(string storedProcedure, string parametroNombre, object parametroValor)
+        {
+            var dt = new DataTable();
+            try
+            {
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                using (var cn = new MySqlConnection(cnStr))
+                using (var cmd = new MySqlCommand(storedProcedure, cn))
+                using (var da = new MySqlDataAdapter(cmd))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue(parametroNombre, parametroValor);
+                    da.Fill(dt);
+                }
+                MDIPrincipal.ActualizarBarraDeEstado();
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al llenar el ComboBox: " + ex.Message);
+            }
+            return dt;
+        }
     }
 }
