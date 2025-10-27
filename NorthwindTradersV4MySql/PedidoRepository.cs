@@ -635,6 +635,32 @@ namespace NorthwindTradersV4MySql
             return filasAfectadas;
         }
 
+        public DataTable ObtenerPedidosPorFechaPedido(DateTime? from, DateTime? to)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("spPedidosPorRangoFechaPedido", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("pFrom", from);
+                    cmd.Parameters.AddWithValue("pTo", to);
+                    using (var da = new MySqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener los pedidos por rango de fecha de pedido: " + ex.Message);
+            }
+            return dt;
+        }
+
+
+
         public void Dispose()
         {
             if (_disposed) return;

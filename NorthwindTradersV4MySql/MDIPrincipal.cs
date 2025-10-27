@@ -569,7 +569,12 @@ namespace NorthwindTradersV4MySql
 
         private void reporteDePedidosPorRangoDeFechaDePedidoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptPedPorRangoFechaPed frmRptPedPorRangoFechaPed = new FrmRptPedPorRangoFechaPed
+            {
+                MdiParent = this
+            };
+            frmRptPedPorRangoFechaPed.Show();
         }
 
         private void reporteDePedidosPorDiferentesCriteriosToolStripMenuItem_Click(object sender, EventArgs e)

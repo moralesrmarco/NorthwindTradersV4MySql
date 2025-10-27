@@ -306,6 +306,12 @@
     <Compile Include="FrmRptNotaRemision8.Designer.cs">
       <DependentUpon>FrmRptNotaRemision8.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptPedPorRangoFechaPed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptPedPorRangoFechaPed.Designer.cs">
+      <DependentUpon>FrmRptPedPorRangoFechaPed.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptProdPorProvConDetProv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,6 +456,9 @@
     <EmbeddedResource Include="FrmRptNotaRemision8.resx">
       <DependentUpon>FrmRptNotaRemision8.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptPedPorRangoFechaPed.resx">
+      <DependentUpon>FrmRptPedPorRangoFechaPed.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptProdPorProvConDetProv.resx">
       <DependentUpon>FrmRptProdPorProvConDetProv.cs</DependentUpon>
     </EmbeddedResource>
@@ -491,6 +500,8 @@
     <EmbeddedResource Include="RptEmpleados.rdlc" />
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc" />
     <EmbeddedResource Include="RptNotaRemision9.rdlc" />
+    <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed.rdlc" />
+    <EmbeddedResource Include="RptPedPorRangoFechaPed.rdlc" />
     <EmbeddedResource Include="RptProdPorProvConDetProv.rdlc" />
     <EmbeddedResource Include="RptProductos.rdlc" />
     <EmbeddedResource Include="RptProductosPorCategorias.rdlc" />

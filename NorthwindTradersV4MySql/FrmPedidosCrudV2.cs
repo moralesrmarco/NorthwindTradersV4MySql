@@ -496,10 +496,10 @@ namespace NorthwindTradersV4MySql
                         txtUInventario.Text = dtoProductoCostoInventario.UnitsInStock.ToString();
                         if (dtoProductoCostoInventario.UnitsInStock == 0)
                         {
-                            txtCantidad.Leave -= new EventHandler(txtCantidad_Leave);
+                            //txtCantidad.Leave -= new EventHandler(txtCantidad_Leave);
                             txtCantidad.Validating -= new CancelEventHandler(txtCantidad_Validating);
                             DeshabilitarControlesProducto();
-                            txtCantidad.Leave += new EventHandler(txtCantidad_Leave);
+                            //txtCantidad.Leave += new EventHandler(txtCantidad_Leave);
                             txtCantidad.Validating += new CancelEventHandler(txtCantidad_Validating);
                             Utils.MensajeExclamation("No hay este producto en existencia");
                             InicializarValoresProducto();
