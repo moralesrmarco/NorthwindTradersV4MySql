@@ -306,6 +306,12 @@
     <Compile Include="FrmRptNotaRemision8.Designer.cs">
       <DependentUpon>FrmRptNotaRemision8.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptPedPorDifCriterios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptPedPorDifCriterios.Designer.cs">
+      <DependentUpon>FrmRptPedPorDifCriterios.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptPedPorRangoFechaPed.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -456,6 +462,9 @@
     <EmbeddedResource Include="FrmRptNotaRemision8.resx">
       <DependentUpon>FrmRptNotaRemision8.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptPedPorDifCriterios.resx">
+      <DependentUpon>FrmRptPedPorDifCriterios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptPedPorRangoFechaPed.resx">
       <DependentUpon>FrmRptPedPorRangoFechaPed.cs</DependentUpon>
     </EmbeddedResource>
@@ -500,7 +509,9 @@
     <EmbeddedResource Include="RptEmpleados.rdlc" />
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc" />
     <EmbeddedResource Include="RptNotaRemision9.rdlc" />
+    <EmbeddedResource Include="RptOrderDetailPedPorDifCriterios.rdlc" />
     <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed.rdlc" />
+    <EmbeddedResource Include="RptPedPorDifCriterios.rdlc" />
     <EmbeddedResource Include="RptPedPorRangoFechaPed.rdlc" />
     <EmbeddedResource Include="RptProdPorProvConDetProv.rdlc" />
     <EmbeddedResource Include="RptProductos.rdlc" />
@@ -535,6 +546,7 @@
     <Content Include="ScriptsSql\spPedidoPorId.sql" />
     <Content Include="ScriptsSql\spPedidosActualizar.sql" />
     <Content Include="ScriptsSql\spPedidosBuscar.sql" />
+    <Content Include="ScriptsSql\spPedidosBuscar2.sql" />
     <Content Include="ScriptsSql\spPedidosDetalleActualizar.sql" />
     <Content Include="ScriptsSql\spPedidosDetalleEliminar.sql" />
     <Content Include="ScriptsSql\spPedidosDetalleInsertar.sql" />

@@ -61,6 +61,44 @@ namespace NorthwindTradersV4MySql
             return dt;
         }
 
+        public DataTable ObtenerPedidos2(DtoPedidosBuscar dtoPedidosBuscar)
+        {
+            var dt = new DataTable();
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("spPedidosBuscar2", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("IdInicial", dtoPedidosBuscar.IdIni);
+                    cmd.Parameters.AddWithValue("IdFinal", dtoPedidosBuscar.IdFin);
+                    cmd.Parameters.AddWithValue("Cliente", dtoPedidosBuscar.Cliente);
+                    cmd.Parameters.AddWithValue("FPedido", dtoPedidosBuscar.FPedido);
+                    cmd.Parameters.AddWithValue("FPedidoNull", dtoPedidosBuscar.FPedidoNull);
+                    cmd.Parameters.AddWithValue("FPedidoIni", dtoPedidosBuscar.FPedidoIni);
+                    cmd.Parameters.AddWithValue("FPedidoFin", dtoPedidosBuscar.FPedidoFin);
+                    cmd.Parameters.AddWithValue("FRequerido", dtoPedidosBuscar.FRequerido);
+                    cmd.Parameters.AddWithValue("FRequeridoNull", dtoPedidosBuscar.FRequeridoNull);
+                    cmd.Parameters.AddWithValue("FRequeridoIni", dtoPedidosBuscar.FRequeridoIni);
+                    cmd.Parameters.AddWithValue("FRequeridoFin", dtoPedidosBuscar.FRequeridoFin);
+                    cmd.Parameters.AddWithValue("FEnvio", dtoPedidosBuscar.FEnvio);
+                    cmd.Parameters.AddWithValue("FEnvioNull", dtoPedidosBuscar.FEnvioNull);
+                    cmd.Parameters.AddWithValue("FEnvioIni", dtoPedidosBuscar.FEnvioIni);
+                    cmd.Parameters.AddWithValue("FEnvioFin", dtoPedidosBuscar.FEnvioFin);
+                    cmd.Parameters.AddWithValue("Empleado", dtoPedidosBuscar.Empleado);
+                    cmd.Parameters.AddWithValue("CompañiaT", dtoPedidosBuscar.CompañiaT);
+                    cmd.Parameters.AddWithValue("Dirigidoa", dtoPedidosBuscar.DirigidoA);
+                    using (var da = new MySqlDataAdapter(cmd))
+                        da.Fill(dt);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener los pedidos: " + ex.Message);
+            }
+            return dt;
+        }
+
         public DataTable ObtenerProductosPorCategorias(int categoria)
         {
             DataTable dt = new DataTable();
@@ -658,8 +696,6 @@ namespace NorthwindTradersV4MySql
             }
             return dt;
         }
-
-
 
         public void Dispose()
         {
