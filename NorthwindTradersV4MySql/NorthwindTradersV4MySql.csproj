@@ -128,6 +128,7 @@
     <Compile Include="DtoProductoCostoInventario.cs" />
     <Compile Include="DtoProductosBuscar.cs" />
     <Compile Include="DtoProveedoresBuscar.cs" />
+    <Compile Include="DtoUsuariosBuscar.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoConReportsTo.cs" />
     <Compile Include="EmpleadoRepository.cs" />
@@ -354,6 +355,12 @@
     <Compile Include="FrmRptProveedores.Designer.cs">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUsuariosCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUsuariosCrud.Designer.cs">
+      <DependentUpon>FrmUsuariosCrud.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDIPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -374,6 +381,8 @@
     <Compile Include="ProveedorRepository.cs" />
     <Compile Include="DtoEnvioInformacion.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="UsuarioRepository.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="FrmCategoriasCrud.resx">
       <DependentUpon>FrmCategoriasCrud.cs</DependentUpon>
@@ -486,6 +495,9 @@
     <EmbeddedResource Include="FrmRptProveedores.resx">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmUsuariosCrud.resx">
+      <DependentUpon>FrmUsuariosCrud.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -537,6 +549,8 @@
   <ItemGroup>
     <None Include="Resources\FotoPerfil.png" />
     <None Include="Resources\Categorias.png" />
+    <None Include="Resources\mostrarCh.png" />
+    <None Include="Resources\ocultarCh.png" />
     <Content Include="ScriptsSql\spCategoriasSeleccionar.sql" />
     <Content Include="ScriptsSql\spClientesSeleccionar.sql" />
     <Content Include="ScriptsSql\spDetallePedidosChkRowVersion.sql" />
@@ -567,6 +581,10 @@
     <Content Include="ScriptsSql\spProductosV2.sql" />
     <Content Include="ScriptsSql\spProveedoresSeleccionar.sql" />
     <Content Include="ScriptsSql\spTransportistasSeleccionar.sql" />
+    <Content Include="ScriptsSql\spUsuarioActualizar.sql" />
+    <Content Include="ScriptsSql\spUsuarioEliminar.sql" />
+    <Content Include="ScriptsSql\spUsuarioInsertar.sql" />
+    <Content Include="ScriptsSql\spUsuariosBuscar.sql" />
     <Content Include="ScriptsSql\vwProductosListaAlfabetica.sql" />
     <Content Include="ScriptsSql\vwproductosporencimadelpreciopromedio.sql" />
     <Content Include="ScriptsSql\VW_ClientesProveedores.sql" />

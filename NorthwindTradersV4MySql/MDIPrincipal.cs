@@ -586,5 +586,20 @@ namespace NorthwindTradersV4MySql
             };
             frmRptPedPorDifCriterios.Show();
         }
+
+        private void mantenimientoDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmUsuariosCrud frmUsuariosCrud = new FrmUsuariosCrud
+            {
+                MdiParent = this
+            };
+            frmUsuariosCrud.Show();
+        }
+
+        private void mantenimientoDePermisosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

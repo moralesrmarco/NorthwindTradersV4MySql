@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace NorthwindTradersV4MySql
@@ -25,6 +27,24 @@ namespace NorthwindTradersV4MySql
         public static string errorCriterioSelec = "Error: Proporcione los criterios de selección";
         public static string noDatos = "No se encontraron datos para mostrar en el reporte";
         #endregion
+
+        public static string ComputeSha256Hash(string rawData)
+        {
+            // 1. Instancia el algoritmo
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // 2. Convierte la cadena a bytes (UTF-8)
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+                // 3. Convierte cada byte a su representación hex (2 dígitos)
+                var builder = new StringBuilder();
+                foreach (byte b in bytes)
+                    builder.Append(b.ToString("x2"));
+
+                // 4. Retorna el string hex completo
+                return builder.ToString();
+            }
+        }
 
         public static DateTime? ObtenerFechaHora(DateTimePicker dtpFecha, DateTimePicker dtpHora)
         {
