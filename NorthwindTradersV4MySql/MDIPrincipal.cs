@@ -599,7 +599,12 @@ namespace NorthwindTradersV4MySql
 
         private void mantenimientoDePermisosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmPermisosCrud frmPermisosCrud = new FrmPermisosCrud
+            {
+                MdiParent = this
+            };
+            frmPermisosCrud.Show();
         }
     }
 }

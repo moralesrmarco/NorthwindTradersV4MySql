@@ -152,5 +152,6 @@ namespace NorthwindTradersV4MySql
             }
             return numRegs;
         }
+
     }
 }

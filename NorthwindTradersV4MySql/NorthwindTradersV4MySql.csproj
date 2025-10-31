@@ -205,6 +205,12 @@
     <Compile Include="FrmPedidosDetalleModificar2.Designer.cs">
       <DependentUpon>FrmPedidosDetalleModificar2.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPermisosCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPermisosCrud.Designer.cs">
+      <DependentUpon>FrmPermisosCrud.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProductosConsultaAlfabetica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -370,6 +376,7 @@
     <Compile Include="Pedido.cs" />
     <Compile Include="PedidoDetalle.cs" />
     <Compile Include="PedidoRepository.cs" />
+    <Compile Include="PermisoRepository.cs" />
     <Compile Include="ProductoRepository.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="ProductosxProveedores.cs" />
@@ -419,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPedidosDetalleModificar2.resx">
       <DependentUpon>FrmPedidosDetalleModificar2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPermisosCrud.resx">
+      <DependentUpon>FrmPermisosCrud.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProductosConsultaAlfabetica.resx">
       <DependentUpon>FrmProductosConsultaAlfabetica.cs</DependentUpon>

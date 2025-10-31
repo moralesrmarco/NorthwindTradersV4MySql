@@ -264,6 +264,11 @@ namespace NorthwindTradersV4MySql
             MDIPrincipal.ActualizarBarraDeEstado();
         }
 
+        public static void MensajeWarning(string mensaje)
+        {
+            MessageBox.Show(mensaje, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         public static void MensajeExclamation(string mensaje)
         {
             MessageBox.Show(mensaje, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
