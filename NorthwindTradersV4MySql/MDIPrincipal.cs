@@ -701,5 +701,95 @@ namespace NorthwindTradersV4MySql
         {
             Utils.CerrarFormularios();
         }
+
+        private void ventasMensualesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmGraficaVentasMensuales frmGraficaVentasMensuales = new FrmGraficaVentasMensuales
+            {
+                MdiParent = this
+            };
+            frmGraficaVentasMensuales.Show();
+        }
+
+        private void comparativoDeVentasAnualesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmGraficaVentasAnuales frmGraficaVentasAnuales = new FrmGraficaVentasAnuales
+            {
+                MdiParent = this
+            };
+            frmGraficaVentasAnuales.Show();
+        }
+
+        private void topProductosMásVendidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasPorVendedoresDeTodosLosAñosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasPorVendedoresPorAñoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasMensualesPorVendedorPorAñoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ejemploDeGráficasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasMensualesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comparativoDeVentasAnualesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void topProductosMásVendidosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasPorVendedoresDeTodosLosAñosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasPorVendedoresPorAñoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasMensualesPorVendedorPorAñoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gráficaEjemploToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
