@@ -697,5 +697,9 @@ namespace NorthwindTradersV4MySql
             Environment.Exit(0);
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+        }
     }
 }

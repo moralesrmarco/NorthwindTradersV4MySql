@@ -579,6 +579,7 @@
     <None Include="Resources\Categorias.png" />
     <None Include="Resources\mostrarCh.png" />
     <None Include="Resources\ocultarCh.png" />
+    <None Include="Resources\btnCerrarWindow.png" />
     <Content Include="ScriptsSql\spCategoriasSeleccionar.sql" />
     <Content Include="ScriptsSql\spClientesSeleccionar.sql" />
     <Content Include="ScriptsSql\spDetallePedidosChkRowVersion.sql" />
