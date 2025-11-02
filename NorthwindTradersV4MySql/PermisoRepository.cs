@@ -1,10 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
-using System.Transactions;
 
 namespace NorthwindTradersV4MySql
 {
@@ -217,6 +215,32 @@ namespace NorthwindTradersV4MySql
             {
                 throw;
             }
+        }
+
+        public HashSet<int> ObtenerPermisosPorUsuario(int idUsuarioLogueado)
+        {
+            var permisos = new HashSet<int>();
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("Select PermisoId from Permisos Where UsuarioId = @UsuarioId", cn))
+                {
+                    cmd.Parameters.AddWithValue("@UsuarioId", idUsuarioLogueado);
+                    cn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            permisos.Add(reader.GetInt32("PermisoId"));
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener los permisos del usuario: " + ex.Message);
+            }
+            return permisos;
         }
     }
 }

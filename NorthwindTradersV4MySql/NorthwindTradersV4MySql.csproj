@@ -133,6 +133,12 @@
     <Compile Include="EmpleadoConReportsTo.cs" />
     <Compile Include="EmpleadoRepository.cs" />
     <Compile Include="DtoEmpleadosBuscar.cs" />
+    <Compile Include="FrmCambiarContrasena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCambiarContrasena.Designer.cs">
+      <DependentUpon>FrmCambiarContrasena.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCategoriasCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,12 @@
     </Compile>
     <Compile Include="FrmEmpleadosCrud.Designer.cs">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPedidosCrud.cs">
       <SubType>Form</SubType>
@@ -391,6 +403,9 @@
     <Compile Include="Usuario.cs" />
     <Compile Include="UsuarioRepository.cs" />
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="FrmCambiarContrasena.resx">
+      <DependentUpon>FrmCambiarContrasena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCategoriasCrud.resx">
       <DependentUpon>FrmCategoriasCrud.cs</DependentUpon>
     </EmbeddedResource>
@@ -411,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEmpleadosCrud.resx">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPedidosCrud.resx">
       <DependentUpon>FrmPedidosCrud.cs</DependentUpon>

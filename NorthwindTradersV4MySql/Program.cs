@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NorthwindTradersV4MySql
@@ -16,7 +13,24 @@ namespace NorthwindTradersV4MySql
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MDIPrincipal());
+            // Inicializar el usuario autenticado como null
+            string usuarioAutenticado = null;
+            int idUsuarioLogueado = 0;
+            using (var login = new FrmLogin())
+            {
+                Application.Run(login);
+                if (!login.IsAuthenticated)
+                    // Si el usuario no se autentica, cerramos la aplicación.
+                    return; 
+                usuarioAutenticado = login.UsuarioLogueado;
+                // Asignar el Id del usuario logueado
+                idUsuarioLogueado = login.IdUsuarioLogueado;
+            }
+            // Instanciar el MDIPrincipal, inyectar el usuario y arrancar
+            var mdi = new MDIPrincipal();
+            mdi.UsuarioLogueado = usuarioAutenticado;
+            mdi.IdUsuarioLogueado = idUsuarioLogueado;
+            Application.Run(mdi);
         }
     }
 }

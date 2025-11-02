@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,12 +10,82 @@ namespace NorthwindTradersV4MySql
     {
         private int childFormNumber = 0;
         public static MDIPrincipal Instance { get; private set; }
+        public string UsuarioLogueado { get; set; }
+        public int IdUsuarioLogueado { get; set; }
+        private HashSet<int> permisosUsuarioLogueado = new HashSet<int>();
+        private readonly string cnStr = ConfigurationManager.ConnectionStrings["NorthwindMySql"].ConnectionString;
 
         public MDIPrincipal()
         {
             InitializeComponent();
             Instance = this;
+            this.Text = Utils.nwtr;
             WindowState = FormWindowState.Maximized;
+        }
+
+        private void MDIPrincipal_Load(object sender, EventArgs e)
+        {
+            toolStripStatusLabel2.Text = UsuarioLogueado;
+            IniciarSesion();
+            if (permisosUsuarioLogueado.Contains(10)) {
+                //FrmTableroControlAltaDireccion frmTableroControlAltaDireccion = new FrmTableroControlAltaDireccion
+                //{
+                //    MdiParent = this
+                //};
+                //frmTableroControlAltaDireccion.Show();
+            }
+            else if (permisosUsuarioLogueado.Contains(12))
+            {
+                //FrmTableroControlVendedores frmTableroControlVendedores = new FrmTableroControlVendedores
+                //{
+                //    MdiParent = this
+                //};
+                //frmTableroControlVendedores.Show();
+            }
+        }
+
+        private void IniciarSesion()
+        {
+            // Obtener los permisos del usuario logueado
+            permisosUsuarioLogueado = new PermisoRepository(cnStr).ObtenerPermisosPorUsuario(IdUsuarioLogueado);
+            // Ajustar el menú por permisos
+            AjustarMenuPorPermisos(permisosUsuarioLogueado);
+            if (permisosUsuarioLogueado.Count == 0)
+            {
+                Utils.MensajeExclamation("El usuario no tiene permisos asignados.");
+            }
+            ActualizarBarraDeEstado("Sesión iniciada correctamente");
+        }
+
+        private void AjustarMenuPorPermisos(HashSet<int> permisos)
+        {
+            toolStripMenuItemEmpleados.Enabled = false;
+            clientesToolStripMenuItem.Enabled = false;
+            proveedoresToolStripMenuItem.Enabled = false;
+            categoríasToolStripMenuItem.Enabled = false;
+            productosToolStripMenuItem.Enabled = false;
+            pedidosToolStripMenuItem.Enabled = false;
+            administraciónToolStripMenuItem.Enabled = false;
+            gráficasToolStripMenuItem.Enabled = false;
+            foreach (int permisoId in permisos)
+            {
+                if (permisoId == 1)
+                    toolStripMenuItemEmpleados.Enabled = true; // Permiso para Empleados
+                else if (permisoId == 2)
+                    clientesToolStripMenuItem.Enabled = true; // Permiso para Clientes
+                else if (permisoId == 3)
+                    proveedoresToolStripMenuItem.Enabled = true; // Permiso para Proveedores
+                else if (permisoId == 4)
+                    categoríasToolStripMenuItem.Enabled = true; // Permiso para Categorías
+                else if (permisoId == 5)
+                    productosToolStripMenuItem.Enabled = true; // Permiso para Productos
+                else if (permisoId == 6)
+                    pedidosToolStripMenuItem.Enabled = true; // Permiso para Pedidos
+                else if (permisoId == 7)
+                    administraciónToolStripMenuItem.Enabled = true; // Permiso para Administración
+                else if (permisoId == 8)
+                    gráficasToolStripMenuItem.Enabled = true;
+            }
         }
 
         public ToolStripStatusLabel ToolStripEstado
@@ -606,5 +678,24 @@ namespace NorthwindTradersV4MySql
             };
             frmPermisosCrud.Show();
         }
+
+        private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            using (var frmCambiarContrasena = new FrmCambiarContrasena())
+            {
+                frmCambiarContrasena.UsuarioLogueado = this.UsuarioLogueado;
+                frmCambiarContrasena.ShowDialog(this); // this es MDIPrincipal, un formulario top-level
+            }
+        }
+
+        private void cambiarDeUsuarioLogueadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Reinicia la aplicación
+            Application.Restart();
+            // Asegura que el hilo de la UI termine
+            Environment.Exit(0);
+        }
+
     }
 }

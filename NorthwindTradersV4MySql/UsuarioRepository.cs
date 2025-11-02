@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.IO.Pipelines;
 
 namespace NorthwindTradersV4MySql
 {
@@ -153,5 +154,69 @@ namespace NorthwindTradersV4MySql
             return numRegs;
         }
 
+        public int ValidarUsuario(string usuario, string password)
+        {
+            int idUsuario = 0;
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("SELECT Id FROM Usuarios WHERE Usuario = @Usuario AND Password = @Password AND Estatus = 1", cn))
+                {
+                    cmd.Parameters.AddWithValue("@Usuario", usuario);
+                    cmd.Parameters.AddWithValue("@Password", password);
+                    cn.Open();
+                    object result = cmd.ExecuteScalar();
+                    if (!(result == null || result == DBNull.Value))
+                        idUsuario = Convert.ToInt32(result);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener el usuario: " + ex.Message);
+            }
+            return idUsuario;
+        }
+
+        public byte ActualizarContrasena(string usuario, string nuevaContrasena)
+        {
+            byte numRegs = 0;
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("UPDATE Usuarios SET Password = @password WHERE Usuario = @usuario AND Estatus = 1", cn))
+                {
+                    cmd.Parameters.AddWithValue("@Usuario", usuario);
+                    cmd.Parameters.AddWithValue("@password", nuevaContrasena);
+                    cn.Open();
+                    numRegs = Convert.ToByte(cmd.ExecuteNonQuery());
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al cambiar la contraseña: " + ex.Message);
+            }
+            return numRegs;
+        }
+
+        public byte ValidarContrasenaActual(string usuario, string contrasenaActual)
+        {
+            byte numRegs = 0;
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand("SELECT COUNT(0) FROM Usuarios WHERE Usuario = @usuario AND Password = @Password AND Estatus = 1", cn))
+                {
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    cmd.Parameters.AddWithValue("@Password", contrasenaActual);
+                    cn.Open();
+                    numRegs = Convert.ToByte(cmd.ExecuteScalar());
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al validar la contraseña actual: " + ex.Message);
+            }
+            return numRegs;
+        }
     }
 }
