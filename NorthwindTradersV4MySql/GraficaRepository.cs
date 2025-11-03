@@ -87,5 +87,181 @@ namespace NorthwindTradersV4MySql
             }
             return lista;
         }
+
+        public DataTable ObtenerTopProductos(int cantidad)
+        {
+            var dt = new DataTable();
+            const string query = @"
+                SELECT 
+                    p.ProductName AS NombreProducto, 
+                    SUM(od.Quantity) AS CantidadVendida
+                FROM `Order Details` AS od
+                INNER JOIN Products AS p ON od.ProductID = p.ProductID
+                GROUP BY p.ProductName
+                ORDER BY CantidadVendida DESC
+                LIMIT @Cantidad;
+                ";
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand(query, cn))
+                using (var da = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@Cantidad", cantidad);
+                    da.Fill(dt);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener los productos más vendidos: " + ex.Message);
+            }
+            return dt;
+        }
+
+        public List<(string Vendedor, decimal TotalVentas)> ObtenerVentasPorVendedores()
+        {
+            var resultados = new List<(string Vendedor, decimal TotalVentas)>();
+
+            string query = @"
+                            SELECT 
+                                CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
+                                SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalVentas
+                            FROM 
+                                Employees e
+                            JOIN 
+                                Orders o ON e.EmployeeID = o.EmployeeID
+                            JOIN 
+                                `Order Details` od ON o.OrderID = od.OrderID
+                            GROUP BY 
+                                e.FirstName, e.LastName
+                            ORDER BY 
+                                TotalVentas DESC;
+                            ";
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(_connectionString))
+                using (MySqlCommand command = new MySqlCommand(query, cn))
+                {
+                    cn.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string vendedor = reader["Vendedor"].ToString();
+                            decimal totalVentas = Convert.ToDecimal(reader["TotalVentas"]);
+                            resultados.Add((vendedor, totalVentas));
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener las ventas por vendedor: " + ex.Message);
+            }
+            return resultados;
+        }
+
+        public List<(string Vendedor, decimal TotalVentas)> ObtenerVentasPorVendedor(int anio)
+        {
+            var resultados = new List<(string Vendedor, decimal TotalVentas)>();
+
+            string query = @"
+            SELECT 
+                CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
+                ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS TotalVentas
+            FROM 
+                Employees e
+            JOIN 
+                Orders o ON e.EmployeeID = o.EmployeeID
+            JOIN 
+                `Order Details` od ON o.OrderID = od.OrderID
+            WHERE 
+                YEAR(o.OrderDate) = @Anio
+            GROUP BY 
+                Vendedor
+            ORDER BY 
+                TotalVentas DESC;
+        ";
+
+            using (var cn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@Anio", anio);
+                cn.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string vendedor = reader.GetString("Vendedor");
+                        decimal totalVentas = reader.GetDecimal("TotalVentas");
+                        resultados.Add((vendedor, totalVentas));
+                    }
+                }
+            }
+            return resultados;
+        }
+
+        public DataTable ObtenerVentasMensualesPorVendedorPorAño(int anio)
+        {
+            string query = @"
+            SELECT 
+                CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
+                MONTH(o.OrderDate) AS Mes,
+                ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS TotalVentas
+            FROM 
+                Employees e
+            JOIN 
+                Orders o ON e.EmployeeID = o.EmployeeID
+            JOIN 
+                `Order Details` od ON o.OrderID = od.OrderID
+            WHERE 
+                YEAR(o.OrderDate) = @Anio
+            GROUP BY 
+                Vendedor, Mes
+            ORDER BY 
+                Vendedor, Mes;
+        ";
+            var dt = new DataTable();
+
+            using (var cn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@Anio", anio);
+                using (var da = new MySqlDataAdapter(cmd))
+                    da.Fill(dt);
+            }
+            return dt;
+        }
+
+        public DataTable ObtenerVentasMensualesPorVendedor(int anio)
+        {
+            string query = @"
+            SELECT 
+                CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
+                MONTH(o.OrderDate) AS Mes,
+                ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS TotalVentas
+            FROM 
+                Employees AS e
+            INNER JOIN 
+                Orders AS o ON e.EmployeeID = o.EmployeeID
+            INNER JOIN 
+                `Order Details` AS od ON o.OrderID = od.OrderID
+            WHERE 
+                YEAR(o.OrderDate) = @Anio
+            GROUP BY 
+                Vendedor, Mes
+            ORDER BY 
+                Vendedor, Mes;
+        ";
+            var dt = new DataTable();
+            using (var cn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@Anio", anio);
+                using (var da = new MySqlDataAdapter(cmd))
+                    da.Fill(dt);
+            }
+            return dt;
+        }
     }
 }

@@ -183,6 +183,24 @@
     <Compile Include="FrmEmpleadosCrud.Designer.cs">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmGraficaDeVentasDeVendedoresPorAnio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraficaDeVentasDeVendedoresPorAnio.Designer.cs">
+      <DependentUpon>FrmGraficaDeVentasDeVendedoresPorAnio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGraficaEjemploTodas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraficaEjemploTodas.Designer.cs">
+      <DependentUpon>FrmGraficaEjemploTodas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGraficaTop10ProductosMasVendidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraficaTop10ProductosMasVendidos.Designer.cs">
+      <DependentUpon>FrmGraficaTop10ProductosMasVendidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmGraficaVentasAnuales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +212,24 @@
     </Compile>
     <Compile Include="FrmGraficaVentasMensuales.Designer.cs">
       <DependentUpon>FrmGraficaVentasMensuales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGraficaVentasMensualesPorVendedorPorAnio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraficaVentasMensualesPorVendedorPorAnio.Designer.cs">
+      <DependentUpon>FrmGraficaVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGraficaVentasMensualesPorVendedorPorAnioBarras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraficaVentasMensualesPorVendedorPorAnioBarras.Designer.cs">
+      <DependentUpon>FrmGraficaVentasMensualesPorVendedorPorAnioBarras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGraficaVentasPorVendedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraficaVentasPorVendedores.Designer.cs">
+      <DependentUpon>FrmGraficaVentasPorVendedores.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
@@ -442,11 +478,29 @@
     <EmbeddedResource Include="FrmEmpleadosCrud.resx">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmGraficaDeVentasDeVendedoresPorAnio.resx">
+      <DependentUpon>FrmGraficaDeVentasDeVendedoresPorAnio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGraficaEjemploTodas.resx">
+      <DependentUpon>FrmGraficaEjemploTodas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGraficaTop10ProductosMasVendidos.resx">
+      <DependentUpon>FrmGraficaTop10ProductosMasVendidos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmGraficaVentasAnuales.resx">
       <DependentUpon>FrmGraficaVentasAnuales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGraficaVentasMensuales.resx">
       <DependentUpon>FrmGraficaVentasMensuales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGraficaVentasMensualesPorVendedorPorAnio.resx">
+      <DependentUpon>FrmGraficaVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGraficaVentasMensualesPorVendedorPorAnioBarras.resx">
+      <DependentUpon>FrmGraficaVentasMensualesPorVendedorPorAnioBarras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGraficaVentasPorVendedores.resx">
+      <DependentUpon>FrmGraficaVentasPorVendedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

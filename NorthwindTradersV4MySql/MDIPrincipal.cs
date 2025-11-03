@@ -724,32 +724,62 @@ namespace NorthwindTradersV4MySql
 
         private void topProductosMásVendidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmGraficaTop10ProductosMasVendidos frmGraficaTop10ProductosMasVendidos = new FrmGraficaTop10ProductosMasVendidos
+            {
+                MdiParent = this
+            };
+            frmGraficaTop10ProductosMasVendidos.Show();
         }
 
         private void ventasPorVendedoresDeTodosLosAñosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmGraficaVentasPorVendedores frmGraficaVentasPorVendedores = new FrmGraficaVentasPorVendedores
+            {
+                MdiParent = this
+            };
+            frmGraficaVentasPorVendedores.Show();
         }
 
         private void ventasPorVendedoresPorAñoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmGraficaDeVentasDeVendedoresPorAnio frmGraficaDeVentasDeVendedoresPorAnio = new FrmGraficaDeVentasDeVendedoresPorAnio
+            {
+                MdiParent = this
+            };
+            frmGraficaDeVentasDeVendedoresPorAnio.Show();
         }
 
         private void ventasMensualesPorVendedorPorAñoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmGraficaVentasMensualesPorVendedorPorAnio frmGraficaVentasMensualesPorVendedorPorAnio = new FrmGraficaVentasMensualesPorVendedorPorAnio
+            {
+                MdiParent = this
+            };
+            frmGraficaVentasMensualesPorVendedorPorAnio.Show();
         }
 
         private void ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmGraficaVentasMensualesPorVendedorPorAnioBarras frmGraficaVentasMensualesPorVendedorPorAnioBarras = new FrmGraficaVentasMensualesPorVendedorPorAnioBarras
+            {
+                MdiParent = this
+            };
+            frmGraficaVentasMensualesPorVendedorPorAnioBarras.Show();
         }
 
         private void ejemploDeGráficasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmGraficaEjemploTodas frmGraficaEjemploTodas = new FrmGraficaEjemploTodas
+            {
+                MdiParent = this
+            };
+            frmGraficaEjemploTodas.Show();
         }
 
         private void ventasMensualesToolStripMenuItem1_Click(object sender, EventArgs e)
