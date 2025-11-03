@@ -130,6 +130,8 @@
     <Compile Include="DtoProductosBuscar.cs" />
     <Compile Include="DtoProveedoresBuscar.cs" />
     <Compile Include="DtoUsuariosBuscar.cs" />
+    <Compile Include="DtoVentaAnualComparativa.cs" />
+    <Compile Include="DtoVentaMensual.cs" />
     <Compile Include="DtoVentasMensuales.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoConReportsTo.cs" />
@@ -369,6 +371,18 @@
     <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptGraficaVentasAnuales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptGraficaVentasAnuales.Designer.cs">
+      <DependentUpon>FrmRptGraficaVentasAnuales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptGraficaVentasMensuales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptGraficaVentasMensuales.Designer.cs">
+      <DependentUpon>FrmRptGraficaVentasMensuales.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptNotaRemision8.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,6 +464,7 @@
     <Compile Include="Proveedor.cs" />
     <Compile Include="ProveedorRepository.cs" />
     <Compile Include="DtoEnvioInformacion.cs" />
+    <Compile Include="ReportDataTableAdapter.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="UsuarioRepository.cs" />
@@ -571,6 +586,12 @@
     <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaVentasAnuales.resx">
+      <DependentUpon>FrmRptGraficaVentasAnuales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaVentasMensuales.resx">
+      <DependentUpon>FrmRptGraficaVentasMensuales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptNotaRemision8.resx">
       <DependentUpon>FrmRptNotaRemision8.cs</DependentUpon>
     </EmbeddedResource>
@@ -618,6 +639,8 @@
     <EmbeddedResource Include="RptClientesyProveedoresDirectorio.rdlc" />
     <EmbeddedResource Include="RptClientesyProveedoresDirectorioxCiudad.rdlc" />
     <EmbeddedResource Include="RptClientesyProveedoresDirectorioxPais.rdlc" />
+    <EmbeddedResource Include="RptGraficaVentasAnuales.rdlc" />
+    <EmbeddedResource Include="RptGraficaVentasMensuales.rdlc" />
     <EmbeddedResource Include="RptLayoutMySql.rdlc" />
     <EmbeddedResource Include="RptEmpleado.rdlc" />
     <EmbeddedResource Include="RptClientes.rdlc" />

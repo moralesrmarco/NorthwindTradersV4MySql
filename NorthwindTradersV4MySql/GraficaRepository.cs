@@ -263,5 +263,136 @@ namespace NorthwindTradersV4MySql
             }
             return dt;
         }
+
+        public List<DtoVentaMensual> ObtenerVentasMensualesPorAnio(int anio)
+        {
+            var resultados = new List<DtoVentaMensual>();
+
+            string query = @"
+            SELECT 
+                m.Mes,
+                IFNULL(v.Total, 0) AS Total,
+                m.NombreMes
+            FROM (
+                SELECT 1 AS Mes, 'Ene' AS NombreMes UNION ALL
+                SELECT 2, 'Feb' UNION ALL
+                SELECT 3, 'Mar' UNION ALL
+                SELECT 4, 'Abr' UNION ALL
+                SELECT 5, 'May' UNION ALL
+                SELECT 6, 'Jun' UNION ALL
+                SELECT 7, 'Jul' UNION ALL
+                SELECT 8, 'Ago' UNION ALL
+                SELECT 9, 'Sep' UNION ALL
+                SELECT 10, 'Oct' UNION ALL
+                SELECT 11, 'Nov' UNION ALL
+                SELECT 12, 'Dic'
+            ) AS m
+            LEFT JOIN (
+                SELECT 
+                    MONTH(o.OrderDate) AS Mes,
+                    ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS Total
+                FROM Orders o
+                INNER JOIN `Order Details` od ON o.OrderID = od.OrderID
+                WHERE YEAR(o.OrderDate) = @Anio
+                GROUP BY MONTH(o.OrderDate)
+            ) AS v ON m.Mes = v.Mes
+            ORDER BY m.Mes;
+        ";
+            try
+            { 
+            using (var cn = new MySqlConnection(_connectionString))
+            using (var cmd = new MySqlCommand(query, cn))
+            {
+                cmd.Parameters.AddWithValue("@Anio", anio);
+                cn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var dto = new DtoVentaMensual
+                        {
+                            Mes = reader.GetInt32("Mes"),
+                            Total = reader.GetDecimal("Total"),
+                            NombreMes = reader.GetString("NombreMes")
+                        };
+                        resultados.Add(dto);
+                    }
+                }
+            }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener las ventas mensuales por año: " + ex.Message);
+            }
+            return resultados;
+        }
+
+        public List<DtoVentaAnualComparativa> ObtenerVentasComparativas(List<int> años)
+        {
+            var resultados = new List<DtoVentaAnualComparativa>();
+            string filtroAños = string.Join(",", años);
+
+            string query = $@"
+            SELECT m.Mes, m.NombreMes, y.Año, IFNULL(v.Total, 0) AS Total
+            FROM (
+                SELECT 1 AS Mes, 'Ene' AS NombreMes UNION ALL
+                SELECT 2, 'Feb' UNION ALL
+                SELECT 3, 'Mar' UNION ALL
+                SELECT 4, 'Abr' UNION ALL
+                SELECT 5, 'May' UNION ALL
+                SELECT 6, 'Jun' UNION ALL
+                SELECT 7, 'Jul' UNION ALL
+                SELECT 8, 'Ago' UNION ALL
+                SELECT 9, 'Sep' UNION ALL
+                SELECT 10, 'Oct' UNION ALL
+                SELECT 11, 'Nov' UNION ALL
+                SELECT 12, 'Dic'
+            ) AS m
+            CROSS JOIN (
+                SELECT DISTINCT YEAR(OrderDate) AS Año
+                FROM Orders
+                WHERE YEAR(OrderDate) IN ({filtroAños})
+            ) AS y
+            LEFT JOIN (
+                SELECT 
+                    YEAR(o.OrderDate) AS Año,
+                    MONTH(o.OrderDate) AS Mes,
+                    ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS Total
+                FROM Orders o
+                INNER JOIN `Order Details` od ON o.OrderID = od.OrderID
+                WHERE YEAR(o.OrderDate) IN ({filtroAños})
+                GROUP BY Año, Mes
+            ) AS v ON m.Mes = v.Mes AND y.Año = v.Año
+            ORDER BY m.Mes, y.Año;
+        ";
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand(query, cn))
+                {
+                    cn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var dto = new DtoVentaAnualComparativa
+                            {
+                                Mes = reader.GetInt32("Mes"),
+                                NombreMes = reader.GetString("NombreMes"),
+                                Año = reader.GetInt32("Año"),
+                                Total = reader.GetDecimal("Total")
+                            };
+                            resultados.Add(dto);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener las ventas comparativas: " + ex.Message);
+            }
+            return resultados;
+        }
     }
 }

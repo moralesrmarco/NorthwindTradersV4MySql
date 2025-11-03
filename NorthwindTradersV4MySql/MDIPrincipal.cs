@@ -784,12 +784,22 @@ namespace NorthwindTradersV4MySql
 
         private void ventasMensualesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptGraficaVentasMensuales frmRptGraficaVentasMensuales = new FrmRptGraficaVentasMensuales
+            {
+                MdiParent = this
+            };
+            frmRptGraficaVentasMensuales.Show();
         }
 
         private void comparativoDeVentasAnualesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptGraficaVentasAnuales frmRptGraficaVentasAnuales = new FrmRptGraficaVentasAnuales
+            {
+                MdiParent = this
+            };
+            frmRptGraficaVentasAnuales.Show();
         }
 
         private void topProductosMásVendidosToolStripMenuItem1_Click(object sender, EventArgs e)
