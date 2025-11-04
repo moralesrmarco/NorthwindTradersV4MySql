@@ -436,5 +436,45 @@ namespace NorthwindTradersV4MySql
             }
             return lista;
         }
+
+        public DataTable ObtenerVentasPorVendedor()
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("Vendedor", typeof(string));
+            dt.Columns.Add("TotalVentas", typeof(decimal));
+            string query = @"
+            SELECT 
+                CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
+                SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalVentas
+            FROM 
+                Employees e
+            JOIN 
+                Orders o ON e.EmployeeID = o.EmployeeID
+            JOIN 
+                `Order Details` od ON o.OrderID = od.OrderID
+            GROUP BY 
+                e.FirstName, e.LastName
+            ORDER BY TotalVentas DESC";
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand(query, cn))
+                {
+                    cn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dt.Rows.Add(reader["Vendedor"], reader["TotalVentas"]);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener las ventas por vendedor: " + ex.Message);
+            }
+            return dt;
+        }
     }
 }

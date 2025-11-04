@@ -384,6 +384,12 @@
     <Compile Include="FrmRptGraficaVentasMensuales.Designer.cs">
       <DependentUpon>FrmRptGraficaVentasMensuales.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptGraficaVentasPorVendedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptGraficaVentasPorVendedores.Designer.cs">
+      <DependentUpon>FrmRptGraficaVentasPorVendedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptNotaRemision8.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -599,6 +605,9 @@
     <EmbeddedResource Include="FrmRptGraficaVentasMensuales.resx">
       <DependentUpon>FrmRptGraficaVentasMensuales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaVentasPorVendedores.resx">
+      <DependentUpon>FrmRptGraficaVentasPorVendedores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptNotaRemision8.resx">
       <DependentUpon>FrmRptNotaRemision8.cs</DependentUpon>
     </EmbeddedResource>
@@ -652,6 +661,7 @@
     <EmbeddedResource Include="RptGraficaTopProductosMásVendidos.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasAnuales.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasMensuales.rdlc" />
+    <EmbeddedResource Include="RptGraficaVentasPorVendedores.rdlc" />
     <EmbeddedResource Include="RptLayoutMySql.rdlc" />
     <EmbeddedResource Include="RptEmpleado.rdlc" />
     <EmbeddedResource Include="RptClientes.rdlc" />

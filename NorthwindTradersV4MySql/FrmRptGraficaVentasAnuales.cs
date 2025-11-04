@@ -66,7 +66,16 @@ namespace NorthwindTradersV4MySql
                 listaAños.Add(year);
                 year--;
             }
-            var dtComparativo = ReportDataTableAdapter.ConvertirVentaAnualComparativa(new GraficaRepository(cnStr).ObtenerVentasComparativas(listaAños));
+            DataTable dtComparativo = null;
+            try
+            {
+                dtComparativo = ReportDataTableAdapter.ConvertirVentaAnualComparativa(new GraficaRepository(cnStr).ObtenerVentasComparativas(listaAños));
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+                return;
+            }
             reportViewer1.LocalReport.DataSources.Clear();
             var rds = new ReportDataSource("DataSet1", dtComparativo);
             reportViewer1.LocalReport.DataSources.Add(rds);

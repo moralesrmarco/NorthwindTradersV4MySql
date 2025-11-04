@@ -43,8 +43,7 @@ namespace NorthwindTradersV4MySql
 
         private void CmbTopProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int topProductos = Convert.ToInt32(CmbTopProductos.SelectedValue);
-            CargarTopProductos(topProductos);
+            CargarTopProductos(Convert.ToInt32(CmbTopProductos.SelectedValue));
         }
 
         private void CargarTopProductos(int topProductos)
