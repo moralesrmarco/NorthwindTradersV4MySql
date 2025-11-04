@@ -804,7 +804,12 @@ namespace NorthwindTradersV4MySql
 
         private void topProductosMásVendidosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptTopProductosMasVendidos frmRptTopProductosMasVendidos = new FrmRptTopProductosMasVendidos
+            {
+                MdiParent = this
+            };
+            frmRptTopProductosMasVendidos.Show();
         }
 
         private void ventasPorVendedoresDeTodosLosAñosToolStripMenuItem1_Click(object sender, EventArgs e)

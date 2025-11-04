@@ -127,6 +127,7 @@
     <Compile Include="DtoCategoriasBuscar.cs" />
     <Compile Include="DtoPedidosBuscar.cs" />
     <Compile Include="DtoProductoCostoInventario.cs" />
+    <Compile Include="DtoProductoMasVendido.cs" />
     <Compile Include="DtoProductosBuscar.cs" />
     <Compile Include="DtoProveedoresBuscar.cs" />
     <Compile Include="DtoUsuariosBuscar.cs" />
@@ -437,6 +438,12 @@
     <Compile Include="FrmRptProveedores.Designer.cs">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptTopProductosMasVendidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptTopProductosMasVendidos.Designer.cs">
+      <DependentUpon>FrmRptTopProductosMasVendidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUsuariosCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -619,6 +626,9 @@
     <EmbeddedResource Include="FrmRptProveedores.resx">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptTopProductosMasVendidos.resx">
+      <DependentUpon>FrmRptTopProductosMasVendidos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuariosCrud.resx">
       <DependentUpon>FrmUsuariosCrud.cs</DependentUpon>
     </EmbeddedResource>
@@ -639,6 +649,7 @@
     <EmbeddedResource Include="RptClientesyProveedoresDirectorio.rdlc" />
     <EmbeddedResource Include="RptClientesyProveedoresDirectorioxCiudad.rdlc" />
     <EmbeddedResource Include="RptClientesyProveedoresDirectorioxPais.rdlc" />
+    <EmbeddedResource Include="RptGraficaTopProductosMásVendidos.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasAnuales.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasMensuales.rdlc" />
     <EmbeddedResource Include="RptLayoutMySql.rdlc" />

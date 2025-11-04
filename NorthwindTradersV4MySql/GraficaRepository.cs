@@ -394,5 +394,47 @@ namespace NorthwindTradersV4MySql
             }
             return resultados;
         }
+
+        public List<DtoProductoMasVendido> ObtenerTopProductosRpt(int cantidad)
+        {
+            var lista = new List<DtoProductoMasVendido>();
+            const string query = @"
+            SELECT 
+                ROW_NUMBER() OVER (ORDER BY SUM(od.Quantity) DESC) AS Posicion,
+                CONCAT(ROW_NUMBER() OVER (ORDER BY SUM(od.Quantity) DESC), '. ', p.ProductName) AS NombreProducto,
+                SUM(od.Quantity) AS CantidadVendida
+            FROM `Order Details` od
+            INNER JOIN Products p ON od.ProductID = p.ProductID
+            GROUP BY p.ProductName
+            ORDER BY CantidadVendida DESC
+            LIMIT @Cantidad;
+            ";
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand(query, cn))
+                {
+                    cmd.Parameters.AddWithValue("@Cantidad", cantidad);
+                    cn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new DtoProductoMasVendido
+                            {
+                                Posicion = Convert.ToInt32(reader["Posicion"]),
+                                NombreProducto = reader["NombreProducto"].ToString() ?? string.Empty,
+                                CantidadVendida = Convert.ToInt32(reader["CantidadVendida"])
+                            });
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener los productos más vendidos: " + ex.Message);
+            }
+            return lista;
+        }
     }
 }
