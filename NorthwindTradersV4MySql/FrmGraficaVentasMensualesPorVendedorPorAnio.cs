@@ -94,6 +94,7 @@ namespace NorthwindTradersV4MySql
             {
                 MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
                 dt = new GraficaRepository(cnStr).ObtenerVentasMensualesPorVendedorPorAño(anio);
+                MDIPrincipal.ActualizarBarraDeEstado();
             }
             catch (Exception ex)
             {

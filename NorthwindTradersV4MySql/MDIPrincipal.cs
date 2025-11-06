@@ -38,13 +38,13 @@ namespace NorthwindTradersV4MySql
             }
             else if (permisosUsuarioLogueado.Contains(12))
             {
-                //FrmTableroControlVendedores frmTableroControlVendedores = new FrmTableroControlVendedores
-                //{
-                //    MdiParent = this
-                //};
-                //frmTableroControlVendedores.Show();
+                FrmTableroControlVendedores frmTableroControlVendedores = new FrmTableroControlVendedores
+                {
+                    MdiParent = this
+                };
+                frmTableroControlVendedores.Show();
             }
-            ActualizarBarraDeEstado("Sesión iniciada correctamente.     |     Bienvenido " + NombreUsuarioLogueado + " al sistema Northwind Traders V4 MySQL. Para comenzar, seleccione una opción del menú correspondiente a sus permisos de usuario.");
+            ActualizarBarraDeEstado("Sesión iniciada correctamente.     |     Bienvenido " + NombreUsuarioLogueado + " al sistema " + Utils.nwtr.Substring(2, (Utils.nwtr.Length - 4)) + ". Para comenzar, seleccione una opción del menú correspondiente a sus permisos de usuario.");
         }
 
         private void IniciarSesion()
