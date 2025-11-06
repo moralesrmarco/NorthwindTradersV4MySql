@@ -131,6 +131,7 @@
     <Compile Include="DtoProductosBuscar.cs" />
     <Compile Include="DtoProveedoresBuscar.cs" />
     <Compile Include="DtoUsuariosBuscar.cs" />
+    <Compile Include="DtoVendedorTotalVentas.cs" />
     <Compile Include="DtoVentaAnualComparativa.cs" />
     <Compile Include="DtoVentaMensual.cs" />
     <Compile Include="DtoVentasMensuales.cs" />
@@ -372,6 +373,18 @@
     <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptGraficaDeVentasDeVendedoresPorAnio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptGraficaDeVentasDeVendedoresPorAnio.Designer.cs">
+      <DependentUpon>FrmRptGraficaDeVentasDeVendedoresPorAnio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptGraficaEjemplo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptGraficaEjemplo.Designer.cs">
+      <DependentUpon>FrmRptGraficaEjemplo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptGraficaVentasAnuales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -383,6 +396,18 @@
     </Compile>
     <Compile Include="FrmRptGraficaVentasMensuales.Designer.cs">
       <DependentUpon>FrmRptGraficaVentasMensuales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptGraficaVentasMensualesPorVendedorPorAnio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptGraficaVentasMensualesPorVendedorPorAnio.Designer.cs">
+      <DependentUpon>FrmRptGraficaVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras.Designer.cs">
+      <DependentUpon>FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmRptGraficaVentasPorVendedores.cs">
       <SubType>Form</SubType>
@@ -599,11 +624,23 @@
     <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaDeVentasDeVendedoresPorAnio.resx">
+      <DependentUpon>FrmRptGraficaDeVentasDeVendedoresPorAnio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaEjemplo.resx">
+      <DependentUpon>FrmRptGraficaEjemplo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptGraficaVentasAnuales.resx">
       <DependentUpon>FrmRptGraficaVentasAnuales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRptGraficaVentasMensuales.resx">
       <DependentUpon>FrmRptGraficaVentasMensuales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaVentasMensualesPorVendedorPorAnio.resx">
+      <DependentUpon>FrmRptGraficaVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras.resx">
+      <DependentUpon>FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRptGraficaVentasPorVendedores.resx">
       <DependentUpon>FrmRptGraficaVentasPorVendedores.cs</DependentUpon>
@@ -658,9 +695,13 @@
     <EmbeddedResource Include="RptClientesyProveedoresDirectorio.rdlc" />
     <EmbeddedResource Include="RptClientesyProveedoresDirectorioxCiudad.rdlc" />
     <EmbeddedResource Include="RptClientesyProveedoresDirectorioxPais.rdlc" />
+    <EmbeddedResource Include="RptGraficaDeVentasDeVendedoresPorAnio.rdlc" />
+    <EmbeddedResource Include="RptGraficaEjemplo.rdlc" />
     <EmbeddedResource Include="RptGraficaTopProductosMásVendidos.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasAnuales.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasMensuales.rdlc" />
+    <EmbeddedResource Include="RptGraficaVentasMensualesPorVendedorPorAnio.rdlc" />
+    <EmbeddedResource Include="RptGraficaVentasMensualesPorVendedorPorAnioBarras.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasPorVendedores.rdlc" />
     <EmbeddedResource Include="RptLayoutMySql.rdlc" />
     <EmbeddedResource Include="RptEmpleado.rdlc" />

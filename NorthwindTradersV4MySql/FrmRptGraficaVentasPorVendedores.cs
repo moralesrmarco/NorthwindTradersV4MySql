@@ -24,14 +24,15 @@ namespace NorthwindTradersV4MySql
             DataTable dt = null;
             try
             {
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
                 dt = new GraficaRepository(cnStr).ObtenerVentasPorVendedor();
+                MDIPrincipal.ActualizarBarraDeEstado();
             }
             catch (Exception ex)
             {
                 Utils.MsgCatchOue(ex);
-            }
-            if (dt == null)
                 return;
+            }
             reportViewer1.LocalReport.DataSources.Clear();
             var rds = new ReportDataSource("DataSet1", dt);
             reportViewer1.LocalReport.DataSources.Add(rds);

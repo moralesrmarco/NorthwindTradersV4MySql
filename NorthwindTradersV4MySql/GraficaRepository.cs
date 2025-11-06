@@ -476,5 +476,73 @@ namespace NorthwindTradersV4MySql
             }
             return dt;
         }
+
+        public DataTable ObtenerVentasMensualesPorVendedorRpt(int year)
+        {
+            var dt = new DataTable();
+            string query = @"
+            WITH RECURSIVE Meses AS (
+                SELECT 1 AS Mes, 'Ene.' AS NombreMes
+                UNION ALL SELECT Mes + 1, 
+                    CASE Mes + 1
+                        WHEN 2 THEN 'Feb.'
+                        WHEN 3 THEN 'Mar.'
+                        WHEN 4 THEN 'Abr.'
+                        WHEN 5 THEN 'May.'
+                        WHEN 6 THEN 'Jun.'
+                        WHEN 7 THEN 'Jul.'
+                        WHEN 8 THEN 'Ago.'
+                        WHEN 9 THEN 'Sep.'
+                        WHEN 10 THEN 'Oct.'
+                        WHEN 11 THEN 'Nov.'
+                        WHEN 12 THEN 'Dic.'
+                    END
+                FROM Meses WHERE Mes < 12
+            ),
+            Vendedores AS (
+                SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS Vendedor
+                FROM Employees
+                WHERE EmployeeID IN (
+                    SELECT DISTINCT EmployeeID FROM Orders WHERE YEAR(OrderDate) = @Anio
+                )
+            ),
+            Ventas AS (
+                SELECT 
+                    o.EmployeeID,
+                    MONTH(o.OrderDate) AS Mes,
+                    SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalVentas
+                FROM Orders o
+                JOIN `Order Details` od ON o.OrderID = od.OrderID
+                WHERE YEAR(o.OrderDate) = @Anio
+                GROUP BY o.EmployeeID, MONTH(o.OrderDate)
+            )
+            SELECT 
+                v.Vendedor,
+                m.Mes,
+                m.NombreMes,
+                COALESCE(vt.TotalVentas, 0) AS TotalVentas
+            FROM Vendedores v
+            CROSS JOIN Meses m
+            LEFT JOIN Ventas vt ON vt.EmployeeID = v.EmployeeID AND vt.Mes = m.Mes
+            ORDER BY v.Vendedor, m.Mes;
+        ";
+            try
+            {
+                using (var cn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand(query, cn))
+                {
+                    cmd.Parameters.AddWithValue("@Anio", year);
+                    using (var da = new MySqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error al obtener las ventas mensuales por vendedor: " + ex.Message);
+            }
+            return dt;
+        }
     }
 }

@@ -153,20 +153,30 @@ namespace NorthwindTradersV4MySql
             return numRegs;
         }
 
-        public int ValidarUsuario(string usuario, string password)
+        public int ValidarUsuario(string usuario, string password, out string nombreUsuarioLogueado)
         {
             int idUsuario = 0;
+            nombreUsuarioLogueado = string.Empty;
             try
             {
                 using (var cn = new MySqlConnection(_connectionString))
-                using (var cmd = new MySqlCommand("SELECT Id FROM Usuarios WHERE Usuario = @Usuario AND Password = @Password AND Estatus = 1", cn))
+                using (var cmd = new MySqlCommand("SELECT Id, Paterno, Materno, Nombres FROM Usuarios WHERE Usuario = @Usuario AND Password = @Password AND Estatus = 1", cn))
                 {
                     cmd.Parameters.AddWithValue("@Usuario", usuario);
                     cmd.Parameters.AddWithValue("@Password", password);
                     cn.Open();
-                    object result = cmd.ExecuteScalar();
-                    if (!(result == null || result == DBNull.Value))
-                        idUsuario = Convert.ToInt32(result);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            idUsuario = Convert.ToInt32(reader["Id"]);
+                            string paterno = reader["Paterno"].ToString();
+                            string materno = reader["Materno"].ToString();
+                            string nombres = reader["Nombres"].ToString();
+
+                            nombreUsuarioLogueado = $"{nombres} {paterno} {materno}";
+                        }
+                    }
                 }
             }
             catch (MySqlException ex)

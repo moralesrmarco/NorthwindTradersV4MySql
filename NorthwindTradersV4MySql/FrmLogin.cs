@@ -10,6 +10,7 @@ namespace NorthwindTradersV4MySql
         public bool IsAuthenticated { get; private set; } = false;
         public string UsuarioLogueado;
         public int IdUsuarioLogueado;
+        public string NombreUsuarioLogueado;
         bool _imagenMostrada = true;
         byte numeroIntentos = 0;
 
@@ -47,7 +48,9 @@ namespace NorthwindTradersV4MySql
         private bool ValidateUser(string usuario, string pass)
         {
             string hashed = Utils.ComputeSha256Hash(pass);
-            IdUsuarioLogueado = new UsuarioRepository(cnStr).ValidarUsuario(usuario, hashed);
+            string nombreUsuarioLogueado;
+            IdUsuarioLogueado = new UsuarioRepository(cnStr).ValidarUsuario(usuario, hashed, out nombreUsuarioLogueado);
+            NombreUsuarioLogueado = nombreUsuarioLogueado;
             return IdUsuarioLogueado > 0;
         }
 

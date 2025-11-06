@@ -11,6 +11,7 @@ namespace NorthwindTradersV4MySql
         private int childFormNumber = 0;
         public static MDIPrincipal Instance { get; private set; }
         public string UsuarioLogueado { get; set; }
+        public string NombreUsuarioLogueado { get; set; }
         public int IdUsuarioLogueado { get; set; }
         private HashSet<int> permisosUsuarioLogueado = new HashSet<int>();
         private readonly string cnStr = ConfigurationManager.ConnectionStrings["NorthwindMySql"].ConnectionString;
@@ -54,7 +55,7 @@ namespace NorthwindTradersV4MySql
             {
                 Utils.MensajeExclamation("El usuario no tiene permisos asignados.");
             }
-            ActualizarBarraDeEstado("Sesión iniciada correctamente");
+            ActualizarBarraDeEstado("Sesión iniciada correctamente.     |     Bienvenido " + NombreUsuarioLogueado);
         }
 
         private void AjustarMenuPorPermisos(HashSet<int> permisos)
@@ -824,22 +825,42 @@ namespace NorthwindTradersV4MySql
 
         private void ventasPorVendedoresPorAñoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptGraficaDeVentasDeVendedoresPorAnio frmRptGraficaDeVentasDeVendedoresPorAnio = new FrmRptGraficaDeVentasDeVendedoresPorAnio
+            {
+                MdiParent = this
+            };
+            frmRptGraficaDeVentasDeVendedoresPorAnio.Show();
         }
 
         private void ventasMensualesPorVendedorPorAñoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptGraficaVentasMensualesPorVendedorPorAnio frmRptGraficaVentasMensualesPorVendedorPorAnio = new FrmRptGraficaVentasMensualesPorVendedorPorAnio
+            {
+                MdiParent = this
+            };
+            frmRptGraficaVentasMensualesPorVendedorPorAnio.Show();
         }
 
         private void ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras frmRptGraficaVentasMensualesPorVendedorPorAnioBarras = new FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras
+            {
+                MdiParent = this
+            };
+            frmRptGraficaVentasMensualesPorVendedorPorAnioBarras.Show();
         }
 
         private void gráficaEjemploToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptGraficaEjemplo frmRptGraficaEjemplo = new FrmRptGraficaEjemplo
+            {
+                MdiParent = this
+            };
+            frmRptGraficaEjemplo.Show();
         }
     }
 }

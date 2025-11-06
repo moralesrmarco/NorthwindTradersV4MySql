@@ -69,7 +69,9 @@ namespace NorthwindTradersV4MySql
             DataTable dtComparativo = null;
             try
             {
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
                 dtComparativo = ReportDataTableAdapter.ConvertirVentaAnualComparativa(new GraficaRepository(cnStr).ObtenerVentasComparativas(listaAños));
+                MDIPrincipal.ActualizarBarraDeEstado();
             }
             catch (Exception ex)
             {
