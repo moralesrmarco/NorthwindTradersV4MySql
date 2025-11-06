@@ -48,5 +48,20 @@ namespace NorthwindTradersV4MySql
                 dt.Rows.Add(vtv.Vendedor, vtv.TotalVentas);
             return dt;
         }
+
+        public static DataTable ConvertirVendedorTotalVentas(List<(string Vendedor, decimal TotalVentas)> lista)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("Vendedor", typeof(string));
+            dt.Columns.Add("TotalVentas", typeof(decimal));
+            foreach (var item in lista)
+            {
+                var row = dt.NewRow();
+                row["Vendedor"] = item.Vendedor ?? string.Empty;
+                row["TotalVentas"] = item.TotalVentas;
+                dt.Rows.Add(row);
+            }
+            return dt;
+        }
     }
 }

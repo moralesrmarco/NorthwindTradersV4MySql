@@ -475,6 +475,12 @@
     <Compile Include="FrmRptTopProductosMasVendidos.Designer.cs">
       <DependentUpon>FrmRptTopProductosMasVendidos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTableroControlAltaDireccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTableroControlAltaDireccion.Designer.cs">
+      <DependentUpon>FrmTableroControlAltaDireccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUsuariosCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -674,6 +680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRptTopProductosMasVendidos.resx">
       <DependentUpon>FrmRptTopProductosMasVendidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTableroControlAltaDireccion.resx">
+      <DependentUpon>FrmTableroControlAltaDireccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuariosCrud.resx">
       <DependentUpon>FrmUsuariosCrud.cs</DependentUpon>

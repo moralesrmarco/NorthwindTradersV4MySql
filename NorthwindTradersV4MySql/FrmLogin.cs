@@ -47,11 +47,19 @@ namespace NorthwindTradersV4MySql
 
         private bool ValidateUser(string usuario, string pass)
         {
-            string hashed = Utils.ComputeSha256Hash(pass);
-            string nombreUsuarioLogueado;
-            IdUsuarioLogueado = new UsuarioRepository(cnStr).ValidarUsuario(usuario, hashed, out nombreUsuarioLogueado);
-            NombreUsuarioLogueado = nombreUsuarioLogueado;
-            return IdUsuarioLogueado > 0;
+            try
+            {
+                string hashed = Utils.ComputeSha256Hash(pass);
+                string nombreUsuarioLogueado;
+                IdUsuarioLogueado = new UsuarioRepository(cnStr).ValidarUsuario(usuario, hashed, out nombreUsuarioLogueado);
+                NombreUsuarioLogueado = nombreUsuarioLogueado;
+                return IdUsuarioLogueado > 0;
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+                return false;
+            }
         }
 
         private void btnTogglePwd_Click(object sender, EventArgs e)

@@ -28,12 +28,13 @@ namespace NorthwindTradersV4MySql
         {
             toolStripStatusLabel2.Text = UsuarioLogueado;
             IniciarSesion();
+            //Utils.MensajeExclamation("Bienvenido al sistema Northwind Traders V4 MySQL.\n\nPara comenzar, seleccione una opción del menú correspondiente a sus permisos de usuario.");
             if (permisosUsuarioLogueado.Contains(10)) {
-                //FrmTableroControlAltaDireccion frmTableroControlAltaDireccion = new FrmTableroControlAltaDireccion
-                //{
-                //    MdiParent = this
-                //};
-                //frmTableroControlAltaDireccion.Show();
+                FrmTableroControlAltaDireccion frmTableroControlAltaDireccion = new FrmTableroControlAltaDireccion
+                {
+                    MdiParent = this
+                };
+                frmTableroControlAltaDireccion.Show();
             }
             else if (permisosUsuarioLogueado.Contains(12))
             {
@@ -43,6 +44,7 @@ namespace NorthwindTradersV4MySql
                 //};
                 //frmTableroControlVendedores.Show();
             }
+            ActualizarBarraDeEstado("Sesión iniciada correctamente.     |     Bienvenido " + NombreUsuarioLogueado + " al sistema Northwind Traders V4 MySQL. Para comenzar, seleccione una opción del menú correspondiente a sus permisos de usuario.");
         }
 
         private void IniciarSesion()
@@ -55,7 +57,6 @@ namespace NorthwindTradersV4MySql
             {
                 Utils.MensajeExclamation("El usuario no tiene permisos asignados.");
             }
-            ActualizarBarraDeEstado("Sesión iniciada correctamente.     |     Bienvenido " + NombreUsuarioLogueado);
         }
 
         private void AjustarMenuPorPermisos(HashSet<int> permisos)

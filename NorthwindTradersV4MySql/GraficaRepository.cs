@@ -23,9 +23,7 @@ namespace NorthwindTradersV4MySql
                 using (var cn = new MySqlConnection(_connectionString))
                 using (var cmd = new MySqlCommand(query, cn))
                 using (var da = new MySqlDataAdapter(cmd))
-                {
                     da.Fill(dt);
-                }
             }
             catch (MySqlException ex)
             {
