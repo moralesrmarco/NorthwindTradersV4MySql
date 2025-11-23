@@ -232,7 +232,12 @@ namespace NorthwindTradersV4MySql
                                 Notes           = @Notes,
                                 ReportsTo       = @ReportsTo,";
             if (e.Photo != null)
-                query += "Photo           = @Photo,";
+                query += @"
+                            Photo = CASE 
+                                    WHEN @EmployeeID <= 9 THEN Photo 
+                                    ELSE @Photo
+                                    END,
+                            ";
             query += @"
                     RowVersion      = RowVersion + 1
                     WHERE 

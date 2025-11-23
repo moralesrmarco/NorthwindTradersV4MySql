@@ -569,8 +569,10 @@ namespace NorthwindTradersV4MySql
                             ReportsTo = cboReportaA.SelectedValue.ToString() == "0" ? (int?)null : Convert.ToInt32(cboReportaA.SelectedValue),
                             RowVersion = (int)txtId.Tag
                         };
-                        if (picFoto.Image != null && empleado.EmployeeID > 8)
+                        if (picFoto.Image != null && empleado.EmployeeID > 9)
                             empleado.Photo = Utils.ImageToByteArray(picFoto.Image);
+                        //else if (picFoto.Image != null && empleado.EmployeeID <= 8)
+                        //    empleado.Photo = picFoto.Image.;
                         else
                             empleado.Photo = null;
                         int numRegs = _empleadoRepository.Actualizar(empleado);

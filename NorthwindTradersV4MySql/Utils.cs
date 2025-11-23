@@ -92,7 +92,7 @@ namespace NorthwindTradersV4MySql
             if (oleBytes == null || oleBytes.Length == 0)
                 return oleBytes;
             const int OLE_HEADER_LENGTH = 78; // Tamaño típico del encabezado OLE
-            int offset = (employeeId <= 8 && oleBytes.Length > OLE_HEADER_LENGTH)
+            int offset = (employeeId <= 9 && oleBytes.Length > OLE_HEADER_LENGTH)
             ? OLE_HEADER_LENGTH
             : 0;
 
